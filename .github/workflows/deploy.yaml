@@ -41,3 +41,15 @@ jobs:
           TF_VAR_bucket_name: ${{ secrets.BUCKET_NAME }}
         run: terraform apply -auto-approve
         working-directory: terraform
+
+      - name: Uploading files to S3 Bucket
+        run: |
+          aws s3 sync frontend/dist/ s3://${{ secrets.BUCKET_NAME }}/ \
+            --exclude "*" \
+            --include "*.html" \
+            --include "*.js" \
+            --include "*.css" \
+            --include "*.png" \
+            --include "*.jpg" \
+            --include "*.svg" \
+            --include "*.ico"
