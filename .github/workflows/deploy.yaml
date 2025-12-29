@@ -53,12 +53,14 @@ jobs:
       - name: Terraform Plan
         env:
           TF_VAR_bucket_name: ${{ secrets.BUCKET_NAME }}
-        run: terraform plan -var="bucket_name=${TF_VAR_bucket_name}"
+          TF_VAR_domain_name: ${{ secrets.DOMAIN_NAME }}
+        run: terraform plan -var="bucket_name=${TF_VAR_bucket_name}" -var="domain_name=${TF_VAR_domain_name}"
         working-directory: terraform
 
       - name: Terraform Apply
         env:
           TF_VAR_bucket_name: ${{ secrets.BUCKET_NAME }}
+          TF_VAR_domain_name: ${{ secrets.DOMAIN_NAME }}
         run: terraform apply -auto-approve
         working-directory: terraform
 

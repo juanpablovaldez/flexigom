@@ -38,3 +38,21 @@ resource "aws_s3_bucket_public_access_block" "static_site_public_access" {
 
 #     depends_on = [aws_s3_bucket_public_access_block.static_site_public_access]
 # }
+
+# !!! SSL Certificate for the domain name (requires domain verification) !!!
+resource "aws_acm_certificate" "static_site_cert" {
+    domain_name       = var.domain_name
+    validation_method = "DNS"
+
+    subject_alternative_names = [
+        "www.${var.domain_name}"
+    ]
+
+    tags = {
+        Name = "${var.domain_name} SSL Certificate"
+    }
+
+    lifecycle {
+        create_before_destroy = true
+    }
+}
