@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Star } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { SectionTitle } from "../components/section-title";
 import { testimonialsConfig } from "../config/testimonials-config";
 import type { Review, ReviewsSectionProps } from "../types";
@@ -96,11 +96,14 @@ export function TestimonialsSection({
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
 
-  const testimonials =
-    reviews?.filter(
-      (review) =>
-        review && review.testimonial && review.testimonial.trim().length > 0,
-    ) ?? [];
+  const testimonials = useMemo(
+    () =>
+      reviews?.filter(
+        (review) =>
+          review && review.testimonial && review.testimonial.trim().length > 0,
+      ) ?? [],
+    [reviews],
+  );
 
   const sectionContent = {
     ...testimonialsConfig,
@@ -114,9 +117,15 @@ export function TestimonialsSection({
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
 
-    api.on("select", () => {
+    const onSelect = () => {
       setCurrent(api.selectedScrollSnap() + 1);
-    });
+    };
+
+    api.on("select", onSelect);
+
+    return () => {
+      api.off("select", onSelect);
+    };
   }, [api]);
 
   const scrollToSlide = (index: number) => {

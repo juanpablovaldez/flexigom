@@ -99,10 +99,50 @@ export const isValidDni = (value: string): boolean => {
   return raw.length >= 7 && raw.length <= 8;
 };
 
-// Re-export utility modules for convenience
-export * from "./utils/localStorage";
-export * from "./utils/search";
-export * from "./utils/recentSearches";
-export * from "./utils/platform";
-export * from "./utils/security";
-export * from "./utils/error-messages";
+export {
+  getLocalStorageItem,
+  setLocalStorageItem,
+  removeLocalStorageItem,
+  isLocalStorageAvailable,
+} from "./utils/localStorage";
+
+export {
+  normalizeSearchTerm,
+  highlightSearchTerm,
+  filterProductsBySearchTerm,
+  isValidSearchTerm,
+} from "./utils/search";
+
+export {
+  getRecentSearches,
+  addRecentSearch,
+  clearRecentSearches,
+  removeRecentSearch,
+} from "./utils/recentSearches";
+
+export {
+  isMacOS,
+  isWindows,
+  getKeyboardShortcut,
+  getModifierKey,
+  isShortcutPressed,
+} from "./utils/platform";
+
+export {
+  sanitizeSearchTerm,
+  validateSearchInput,
+  escapeHtml,
+  containsSuspiciousContent,
+  sanitizeUrlParameter,
+  createSecureDisplayTerm,
+} from "./utils/security";
+
+export {
+  SecurityErrorType,
+  showSecurityError,
+  showSearchError,
+  showSearchValidationError,
+  sanitizeErrorMessage,
+  shouldShowError,
+  logSecurityEvent,
+} from "./utils/error-messages";
