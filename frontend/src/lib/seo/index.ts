@@ -33,6 +33,7 @@ export {
   createProductSchema,
   createBreadcrumbSchema,
   createFAQSchema,
+  createFAQPageSchema,
   createWebsiteSchema,
   createOrganizationSchema,
 } from "./structured-data";
