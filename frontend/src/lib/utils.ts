@@ -125,6 +125,7 @@ export {
   isWindows,
   getKeyboardShortcut,
   getModifierKey,
+  isShortcutPressed,
 } from "./utils/platform";
 
 export {
@@ -132,12 +133,16 @@ export {
   validateSearchInput,
   escapeHtml,
   containsSuspiciousContent,
+  sanitizeUrlParameter,
+  createSecureDisplayTerm,
 } from "./utils/security";
 
 export {
   SecurityErrorType,
   showSecurityError,
   showSearchError,
+  showSearchValidationError,
   sanitizeErrorMessage,
   shouldShowError,
+  logSecurityEvent,
 } from "./utils/error-messages";
