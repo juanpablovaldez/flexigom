@@ -170,9 +170,12 @@ export function createPageSEO(pageConfig: {
 }): SEOConfig {
   const title = `${pageConfig.title} | Flexigom Tucumán`;
   const description = `${pageConfig.description} Flexigom, especialistas en productos de descanso en Tucumán con más de 20 años de experiencia.`;
-  const keywords = [...(pageConfig.keywords || []), ...KEYWORDS.primary].join(
-    ", ",
-  );
+
+  const keywordsSet = new Set([
+    ...(pageConfig.keywords || []),
+    ...KEYWORDS.primary,
+  ]);
+  const keywords = Array.from(keywordsSet).join(", ");
 
   const canonical = pageConfig.path
     ? `${SITE_CONFIG.url}${pageConfig.path}`
