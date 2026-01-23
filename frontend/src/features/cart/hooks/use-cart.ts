@@ -1,20 +1,35 @@
 import { useCartStore, selectCartItemCount } from "../store/cart-store";
+import { useShallow } from "zustand/react/shallow";
 
 /**
  * Custom hook for cart operations
- * Provides easy access to cart state and actions
  */
 export function useCart() {
-  const items = useCartStore((state) => state.items);
-  const addItem = useCartStore((state) => state.addItem);
-  const removeItem = useCartStore((state) => state.removeItem);
-  const updateQuantity = useCartStore((state) => state.updateQuantity);
-  const clearCart = useCartStore((state) => state.clearCart);
-  const getItemCount = useCartStore((state) => state.getItemCount);
-  const getSubtotal = useCartStore((state) => state.getSubtotal);
-  const getTax = useCartStore((state) => state.getTax);
-  const getTotal = useCartStore((state) => state.getTotal);
-  const getItem = useCartStore((state) => state.getItem);
+  const {
+    items,
+    addItem,
+    removeItem,
+    updateQuantity,
+    clearCart,
+    getItemCount,
+    getSubtotal,
+    getTax,
+    getTotal,
+    getItem,
+  } = useCartStore(
+    useShallow((state) => ({
+      items: state.items,
+      addItem: state.addItem,
+      removeItem: state.removeItem,
+      updateQuantity: state.updateQuantity,
+      clearCart: state.clearCart,
+      getItemCount: state.getItemCount,
+      getSubtotal: state.getSubtotal,
+      getTax: state.getTax,
+      getTotal: state.getTotal,
+      getItem: state.getItem,
+    })),
+  );
 
   return {
     items,

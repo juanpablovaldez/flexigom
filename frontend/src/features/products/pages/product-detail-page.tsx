@@ -73,15 +73,15 @@ export function ProductDetailPage() {
   const savings = hasDiscount ? price - discountPrice : 0;
   const hasImages = images.length > 0;
 
-  // Generate SEO configuration for the product
-  const seoConfig = useMemo(() => {
-    if (!product) return null;
+  const { seoConfig, productSchema, breadcrumbSchema } = useMemo(() => {
+    if (!product) {
+      return { seoConfig: null, productSchema: null, breadcrumbSchema: null };
+    }
 
-    const productImages = images.map((img: { url?: string }) =>
-      getImageUrl(img.url || ""),
-    );
+    const productImages = images
+      .map((img: { url?: string }) => getImageUrl(img.url || ""))
+      .filter((url): url is string => typeof url === "string");
 
-    // Convert rich text description to string
     const descriptionText =
       product.description && Array.isArray(product.description)
         ? product.description
@@ -94,74 +94,50 @@ export function ProductDetailPage() {
           ? product.description
           : undefined;
 
-    return createProductSEO({
+    // Get brand once
+    const brand =
+      typeof product.brand === "string"
+        ? product.brand
+        : product.brand || "Flexigom";
+
+    // Get category once
+    const category = product.categories?.[0]?.name || "Producto";
+
+    // SEO config
+    const seoConfig = createProductSEO({
       name: product.name,
       description: descriptionText,
       price: hasDiscount ? formatPrice(discountPrice) : formatPrice(price),
-      brand:
-        typeof product.brand === "string"
-          ? product.brand
-          : product.brand || "Flexigom",
-      category: product.categories?.[0]?.name || "Producto",
-      images: productImages.filter(
-        (url): url is string => typeof url === "string",
-      ),
+      brand,
+      category,
+      images: productImages,
       documentId: documentId,
     });
-  }, [product, documentId, images, hasDiscount, price, discountPrice]);
 
-  // Generate product structured data
-  const productSchema = useMemo(() => {
-    if (!product) return null;
-
-    const productImages = images.map((img: { url?: string }) =>
-      getImageUrl(img.url || ""),
-    );
-
-    // Convert rich text description to string
-    const descriptionText =
-      product.description && Array.isArray(product.description)
-        ? product.description
-            .map(
-              (block: { children?: Array<{ text?: string }> }) =>
-                block.children?.map((child) => child.text || "").join("") || "",
-            )
-            .join(" ")
-        : typeof product.description === "string"
-          ? product.description
-          : `${product.name} disponible en Flexigom Tucumán`;
-
-    return createProductSchema({
+    // Product schema
+    const productSchema = createProductSchema({
       name: product.name,
-      description: descriptionText,
+      description:
+        descriptionText || `${product.name} disponible en Flexigom Tucumán`,
       price: hasDiscount ? discountPrice.toString() : price.toString(),
       currency: "ARS",
-      brand:
-        typeof product.brand === "string"
-          ? product.brand
-          : product.brand || "Flexigom",
-      category: product.categories?.[0]?.name || "Producto",
-      images: productImages.filter(
-        (url): url is string => typeof url === "string",
-      ),
+      brand,
+      category,
+      images: productImages,
       availability: (product.stock || 0) > 0 ? "InStock" : "OutOfStock",
       condition: "NewCondition",
-      sku: product.documentId, // Use documentId as SKU
+      sku: product.documentId,
     });
-  }, [product, images, hasDiscount, price, discountPrice]);
 
-  // Generate breadcrumb structured data
-  const breadcrumbSchema = useMemo(() => {
-    if (!product) return null;
-
-    const breadcrumbs = [
+    // Breadcrumb schema
+    const breadcrumbSchema = createBreadcrumbSchema([
       { name: "Inicio", url: "/" },
       { name: "Productos", url: "/products" },
       { name: product.name, url: `/products/product/${documentId}` },
-    ];
+    ]);
 
-    return createBreadcrumbSchema(breadcrumbs);
-  }, [product, documentId]);
+    return { seoConfig, productSchema, breadcrumbSchema };
+  }, [product, documentId, images, hasDiscount, price, discountPrice]);
 
   if (isLoading) {
     return <ProductDetailSkeleton />;

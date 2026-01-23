@@ -25,21 +25,22 @@ export const POPULAR_PRICE_RANGES = [
   { label: "$ 1.200.000 - $ 1.500.000", min: 1200000, max: 1500000 },
 ] as const;
 
-export const BRANDS = ["flexigom", "premium", "comfort"] as const;
+export const BRANDS = ["Flexigom"] as const;
 
 export const COMPOSITIONS = [
-  "Latex",
-  "MemoryFoam",
-  "Spring",
-  "Hybrid",
+  "Espuma de memoria",
+  "Resorte",
+  "Híbrido",
+  "Látex",
+  "Espuma",
 ] as const;
 
 export const MEASUREMENTS = [
-  "single",
-  "twin",
-  "full",
-  "queen",
-  "king",
+  "Una plaza",
+  "Dos plazas",
+  "Queen",
+  "King (1.80x2)",
+  "King Size (2x2)"
 ] as const;
 
 export const SORT_OPTIONS = [
