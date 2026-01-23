@@ -376,7 +376,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
-    displayName: 'Category';
+    displayName: 'Categorias';
     pluralName: 'categories';
     singularName: 'category';
   };
@@ -415,7 +415,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
 export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
   collectionName: 'faqs';
   info: {
-    displayName: 'Faq';
+    displayName: 'Preguntas frecuentes';
     pluralName: 'faqs';
     singularName: 'faq';
   };
@@ -442,7 +442,7 @@ export interface ApiFeaturedProductFeaturedProduct
   extends Struct.CollectionTypeSchema {
   collectionName: 'featured_products';
   info: {
-    displayName: 'FeaturedProduct';
+    displayName: 'Productos destacados';
     pluralName: 'featured-products';
     singularName: 'featured-product';
   };
@@ -472,7 +472,7 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
   collectionName: 'orders';
   info: {
     description: 'Customer orders and payment information';
-    displayName: 'Order';
+    displayName: 'Ordenes';
     pluralName: 'orders';
     singularName: 'order';
   };
@@ -545,7 +545,7 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
 export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   collectionName: 'products';
   info: {
-    displayName: 'Product';
+    displayName: 'Productos';
     pluralName: 'products';
     singularName: 'product';
   };
@@ -553,14 +553,14 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    brand: Schema.Attribute.Enumeration<['flexigom', 'premium', 'comfort']> &
+    brand: Schema.Attribute.Enumeration<['Flexigom']> &
       Schema.Attribute.Required;
     categories: Schema.Attribute.Relation<
       'manyToMany',
       'api::category.category'
     >;
     composition: Schema.Attribute.Enumeration<
-      ['MemoryFoam', 'Innerspring', 'Hybrid', 'Latex', 'Foam']
+      ['Espuma de memoria', 'Resorte', 'H\u00EDbrido', 'L\u00E1tex', 'Espuma']
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -575,7 +575,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     measurement: Schema.Attribute.Enumeration<
-      ['single', 'twin', 'queen', 'king']
+      ['Una plaza', 'Dos plazas', 'Queen', 'King (1.80x2)', 'King Size (2x2)']
     >;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     price: Schema.Attribute.Decimal & Schema.Attribute.Required;
@@ -592,7 +592,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
 export interface ApiReviewReview extends Struct.CollectionTypeSchema {
   collectionName: 'reviews';
   info: {
-    displayName: 'Review';
+    displayName: 'Rese\u00F1as';
     pluralName: 'reviews';
     singularName: 'review';
   };

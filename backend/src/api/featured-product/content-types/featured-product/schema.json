@@ -4,7 +4,7 @@
   "info": {
     "singularName": "featured-product",
     "pluralName": "featured-products",
-    "displayName": "FeaturedProduct"
+    "displayName": "Productos destacados"
   },
   "options": {
     "draftAndPublish": true
