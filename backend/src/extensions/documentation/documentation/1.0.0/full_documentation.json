@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2026-01-23T13:00:36.129Z"
+    "x-generation-date": "2026-01-23T13:28:55.446Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -5127,28 +5127,27 @@
                 "composition": {
                   "type": "string",
                   "enum": [
-                    "MemoryFoam",
-                    "Innerspring",
-                    "Hybrid",
-                    "Latex",
-                    "Foam"
+                    "Espuma de memoria",
+                    "Resorte",
+                    "Híbrido",
+                    "Látex",
+                    "Espuma"
                   ]
                 },
                 "measurement": {
                   "type": "string",
                   "enum": [
-                    "single",
-                    "twin",
-                    "queen",
-                    "king"
+                    "Una plaza",
+                    "Dos plazas",
+                    "Queen",
+                    "King (1.80x2)",
+                    "King Size (2x2)"
                   ]
                 },
                 "brand": {
                   "type": "string",
                   "enum": [
-                    "flexigom",
-                    "premium",
-                    "comfort"
+                    "Flexigom"
                   ]
                 },
                 "createdAt": {
@@ -6687,28 +6686,27 @@
                 "composition": {
                   "type": "string",
                   "enum": [
-                    "MemoryFoam",
-                    "Innerspring",
-                    "Hybrid",
-                    "Latex",
-                    "Foam"
+                    "Espuma de memoria",
+                    "Resorte",
+                    "Híbrido",
+                    "Látex",
+                    "Espuma"
                   ]
                 },
                 "measurement": {
                   "type": "string",
                   "enum": [
-                    "single",
-                    "twin",
-                    "queen",
-                    "king"
+                    "Una plaza",
+                    "Dos plazas",
+                    "Queen",
+                    "King (1.80x2)",
+                    "King Size (2x2)"
                   ]
                 },
                 "brand": {
                   "type": "string",
                   "enum": [
-                    "flexigom",
-                    "premium",
-                    "comfort"
+                    "Flexigom"
                   ]
                 },
                 "createdAt": {
@@ -6966,28 +6964,27 @@
               "composition": {
                 "type": "string",
                 "enum": [
-                  "MemoryFoam",
-                  "Innerspring",
-                  "Hybrid",
-                  "Latex",
-                  "Foam"
+                  "Espuma de memoria",
+                  "Resorte",
+                  "Híbrido",
+                  "Látex",
+                  "Espuma"
                 ]
               },
               "measurement": {
                 "type": "string",
                 "enum": [
-                  "single",
-                  "twin",
-                  "queen",
-                  "king"
+                  "Una plaza",
+                  "Dos plazas",
+                  "Queen",
+                  "King (1.80x2)",
+                  "King Size (2x2)"
                 ]
               },
               "brand": {
                 "type": "string",
                 "enum": [
-                  "flexigom",
-                  "premium",
-                  "comfort"
+                  "Flexigom"
                 ]
               },
               "locale": {
@@ -7859,28 +7856,27 @@
                       "composition": {
                         "type": "string",
                         "enum": [
-                          "MemoryFoam",
-                          "Innerspring",
-                          "Hybrid",
-                          "Latex",
-                          "Foam"
+                          "Espuma de memoria",
+                          "Resorte",
+                          "Híbrido",
+                          "Látex",
+                          "Espuma"
                         ]
                       },
                       "measurement": {
                         "type": "string",
                         "enum": [
-                          "single",
-                          "twin",
-                          "queen",
-                          "king"
+                          "Una plaza",
+                          "Dos plazas",
+                          "Queen",
+                          "King (1.80x2)",
+                          "King Size (2x2)"
                         ]
                       },
                       "brand": {
                         "type": "string",
                         "enum": [
-                          "flexigom",
-                          "premium",
-                          "comfort"
+                          "Flexigom"
                         ]
                       },
                       "createdAt": {
@@ -8145,28 +8141,27 @@
           "composition": {
             "type": "string",
             "enum": [
-              "MemoryFoam",
-              "Innerspring",
-              "Hybrid",
-              "Latex",
-              "Foam"
+              "Espuma de memoria",
+              "Resorte",
+              "Híbrido",
+              "Látex",
+              "Espuma"
             ]
           },
           "measurement": {
             "type": "string",
             "enum": [
-              "single",
-              "twin",
-              "queen",
-              "king"
+              "Una plaza",
+              "Dos plazas",
+              "Queen",
+              "King (1.80x2)",
+              "King Size (2x2)"
             ]
           },
           "brand": {
             "type": "string",
             "enum": [
-              "flexigom",
-              "premium",
-              "comfort"
+              "Flexigom"
             ]
           },
           "createdAt": {
