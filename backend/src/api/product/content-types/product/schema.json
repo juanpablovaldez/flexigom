@@ -4,7 +4,7 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "Product"
+    "displayName": "Productos"
   },
   "options": {
     "draftAndPublish": true
@@ -44,10 +44,7 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": [
-        "images",
-        "videos"
-      ]
+      "allowedTypes": ["images", "videos"]
     },
     "specifications": {
       "type": "blocks"
@@ -55,32 +52,17 @@
     "composition": {
       "type": "enumeration",
       "required": false,
-      "enum": [
-        "MemoryFoam",
-        "Innerspring",
-        "Hybrid",
-        "Latex",
-        "Foam"
-      ]
+      "enum": ["Espuma de memoria", "Resorte", "Híbrido", "Látex", "Espuma"]
     },
     "measurement": {
       "type": "enumeration",
       "required": false,
-      "enum": [
-        "single",
-        "twin",
-        "queen",
-        "king"
-      ]
+      "enum": ["Una plaza", "Dos plazas", "Queen", "King (1.80x2)", "King Size (2x2)"]
     },
     "brand": {
       "type": "enumeration",
       "required": true,
-      "enum": [
-        "flexigom",
-        "premium",
-        "comfort"
-      ]
+      "enum": ["Flexigom"]
     }
   }
 }
