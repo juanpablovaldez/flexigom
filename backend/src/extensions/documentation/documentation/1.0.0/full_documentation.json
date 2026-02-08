@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2026-01-23T14:13:44.890Z"
+    "x-generation-date": "2026-02-08T15:50:52.163Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -5137,11 +5137,14 @@
                 "measurement": {
                   "type": "string",
                   "enum": [
-                    "Una plaza",
-                    "Dos plazas",
-                    "Queen",
-                    "King (1.80x2)",
-                    "King Size (2x2)"
+                    "Una plaza (0.90x1.90)",
+                    "Una plaza y media (1.00x1.90)",
+                    "Dos plazas (1.30x1.90)",
+                    "Dos plazas y media (1.40x1.90)",
+                    "Dos plazas y media (1.50x1.90)",
+                    "Queen (1.60x2.00)",
+                    "King (1.80x2.00)",
+                    "King Size (2.00x2.00)"
                   ]
                 },
                 "brand": {
@@ -6696,11 +6699,14 @@
                 "measurement": {
                   "type": "string",
                   "enum": [
-                    "Una plaza",
-                    "Dos plazas",
-                    "Queen",
-                    "King (1.80x2)",
-                    "King Size (2x2)"
+                    "Una plaza (0.90x1.90)",
+                    "Una plaza y media (1.00x1.90)",
+                    "Dos plazas (1.30x1.90)",
+                    "Dos plazas y media (1.40x1.90)",
+                    "Dos plazas y media (1.50x1.90)",
+                    "Queen (1.60x2.00)",
+                    "King (1.80x2.00)",
+                    "King Size (2.00x2.00)"
                   ]
                 },
                 "brand": {
@@ -6974,11 +6980,14 @@
               "measurement": {
                 "type": "string",
                 "enum": [
-                  "Una plaza",
-                  "Dos plazas",
-                  "Queen",
-                  "King (1.80x2)",
-                  "King Size (2x2)"
+                  "Una plaza (0.90x1.90)",
+                  "Una plaza y media (1.00x1.90)",
+                  "Dos plazas (1.30x1.90)",
+                  "Dos plazas y media (1.40x1.90)",
+                  "Dos plazas y media (1.50x1.90)",
+                  "Queen (1.60x2.00)",
+                  "King (1.80x2.00)",
+                  "King Size (2.00x2.00)"
                 ]
               },
               "brand": {
@@ -7866,11 +7875,14 @@
                       "measurement": {
                         "type": "string",
                         "enum": [
-                          "Una plaza",
-                          "Dos plazas",
-                          "Queen",
-                          "King (1.80x2)",
-                          "King Size (2x2)"
+                          "Una plaza (0.90x1.90)",
+                          "Una plaza y media (1.00x1.90)",
+                          "Dos plazas (1.30x1.90)",
+                          "Dos plazas y media (1.40x1.90)",
+                          "Dos plazas y media (1.50x1.90)",
+                          "Queen (1.60x2.00)",
+                          "King (1.80x2.00)",
+                          "King Size (2.00x2.00)"
                         ]
                       },
                       "brand": {
@@ -8151,11 +8163,14 @@
           "measurement": {
             "type": "string",
             "enum": [
-              "Una plaza",
-              "Dos plazas",
-              "Queen",
-              "King (1.80x2)",
-              "King Size (2x2)"
+              "Una plaza (0.90x1.90)",
+              "Una plaza y media (1.00x1.90)",
+              "Dos plazas (1.30x1.90)",
+              "Dos plazas y media (1.40x1.90)",
+              "Dos plazas y media (1.50x1.90)",
+              "Queen (1.60x2.00)",
+              "King (1.80x2.00)",
+              "King Size (2.00x2.00)"
             ]
           },
           "brand": {

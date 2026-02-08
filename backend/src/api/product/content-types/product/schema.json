@@ -44,7 +44,10 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": ["images", "videos"]
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
     },
     "specifications": {
       "type": "blocks"
@@ -52,17 +55,34 @@
     "composition": {
       "type": "enumeration",
       "required": false,
-      "enum": ["Espuma de memoria", "Resorte", "Híbrido", "Látex", "Espuma"]
+      "enum": [
+        "Espuma de memoria",
+        "Resorte",
+        "Híbrido",
+        "Látex",
+        "Espuma"
+      ]
     },
     "measurement": {
       "type": "enumeration",
       "required": false,
-      "enum": ["Una plaza", "Dos plazas", "Queen", "King (1.80x2)", "King Size (2x2)"]
+      "enum": [
+        "Una plaza (0.90x1.90)",
+        "Una plaza y media (1.00x1.90)",
+        "Dos plazas (1.30x1.90)",
+        "Dos plazas y media (1.40x1.90)",
+        "Dos plazas y media (1.50x1.90)",
+        "Queen (1.60x2.00)",
+        "King (1.80x2.00)",
+        "King Size (2.00x2.00)"
+      ]
     },
     "brand": {
       "type": "enumeration",
       "required": true,
-      "enum": ["Flexigom"]
+      "enum": [
+        "Flexigom"
+      ]
     }
   }
 }

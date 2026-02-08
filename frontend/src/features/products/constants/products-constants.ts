@@ -36,11 +36,14 @@ export const COMPOSITIONS = [
 ] as const;
 
 export const MEASUREMENTS = [
-  "Una plaza",
-  "Dos plazas",
-  "Queen",
-  "King (1.80x2)",
-  "King Size (2x2)"
+  "Una plaza (0.90x1.90)",
+  "Una plaza y media (1.00x1.90)",
+  "Dos plazas (1.30x1.90)",
+  "Dos plazas y media (1.40x1.90)",
+  "Dos plazas y media (1.50x1.90)",
+  "Queen (1.60x2.00)",
+  "King (1.80x2.00)",
+  "King Size (2.00x2.00)",
 ] as const;
 
 export const SORT_OPTIONS = [
