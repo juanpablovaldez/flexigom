@@ -15,6 +15,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { SITE_CONFIG } from "@/lib/seo/constants";
 
 interface FAQItem {
   id: number;
@@ -125,22 +126,27 @@ export function SupportPage() {
             <div className="flex justify-center items-center bg-red-100 mx-auto mb-4 rounded-full w-16 h-16">
               <Phone className="w-8 h-8 text-red-600" />
             </div>
-            <h3 className="mb-2 font-bold text-gray-900 text-xl">Teléfono</h3>
-            <p className="mb-2 font-bold text-red-600 text-2xl">
-              +54 11 1234-5678
+            <h3 className="mb-2 font-bold text-gray-900 text-xl">Teléfonos</h3>
+            <div className="flex flex-col gap-2 mb-4">
+              {SITE_CONFIG.phones.map((phone, idx) => (
+                <p key={idx} className="font-bold text-red-600 text-lg">
+                  {phone.number} ({phone.name})
+                </p>
+              ))}
+            </div>
+            <p className="mb-2 text-gray-600 text-base">
+              Lunes a Viernes: 8:30 a 13 y de 17 a 20
             </p>
-            <p className="mb-4 text-gray-600 text-base">
-              Lunes a Viernes: 9:00 - 18:00
-            </p>
-            <p className="mb-6 text-gray-600 text-base">
-              Sábados: 9:00 - 13:00
-            </p>
+            <p className="mb-6 text-gray-600 text-base">Sábados: 9 a 13</p>
             <Button
+              asChild
               size="lg"
               className="bg-red-600 hover:bg-red-700 py-3 w-full h-auto text-lg"
             >
-              <Phone className="mr-2 w-5 h-5" />
-              Llamar Ahora
+              <a href={`tel:${SITE_CONFIG.phones[0].number}`}>
+                <Phone className="mr-2 w-5 h-5" />
+                Llamar Ahora
+              </a>
             </Button>
           </CardContent>
         </Card>
@@ -153,19 +159,22 @@ export function SupportPage() {
             </div>
             <h3 className="mb-2 font-bold text-gray-900 text-xl">Email</h3>
             <p className="mb-2 font-semibold text-blue-600 text-lg">
-              info@flexigom.com
+              {SITE_CONFIG.email}
             </p>
             <p className="mb-4 text-gray-600 text-base">
               Respuesta en 24 horas
             </p>
             <p className="mb-6 text-gray-600 text-base">Lunes a Viernes</p>
             <Button
+              asChild
               variant="outline"
               size="lg"
               className="bg-transparent hover:bg-blue-50 py-3 border-2 border-blue-200 w-full h-auto text-blue-600 text-lg"
             >
-              <Mail className="mr-2 w-5 h-5" />
-              Enviar Email
+              <a href={`mailto:${SITE_CONFIG.email}`}>
+                <Mail className="mr-2 w-5 h-5" />
+                Enviar Email
+              </a>
             </Button>
           </CardContent>
         </Card>
@@ -214,17 +223,28 @@ export function SupportPage() {
             <h3 className="mb-4 font-semibold text-gray-900 text-xl">
               Dirección
             </h3>
-            <p className="mb-2 text-gray-700 text-lg">Av. Corrientes 1234</p>
             <p className="mb-2 text-gray-700 text-lg">
-              Ciudad Autónoma de Buenos Aires
+              {SITE_CONFIG.address.street}
             </p>
-            <p className="mb-4 text-gray-700 text-lg">C1043AAZ, Argentina</p>
+            <p className="mb-2 text-gray-700 text-lg">
+              {SITE_CONFIG.address.city}, {SITE_CONFIG.address.province}
+            </p>
+            <p className="mb-4 text-gray-700 text-lg">
+              {SITE_CONFIG.address.country}
+            </p>
             <Button
+              asChild
               variant="outline"
               size="lg"
               className="bg-transparent py-3 border-2 h-auto text-base"
             >
-              Ver en Google Maps
+              <a
+                href="https://www.google.com/maps/dir//Av.+Mitre+299,+T4000+San+Miguel+de+Tucum%C3%A1n,+Tucum%C3%A1n,+Argentina"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ver en Google Maps
+              </a>
             </Button>
           </div>
           <div>
@@ -235,14 +255,12 @@ export function SupportPage() {
               <div className="flex items-center space-x-3">
                 <Clock className="w-5 h-5 text-gray-600" />
                 <span className="text-gray-700 text-lg">
-                  Lunes a Viernes: 8:30 - 13:00 y 17:00 - 20:00
+                  Lunes a Viernes: 8:30 A 13 y de 17 a 20
                 </span>
               </div>
               <div className="flex items-center space-x-3">
                 <Clock className="w-5 h-5 text-gray-600" />
-                <span className="text-gray-700 text-lg">
-                  Sábados: 9:00 - 13:00
-                </span>
+                <span className="text-gray-700 text-lg">Sábados: 9 a 13</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Clock className="w-5 h-5 text-gray-600" />
@@ -331,20 +349,29 @@ export function SupportPage() {
         </p>
         <div className="flex sm:flex-row flex-col justify-center gap-4">
           <Button
+            asChild
             size="lg"
             className="bg-red-600 hover:bg-red-700 px-8 py-4 h-auto text-lg"
           >
-            <Phone className="mr-2 w-5 h-5" />
-            Llamar Ahora
+            <a href={`tel:${SITE_CONFIG.phones[0].number}`}>
+              <Phone className="mr-2 w-5 h-5" />
+              Llamar Ahora
+            </a>
           </Button>
           <Button
+            asChild
             variant="outline"
             size="lg"
             className="bg-transparent px-8 py-4 border-2 h-auto text-lg"
-            onClick={() => alert("Chat en vivo se abrirá aquí")}
           >
-            <MessageCircle className="mr-2 w-5 h-5" />
-            Iniciar Chat
+            <a
+              href={`https://wa.me/${SITE_CONFIG.phones[0].clean}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle className="mr-2 w-5 h-5" />
+              Escribir por WhatsApp
+            </a>
           </Button>
         </div>
       </div>

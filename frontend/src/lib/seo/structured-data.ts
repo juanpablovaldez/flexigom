@@ -60,7 +60,7 @@ export function createProductSchema(product: {
       seller: {
         "@type": "LocalBusiness",
         name: SITE_CONFIG.name,
-        telephone: SITE_CONFIG.phone,
+        telephone: SITE_CONFIG.phones.map((p) => p.number),
         address: {
           "@type": "PostalAddress",
           addressLocality: SITE_CONFIG.address.city,
@@ -176,7 +176,7 @@ export function createOrganizationSchema(): StructuredDataConfig {
     contactPoint: [
       {
         "@type": "ContactPoint",
-        telephone: SITE_CONFIG.phone,
+        telephone: SITE_CONFIG.phones.map((p) => p.number),
         contactType: "customer service",
         availableLanguage: "Spanish",
         areaServed: "AR",
@@ -211,7 +211,7 @@ export function createOrganizationSchema(): StructuredDataConfig {
     sameAs: [
       SITE_CONFIG.social.facebook,
       SITE_CONFIG.social.instagram,
-      `https://wa.me/${SITE_CONFIG.whatsapp}`,
+      ...SITE_CONFIG.phones.map((p) => `https://wa.me/${p.clean}`),
     ],
   };
 }

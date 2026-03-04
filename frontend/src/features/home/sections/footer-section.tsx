@@ -66,34 +66,44 @@ export function FooterSection({ config, className }: FooterSectionProps = {}) {
 
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <PhoneIcon className="w-4 h-4 text-red-400" />
-                <a
-                  href={`tel:${footerData.contact.phone}`}
-                  className="text-gray-300 hover:text-red-400 text-sm transition-colors"
-                >
-                  {footerData.contact.phone}
-                </a>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <MessageCircleIcon className="w-4 h-4 text-red-400" />
-                <a
-                  href={`https://wa.me/${footerData.contact.whatsapp.replace(/[\s-+()]/g, "")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-red-400 text-sm transition-colors"
-                >
-                  WhatsApp
-                </a>
-              </div>
-
-              <div className="flex items-center gap-2">
                 <MapPinIcon className="w-4 h-4 text-red-400" />
                 <span className="text-gray-300 text-sm">
                   {footerData.contact.address.street},{" "}
                   {footerData.contact.address.city}
                 </span>
               </div>
+
+              {footerData.contact.phones.map((phone, idx) => (
+                <div key={idx} className="space-y-1 mt-2">
+                  <div className="flex items-center gap-2">
+                    <PhoneIcon className="w-4 h-4 text-red-400" />
+                    <span className="w-12 font-medium text-gray-400 text-xs">
+                      {phone.name}:
+                    </span>
+                    <a
+                      href={`tel:${phone.number}`}
+                      className="text-gray-300 hover:text-red-400 text-sm transition-colors"
+                    >
+                      {phone.number}
+                    </a>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <MessageCircleIcon className="w-4 h-4 text-red-400" />
+                    <span className="w-12 font-medium text-gray-400 text-xs">
+                      {phone.name}:
+                    </span>
+                    <a
+                      href={`https://wa.me/${phone.clean}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-300 hover:text-red-400 text-sm transition-colors"
+                    >
+                      WhatsApp
+                    </a>
+                  </div>
+                </div>
+              ))}
             </div>
 
             <div className="pt-2">

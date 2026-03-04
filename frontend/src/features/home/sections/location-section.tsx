@@ -20,8 +20,8 @@ const defaultContent: LocationSectionContent = {
     fullAddress: "Av. Mitre 299, T4000, Tucumán, Argentina",
   },
   contact: {
-    phone: "+54 381 527 7935",
-    whatsapp: "+54 381 527 7935",
+    phone: "+54 9 381 582-4678",
+    whatsapp: "+54 9 381 582-4678",
   },
   operatingHours: {
     weekdays: "Lunes a Viernes de 8:30 a 13 y de 17 a 20",
@@ -141,18 +141,18 @@ export function LocationSection({
           </div>
 
           {/* Google Maps */}
-          <div className="bg-white shadow-lg rounded-xl h-fit overflow-hidden">
+          <div className="bg-white shadow-lg rounded-xl h-full overflow-hidden">
             <div className="p-4 border-b">
               <h3 className="font-semibold text-gray-900 text-lg">
                 Ubicación en el Mapa
               </h3>
             </div>
-            <div className="relative h-[500px]">
+            <div className="relative h-full">
               <iframe
                 src={locationContent.mapEmbedUrl}
                 width="100%"
                 height="100%"
-                style={{ border: 0 }}
+                style={{ border: "none" }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

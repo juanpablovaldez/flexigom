@@ -8,6 +8,7 @@ import {
   MailIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SITE_CONFIG } from "@/lib/seo/constants";
 
 export function Component() {
   const seoConfig = createPageSEO({
@@ -54,28 +55,37 @@ export function Component() {
       <section className="py-12 md:py-16">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="gap-8 grid md:grid-cols-2 lg:grid-cols-3">
-            {/* Teléfono */}
+            {/* Teléfonos */}
             <div className="bg-white shadow-md hover:shadow-xl p-6 md:p-8 rounded-xl transition-all duration-300">
               <div className="flex items-center gap-3 mb-4">
                 <div className="bg-red-600 p-3 rounded-full">
                   <PhoneIcon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-semibold text-gray-900 text-lg">
-                  Teléfono
+                  Teléfonos
                 </h3>
               </div>
               <p className="mb-4 text-gray-600 text-sm">
                 Llamanos de lunes a sábados en nuestro horario de atención
               </p>
-              <a
-                href="tel:+543815277935"
-                className="font-medium text-red-600 hover:text-red-700 text-lg transition-colors"
-              >
-                +54 381 527 7935
-              </a>
+              <div className="flex flex-col gap-3">
+                {SITE_CONFIG.phones.map((phone, idx) => (
+                  <div key={idx} className="flex flex-col">
+                    <span className="font-medium text-gray-500 text-xs uppercase tracking-wider">
+                      {phone.name}
+                    </span>
+                    <a
+                      href={`tel:${phone.number}`}
+                      className="font-medium text-red-600 hover:text-red-700 text-lg transition-colors"
+                    >
+                      {phone.number}
+                    </a>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* WhatsApp */}
+            {/* WhatsApps */}
             <div className="bg-white shadow-md hover:shadow-xl p-6 md:p-8 rounded-xl transition-all duration-300">
               <div className="flex items-center gap-3 mb-4">
                 <div className="bg-red-600 p-3 rounded-full">
@@ -88,16 +98,24 @@ export function Component() {
               <p className="mb-4 text-gray-600 text-sm">
                 Escribinos directamente por WhatsApp para consultas rápidas
               </p>
-              <Button asChild className="bg-red-600 hover:bg-red-700 w-full">
-                <a
-                  href="https://wa.me/5493815277935"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageCircleIcon className="mr-2 w-4 h-4" />
-                  Abrir WhatsApp
-                </a>
-              </Button>
+              <div className="flex flex-col gap-3">
+                {SITE_CONFIG.phones.map((phone, idx) => (
+                  <Button
+                    key={idx}
+                    asChild
+                    className="justify-start bg-red-600 hover:bg-red-700 w-full"
+                  >
+                    <a
+                      href={`https://wa.me/${phone.clean}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircleIcon className="mr-2 w-4 h-4" />
+                      Contactar a {phone.name}
+                    </a>
+                  </Button>
+                ))}
+              </div>
             </div>
 
             {/* Email */}
@@ -200,32 +218,42 @@ export function Component() {
               Nuestro equipo está listo para ayudarte a encontrar el producto
               perfecto para tu descanso
             </p>
-            <div className="flex sm:flex-row flex-col justify-center gap-4">
-              <Button
-                asChild
-                size="lg"
-                className="bg-red-600 hover:bg-red-700 px-8 py-6 h-auto text-lg"
-              >
-                <a href="tel:+543815277935">
-                  <PhoneIcon className="mr-2 w-5 h-5" />
-                  Llamar ahora
-                </a>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="bg-transparent hover:bg-white/10 px-8 py-6 border-2 border-white h-auto text-white hover:text-white text-lg"
-              >
-                <a
-                  href="https://wa.me/5493815277935"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageCircleIcon className="mr-2 w-5 h-5" />
-                  Escribir por WhatsApp
-                </a>
-              </Button>
+            <div className="flex flex-col gap-4">
+              <div className="flex sm:flex-row flex-col justify-center gap-4">
+                {SITE_CONFIG.phones.map((phone, idx) => (
+                  <Button
+                    key={`call-${idx}`}
+                    asChild
+                    size="lg"
+                    className="bg-red-600 hover:bg-red-700 px-8 py-6 w-full sm:w-auto h-auto text-lg"
+                  >
+                    <a href={`tel:${phone.number}`}>
+                      <PhoneIcon className="mr-2 w-5 h-5" />
+                      Llamar a {phone.name}
+                    </a>
+                  </Button>
+                ))}
+              </div>
+              <div className="flex sm:flex-row flex-col justify-center gap-4">
+                {SITE_CONFIG.phones.map((phone, idx) => (
+                  <Button
+                    key={`wa-${idx}`}
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="bg-transparent hover:bg-white/10 px-8 py-6 border-2 border-white w-full sm:w-auto h-auto text-white hover:text-white text-lg"
+                  >
+                    <a
+                      href={`https://wa.me/${phone.clean}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircleIcon className="mr-2 w-5 h-5" />
+                      WhatsApp {phone.name}
+                    </a>
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
         </div>

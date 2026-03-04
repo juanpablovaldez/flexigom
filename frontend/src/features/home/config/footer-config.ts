@@ -46,9 +46,11 @@ export const footerConfig: FooterConfig = {
       province: "",
       country: "",
     },
-    phone: "+54 381 527 7935",
-    whatsapp: "+54 381 527 7935",
-    email: "info@flexigom.com",
+    phones: [
+      { name: "Jessica", number: "+54 9 381 582-4678", clean: "5493815824678" },
+      { name: "Martín", number: "+54 9 381 527-7935", clean: "5493815277935" },
+    ],
+    email: "flexituc@gmail.com",
     operatingHours: {
       weekdays: "Lunes a Viernes de 8:30 a 13 y de 17 a 20",
       saturday: "Sábados de 9 a 13",

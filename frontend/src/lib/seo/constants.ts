@@ -1,10 +1,12 @@
 export const SITE_CONFIG = {
   name: "Flexigom",
-  domain: "flexigom.com",
-  url: "https://flexigom.com",
-  phone: "+54 381 527 7935",
-  whatsapp: "+5493815277935",
-  email: "info@flexigom.com",
+  domain: "flexigomtucuman.com",
+  url: "https://flexigomtucuman.com",
+  phones: [
+    { name: "Jessica", number: "+54 9 381 582-4678", clean: "5493815824678" },
+    { name: "Martín", number: "+54 9 381 527-7935", clean: "5493815277935" },
+  ],
+  email: "flexituc@gmail.com",
   address: {
     street: "Tucumán",
     city: "San Miguel de Tucumán",
@@ -74,7 +76,7 @@ export const BUSINESS_SCHEMA_BASE = {
   description:
     "Especialistas en colchones y sommiers con más de 20 años de experiencia en Tucumán, Argentina.",
   url: SITE_CONFIG.url,
-  telephone: SITE_CONFIG.phone,
+  telephone: SITE_CONFIG.phones.map((p) => p.number),
   email: SITE_CONFIG.email,
   foundingDate: SITE_CONFIG.founded,
   priceRange: "$$",
@@ -140,6 +142,6 @@ export const BUSINESS_SCHEMA_BASE = {
   sameAs: [
     SITE_CONFIG.social.facebook,
     SITE_CONFIG.social.instagram,
-    `https://wa.me/${SITE_CONFIG.whatsapp}`,
+    ...SITE_CONFIG.phones.map((p) => `https://wa.me/${p.clean}`),
   ],
 };
