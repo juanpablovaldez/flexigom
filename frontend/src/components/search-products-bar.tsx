@@ -281,9 +281,8 @@ const SearchProductsBar = forwardRef<HTMLDivElement, SearchProductsBarProps>(
                             Busca tus productos favoritos
                           </h3>
                           <p className="mx-auto max-w-md text-gray-600 text-base">
-                            Encuentra colchones, almohadas y ropa de cama
-                            escribiendo el nombre del producto, marca o
-                            categoría.
+                            Encuentra colchones y sommiers escribiendo el nombre
+                            del producto, marca o línea.
                           </p>
                         </div>
                       </div>
@@ -299,7 +298,7 @@ const SearchProductsBar = forwardRef<HTMLDivElement, SearchProductsBarProps>(
                       key={product.id}
                       value={`${product.name} ${product.brand} ${product.categories?.map((c) => c.name).join(" ")}`}
                       onSelect={() => handleProductSelect(product)}
-                      className="flex items-center gap-6 hover:bg-gray-50/80 mx-2 my-2 p-5 border hover:border-gray-200 border-transparent rounded-lg transition-colors duration-150"
+                      className="flex items-center gap-6 hover:bg-gray-50/80 mx-2 my-2 p-5 border border-transparent hover:border-gray-200 rounded-lg transition-colors duration-150"
                     >
                       <div className="relative">
                         <img
@@ -473,9 +472,8 @@ const SearchProductsBar = forwardRef<HTMLDivElement, SearchProductsBarProps>(
                             Busca tus productos favoritos
                           </h3>
                           <p className="mx-auto max-w-md text-gray-600 text-base">
-                            Encuentra colchones, almohadas y ropa de cama
-                            escribiendo el nombre del producto, marca o
-                            categoría.
+                            Encuentra colchones y almohadas escribiendo el
+                            nombre del producto, marca o categoría.
                           </p>
                         </div>
                       </div>
@@ -491,7 +489,7 @@ const SearchProductsBar = forwardRef<HTMLDivElement, SearchProductsBarProps>(
                       key={product.id}
                       value={`${product.name} ${product.brand} ${product.categories?.map((c) => c.name).join(" ")}`}
                       onSelect={() => handleProductSelect(product)}
-                      className="flex items-center gap-4 hover:bg-gray-50/80 mx-1 my-1 p-4 border hover:border-gray-200 border-transparent rounded-lg transition-colors duration-150"
+                      className="flex items-center gap-4 hover:bg-gray-50/80 mx-1 my-1 p-4 border border-transparent hover:border-gray-200 rounded-lg transition-colors duration-150"
                     >
                       <div className="relative">
                         <img

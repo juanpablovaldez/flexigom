@@ -17,7 +17,7 @@ export const navbarConfig: NavbarConfig = {
           label: "Todos los Productos",
           href: "/products",
           description:
-            "Explora nuestro catálogo completo de colchones, sommiers y ropa de cama",
+            "Explora nuestro catálogo completo de colchones y sommiers",
         },
       ],
     },

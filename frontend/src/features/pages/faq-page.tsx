@@ -28,7 +28,7 @@ export function Component() {
   const seoConfig = createPageSEO({
     title: "Preguntas Frecuentes - FAQ Flexigom Tucumán",
     description:
-      "Preguntas frecuentes sobre colchones, sommiers, ropa de cama, garantías, entregas y más. Resolvé todas tus dudas sobre productos y servicios de Flexigom en Tucumán.",
+      "Preguntas frecuentes sobre colchones, sommiers, garantías, entregas y más. Resolvé todas tus dudas sobre productos y servicios de Flexigom en Tucumán.",
     path: "/faq",
     keywords: [
       "preguntas frecuentes colchones",
@@ -125,7 +125,7 @@ export function Component() {
             <div className="flex sm:flex-row flex-col justify-center gap-4">
               <a
                 href="/contacto"
-                className="inline-flex justify-center items-center bg-red-600 hover:bg-red-700 px-8 py-4 rounded-lg font-medium text-lg text-white transition-colors"
+                className="inline-flex justify-center items-center bg-red-600 hover:bg-red-700 px-8 py-4 rounded-lg font-medium text-white text-lg transition-colors"
               >
                 Ir a Contacto
               </a>
@@ -133,7 +133,7 @@ export function Component() {
                 href="https://wa.me/5493815277935"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex justify-center items-center hover:bg-white/10 px-8 py-4 border-2 border-white rounded-lg font-medium text-lg text-white transition-colors"
+                className="inline-flex justify-center items-center hover:bg-white/10 px-8 py-4 border-2 border-white rounded-lg font-medium text-white text-lg transition-colors"
               >
                 Escribir por WhatsApp
               </a>

@@ -32,7 +32,7 @@ export function NavbarLinks({
         label: "Todos los Productos",
         href: "/products",
         description:
-          "Explora nuestro catálogo completo de colchones, sommiers y ropa de cama",
+          "Explora nuestro catálogo completo de colchones y sommiers",
       },
     ];
 
@@ -64,19 +64,19 @@ export function NavbarLinks({
                   {item.label}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="grid w-96 gap-1 p-2">
+                  <div className="gap-1 grid p-2 w-96">
                     {item.label === "Catálogo"
                       ? buildCatalogItems().map((catalogItem) => (
                           <NavigationMenuLink key={catalogItem.href} asChild>
                             <NavLink
                               to={catalogItem.href}
-                              className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                              className="block space-y-1 hover:bg-accent focus:bg-accent p-3 rounded-md outline-none no-underline leading-none transition-colors hover:text-accent-foreground focus:text-accent-foreground select-none"
                             >
-                              <div className="text-sm font-medium leading-none">
+                              <div className="font-medium text-sm leading-none">
                                 {catalogItem.label}
                               </div>
                               {catalogItem.description && (
-                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                <p className="text-muted-foreground text-sm line-clamp-2 leading-snug">
                                   {catalogItem.description}
                                 </p>
                               )}
@@ -89,17 +89,17 @@ export function NavbarLinks({
                               to={dropdownItem.href}
                               className={({ isActive }) =>
                                 cn(
-                                  "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+                                  "block space-y-1 hover:bg-accent focus:bg-accent p-3 rounded-md outline-none no-underline leading-none transition-colors hover:text-accent-foreground focus:text-accent-foreground select-none",
                                   isActive &&
                                     "bg-accent text-accent-foreground",
                                 )
                               }
                             >
-                              <div className="text-sm font-medium leading-none">
+                              <div className="font-medium text-sm leading-none">
                                 {dropdownItem.label}
                               </div>
                               {dropdownItem.description && (
-                                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                <p className="text-muted-foreground text-sm line-clamp-2 leading-snug">
                                   {dropdownItem.description}
                                 </p>
                               )}
@@ -115,7 +115,7 @@ export function NavbarLinks({
                   to={item.href}
                   className={({ isActive }) =>
                     cn(
-                      "group inline-flex h-9 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50",
+                      "group inline-flex justify-center items-center bg-transparent hover:bg-accent focus:bg-accent disabled:opacity-50 px-4 py-2 rounded-md w-max h-9 font-medium text-sm transition-colors hover:text-accent-foreground focus:text-accent-foreground disabled:pointer-events-none",
                       isActive && "bg-accent text-accent-foreground",
                     )
                   }

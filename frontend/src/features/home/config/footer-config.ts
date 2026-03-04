@@ -3,7 +3,7 @@ import type { FooterConfig } from "../types";
 export const footerConfig: FooterConfig = {
   companyInfo: {
     name: "Flexigom",
-    description: "Especialistas en colchones, sommiers y ropa de cama.",
+    description: "Especialistas en colchones y sommiers.",
   },
   navigation: {
     company: {
@@ -20,7 +20,6 @@ export const footerConfig: FooterConfig = {
       links: [
         { label: "Colchones", href: "/products?category=colchones" },
         { label: "Sommiers", href: "/products?category=sommiers" },
-        { label: "Ropa de Cama", href: "/products?category=ropa-de-cama" },
       ],
     },
     help: {

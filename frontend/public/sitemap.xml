@@ -33,13 +33,6 @@
     <priority>0.8</priority>
   </url>
 
-  <url>
-    <loc>https://flexigom.com/products?category=ropa-de-cama</loc>
-    <lastmod>2025-01-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
   <!-- Auth Pages -->
   <url>
     <loc>https://flexigom.com/auth/login</loc>

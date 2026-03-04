@@ -93,7 +93,7 @@ export function NavbarMobile({
         label: "Todos los Productos",
         href: "/products",
         description:
-          "Explora nuestro catálogo completo de colchones, sommiers y ropa de cama",
+          "Explora nuestro catálogo completo de colchones y sommiers",
       },
     ];
 
@@ -141,7 +141,7 @@ export function NavbarMobile({
         >
           <div className="mx-auto px-4 py-6 container">
             {/* Search Bar Section */}
-            <div className="mb-6 pb-4 border-b border-border">
+            <div className="mb-6 pb-4 border-border border-b">
               <SearchProductsBar
                 variant="default"
                 className="w-full"

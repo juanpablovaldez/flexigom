@@ -13,7 +13,7 @@ const defaultContent: HeroContent = {
     highlight: "Te Mereces",
   },
   subtitle:
-    "Descubrí nuestra amplia selección de colchones, sommiers y ropa de cama de la más alta calidad. Más de 20 años brindando comodidad y descanso a familias argentinas.",
+    "Descubrí nuestra amplia selección de colchones y sommiers de la más alta calidad. Más de 20 años brindando comodidad y descanso a familias argentinas.",
   primaryCta: {
     text: "Hablar con Nosotros",
     href: "tel:+5493815277935",

@@ -33,7 +33,6 @@ export const KEYWORDS = {
   primary: [
     "colchones Tucumán",
     "sommiers Tucumán",
-    "ropa de cama Tucumán",
     "colchonería Flexigom",
     "tienda de colchones San Miguel de Tucumán",
   ],
@@ -53,14 +52,13 @@ export const KEYWORDS = {
     "colchones baratos Tucumán",
     "sommiers 2 plazas Tucumán",
     "colchones 1 plaza Tucumán",
-    "ropa de cama algodón Tucumán",
   ],
 };
 
 export const DEFAULT_SEO = {
   title: "Flexigom - Colchones y Sommiers en Tucumán | 20+ Años de Calidad",
   description:
-    "Especialistas en colchones, sommiers y ropa de cama en Tucumán. Más de 20 años brindando el mejor descanso a familias argentinas. Entrega en San Miguel de Tucumán.",
+    "Especialistas en colchones y sommiers en Tucumán. Más de 20 años brindando el mejor descanso a familias argentinas. Entrega en San Miguel de Tucumán.",
   keywords: [...KEYWORDS.primary, ...KEYWORDS.secondary].join(", "),
   siteName: "Flexigom",
   locale: "es_AR",
@@ -74,7 +72,7 @@ export const BUSINESS_SCHEMA_BASE = {
   "@id": `${SITE_CONFIG.url}#business`,
   name: SITE_CONFIG.name,
   description:
-    "Especialistas en colchones, sommiers y ropa de cama con más de 20 años de experiencia en Tucumán, Argentina.",
+    "Especialistas en colchones y sommiers con más de 20 años de experiencia en Tucumán, Argentina.",
   url: SITE_CONFIG.url,
   telephone: SITE_CONFIG.phone,
   email: SITE_CONFIG.email,
@@ -131,14 +129,6 @@ export const BUSINESS_SCHEMA_BASE = {
           "@type": "Product",
           name: "Sommiers",
           description: "Sommiers y bases para colchones en todas las medidas",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Product",
-          name: "Ropa de Cama",
-          description: "Sábanas, almohadas y accesorios para el descanso",
         },
       },
     ],

@@ -143,7 +143,7 @@ export function createWebsiteSchema(): StructuredDataConfig {
     name: SITE_CONFIG.name,
     url: SITE_CONFIG.url,
     description:
-      "Especialistas en colchones, sommiers y ropa de cama en Tucumán con más de 20 años de experiencia.",
+      "Especialistas en colchones y sommiers en Tucumán con más de 20 años de experiencia.",
     inLanguage: "es-AR",
     publisher: {
       "@type": "LocalBusiness",
@@ -171,7 +171,7 @@ export function createOrganizationSchema(): StructuredDataConfig {
     url: SITE_CONFIG.url,
     logo: `${SITE_CONFIG.url}/logo.png`,
     description:
-      "Especialistas en colchones, sommiers y ropa de cama con más de 20 años de experiencia en Tucumán, Argentina.",
+      "Especialistas en colchones y sommiers con más de 20 años de experiencia en Tucumán, Argentina.",
     foundingDate: SITE_CONFIG.founded,
     contactPoint: [
       {
