@@ -576,7 +576,8 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     measurement: Schema.Attribute.Enumeration<
       [
-        'Una plaza (0.90x1.90)',
+        'Una plaza (0.80x1.90)',
+        'Una plaza y media (0.90x1.90)',
         'Una plaza y media (1.00x1.90)',
         'Dos plazas (1.30x1.90)',
         'Dos plazas y media (1.40x1.90)',
