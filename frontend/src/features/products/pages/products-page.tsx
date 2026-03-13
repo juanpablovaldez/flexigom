@@ -142,7 +142,7 @@ export function ProductsPage() {
           structuredData: breadcrumbSchema,
         }}
       />
-      <div className="mx-auto px-4 py-6 container">
+      <div className="px-4 py-6">
         <Breadcrumb className="mb-6">
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -153,7 +153,7 @@ export function ProductsPage() {
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               {(currentCategory && !filters.search?.trim()) ||
-              filters.search?.trim() ? (
+                filters.search?.trim() ? (
                 <BreadcrumbLink asChild>
                   <Link to="/products">Productos</Link>
                 </BreadcrumbLink>
@@ -182,7 +182,7 @@ export function ProductsPage() {
           </BreadcrumbList>
         </Breadcrumb>
 
-        <div className="flex gap-8">
+        <div className="flex flex-col md:flex-row gap-8">
           {/* Desktop Filter Sidebar */}
           <aside className="hidden md:block flex-shrink-0 w-64">
             <ProductsFilter
@@ -203,7 +203,7 @@ export function ProductsPage() {
           </aside>
 
           {/* Main Content */}
-          <main className="flex-1">
+          <main className="flex-1 w-full sm:px-6 ">
             <ProductsHeader
               isLoading={isLoading}
               totalProducts={pagination?.total || products.length}
