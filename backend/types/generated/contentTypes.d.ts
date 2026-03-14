@@ -560,7 +560,17 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       'api::category.category'
     >;
     composition: Schema.Attribute.Enumeration<
-      ['Espuma de memoria', 'Resorte', 'H\u00EDbrido', 'L\u00E1tex', 'Espuma']
+      [
+        'Espuma de memoria',
+        'Resorte',
+        'H\u00EDbrido',
+        'L\u00E1tex',
+        'Espuma',
+        'Vell\u00F3n',
+        'Vell\u00F3n siliconado',
+        'Fibra hueca siliconada',
+        'Placa de espuma',
+      ]
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

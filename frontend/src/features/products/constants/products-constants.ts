@@ -33,6 +33,10 @@ export const COMPOSITIONS = [
   "Híbrido",
   "Látex",
   "Espuma",
+  "Vellón",
+  "Vellón siliconado",
+  "Fibra hueca siliconada",
+  "Placa de espuma",
 ] as const;
 
 export const MEASUREMENTS = [
@@ -45,6 +49,13 @@ export const MEASUREMENTS = [
   "Queen (1.60x2.00)",
   "King (1.80x2.00)",
   "King Size (2.00x2.00)",
+  "70 x 40",
+  "70 x 50",
+  "90 x 40",
+  "90 x 50",
+  "1.00 x 40",
+  "1.00 x 50",
+
 ] as const;
 
 export const SORT_OPTIONS = [

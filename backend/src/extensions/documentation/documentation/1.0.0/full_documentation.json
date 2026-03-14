@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2026-02-08T15:52:03.594Z"
+    "x-generation-date": "2026-03-14T21:43:47.774Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -5131,7 +5131,11 @@
                     "Resorte",
                     "Híbrido",
                     "Látex",
-                    "Espuma"
+                    "Espuma",
+                    "Vellón",
+                    "Vellón siliconado",
+                    "Fibra hueca siliconada",
+                    "Placa de espuma"
                   ]
                 },
                 "measurement": {
@@ -6694,7 +6698,11 @@
                     "Resorte",
                     "Híbrido",
                     "Látex",
-                    "Espuma"
+                    "Espuma",
+                    "Vellón",
+                    "Vellón siliconado",
+                    "Fibra hueca siliconada",
+                    "Placa de espuma"
                   ]
                 },
                 "measurement": {
@@ -6976,7 +6984,11 @@
                   "Resorte",
                   "Híbrido",
                   "Látex",
-                  "Espuma"
+                  "Espuma",
+                  "Vellón",
+                  "Vellón siliconado",
+                  "Fibra hueca siliconada",
+                  "Placa de espuma"
                 ]
               },
               "measurement": {
@@ -7872,7 +7884,11 @@
                           "Resorte",
                           "Híbrido",
                           "Látex",
-                          "Espuma"
+                          "Espuma",
+                          "Vellón",
+                          "Vellón siliconado",
+                          "Fibra hueca siliconada",
+                          "Placa de espuma"
                         ]
                       },
                       "measurement": {
@@ -8161,7 +8177,11 @@
               "Resorte",
               "Híbrido",
               "Látex",
-              "Espuma"
+              "Espuma",
+              "Vellón",
+              "Vellón siliconado",
+              "Fibra hueca siliconada",
+              "Placa de espuma"
             ]
           },
           "measurement": {
