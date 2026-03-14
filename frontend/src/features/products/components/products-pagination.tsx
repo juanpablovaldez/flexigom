@@ -1,6 +1,7 @@
 import {
   Pagination,
   PaginationContent,
+  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -18,6 +19,24 @@ interface ProductsPaginationProps {
   onPageChange: (page: number) => void;
 }
 
+function getPageNumbers(current: number, total: number): (number | "ellipsis")[] {
+  if (total <= 7) {
+    return Array.from({ length: total }, (_, i) => i + 1);
+  }
+
+  const pages: (number | "ellipsis")[] = [1];
+
+  const rangeStart = Math.max(2, current - 1);
+  const rangeEnd = Math.min(total - 1, current + 1);
+
+  if (rangeStart > 2) pages.push("ellipsis");
+  for (let i = rangeStart; i <= rangeEnd; i++) pages.push(i);
+  if (rangeEnd < total - 1) pages.push("ellipsis");
+
+  pages.push(total);
+  return pages;
+}
+
 export function ProductsPagination({
   pagination,
   isLoading,
@@ -26,6 +45,8 @@ export function ProductsPagination({
   if (isLoading || !pagination) {
     return null;
   }
+
+  const pages = getPageNumbers(pagination.page, pagination.pageCount);
 
   return (
     <div className="mt-8">
@@ -48,8 +69,12 @@ export function ProductsPagination({
             />
           </PaginationItem>
 
-          {Array.from({ length: pagination.pageCount }, (_, i) => i + 1).map(
-            (page) => (
+          {pages.map((page, index) =>
+            page === "ellipsis" ? (
+              <PaginationItem key={`ellipsis-${index}`}>
+                <PaginationEllipsis />
+              </PaginationItem>
+            ) : (
               <PaginationItem key={page}>
                 <PaginationLink
                   href="#"
