@@ -135,7 +135,7 @@ export function NavbarMobile({
       {isOpen && (
         <div
           ref={menuRef}
-          className="top-full right-0 left-0 z-50 absolute bg-background shadow-lg border-t"
+          className="top-full right-0 left-0 z-50 absolute bg-background shadow-lg border-t max-h-[calc(100vh-4rem)] overflow-y-auto"
           role="menu"
           aria-labelledby="mobile-menu-button"
         >

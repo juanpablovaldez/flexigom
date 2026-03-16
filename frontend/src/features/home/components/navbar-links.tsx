@@ -64,7 +64,7 @@ export function NavbarLinks({
                   {item.label}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="gap-1 grid p-2 w-96">
+                  <div className="grid w-96 gap-1 p-2 max-h-[70vh] overflow-y-auto">
                     {item.label === "Catálogo"
                       ? buildCatalogItems().map((catalogItem) => (
                           <NavigationMenuLink key={catalogItem.href} asChild>
