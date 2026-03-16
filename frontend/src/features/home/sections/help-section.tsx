@@ -1,5 +1,6 @@
 import { PhoneIcon, MessageCircleIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SITE_CONFIG } from "@/lib/seo/constants";
 import { cn } from "@/lib/utils";
 import type {
   HelpSectionProps,
@@ -13,17 +14,17 @@ const defaultContent: HelpSectionContent = {
   operatingHours:
     "Horarios de atención: Lunes a Viernes 8:30 - 13:00hs y 17:00 - 20:00hs, Sábados 9:00 - 13:00hs",
   buttons: [
-    {
-      text: "Llamar Ahora",
-      href: "tel:+5493815277935",
-      icon: <PhoneIcon className="w-5 h-5" />,
-      variant: "primary",
-    },
-    {
-      text: "Chat por WhatsApp",
-      href: "https://wa.me/5493815277935?text=¡Hola! Vengo de parte del ECommerce y me gustaría recibir más información sobre sus productos.",
+    ...SITE_CONFIG.phones.map((phone) => ({
+      text: `WhatsApp ${phone.name}`,
+      href: `https://wa.me/${phone.clean}?text=¡Hola! Vengo de parte del ECommerce y me gustaría recibir más información sobre sus productos.`,
       icon: <MessageCircleIcon className="w-5 h-5" />,
-      variant: "secondary",
+      variant: "secondary" as const,
+    })),
+    {
+      text: "Llamar",
+      href: "/contacto",
+      icon: <PhoneIcon className="w-5 h-5" />,
+      variant: "primary" as const,
     },
   ],
 };
@@ -46,7 +47,7 @@ export function HelpSection({ content, className }: HelpSectionProps = {}) {
           </p>
 
           {/* Action Buttons */}
-          <div className="flex sm:flex-row flex-col justify-center items-center gap-4 md:gap-6">
+          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
             {helpContent.buttons.map((button, index) => (
               <Button
                 key={index}

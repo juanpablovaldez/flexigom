@@ -87,7 +87,7 @@ export function ProductsPage() {
 
     // Default products page
     const title = "Productos de Descanso en Tucumán - Flexigom";
-    const description = `Explorá nuestra amplia selección de productos de descanso en Tucumán. ${pagination?.total ? `${pagination.total} productos disponibles.` : ""} Colchones, sommiers y ropa de cama de la mejor calidad. Más de 20 años de experiencia.`;
+    const description = `Explorá nuestra amplia selección de productos de descanso en Tucumán. ${pagination?.total ? `${pagination.total} productos disponibles.` : ""} Colchones y sommiers de la mejor calidad. Más de 20 años de experiencia.`;
 
     return createPageSEO({
       title,

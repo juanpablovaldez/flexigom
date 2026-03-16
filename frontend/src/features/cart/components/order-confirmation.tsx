@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle, Mail, Package } from "lucide-react";
 import { Link } from "react-router";
+import { SITE_CONFIG } from "@/lib/seo/constants";
 
 interface OrderConfirmationProps {
   orderId: string;
@@ -80,14 +81,19 @@ export function OrderConfirmation({ orderId, email }: OrderConfirmationProps) {
       {/* Support */}
       <p className="text-muted-foreground text-xs">
         ¿Necesitas ayuda? Contáctanos por WhatsApp al{" "}
-        <a
-          href="https://wa.me/5493814123456"
-          className="font-medium hover:text-foreground underline"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          +54 9 381 412-3456
-        </a>
+        {SITE_CONFIG.phones.map((p, i) => (
+          <span key={i}>
+            <a
+              href={`https://wa.me/${p.clean}`}
+              className="font-medium hover:text-foreground underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {p.number} ({p.name})
+            </a>
+            {i < SITE_CONFIG.phones.length - 1 ? " o al " : ""}
+          </span>
+        ))}
       </p>
     </div>
   );

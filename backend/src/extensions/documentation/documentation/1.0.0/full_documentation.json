@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2026-03-13T14:17:04.640Z"
+    "x-generation-date": "2026-03-14T21:43:47.774Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -5131,13 +5131,18 @@
                     "Resorte",
                     "Híbrido",
                     "Látex",
-                    "Espuma"
+                    "Espuma",
+                    "Vellón",
+                    "Vellón siliconado",
+                    "Fibra hueca siliconada",
+                    "Placa de espuma"
                   ]
                 },
                 "measurement": {
                   "type": "string",
                   "enum": [
-                    "Una plaza (0.90x1.90)",
+                    "Una plaza (0.80x1.90)",
+                    "Una plaza y media (0.90x1.90)",
                     "Una plaza y media (1.00x1.90)",
                     "Dos plazas (1.30x1.90)",
                     "Dos plazas y media (1.40x1.90)",
@@ -6693,13 +6698,18 @@
                     "Resorte",
                     "Híbrido",
                     "Látex",
-                    "Espuma"
+                    "Espuma",
+                    "Vellón",
+                    "Vellón siliconado",
+                    "Fibra hueca siliconada",
+                    "Placa de espuma"
                   ]
                 },
                 "measurement": {
                   "type": "string",
                   "enum": [
-                    "Una plaza (0.90x1.90)",
+                    "Una plaza (0.80x1.90)",
+                    "Una plaza y media (0.90x1.90)",
                     "Una plaza y media (1.00x1.90)",
                     "Dos plazas (1.30x1.90)",
                     "Dos plazas y media (1.40x1.90)",
@@ -6974,13 +6984,18 @@
                   "Resorte",
                   "Híbrido",
                   "Látex",
-                  "Espuma"
+                  "Espuma",
+                  "Vellón",
+                  "Vellón siliconado",
+                  "Fibra hueca siliconada",
+                  "Placa de espuma"
                 ]
               },
               "measurement": {
                 "type": "string",
                 "enum": [
-                  "Una plaza (0.90x1.90)",
+                  "Una plaza (0.80x1.90)",
+                  "Una plaza y media (0.90x1.90)",
                   "Una plaza y media (1.00x1.90)",
                   "Dos plazas (1.30x1.90)",
                   "Dos plazas y media (1.40x1.90)",
@@ -7869,13 +7884,18 @@
                           "Resorte",
                           "Híbrido",
                           "Látex",
-                          "Espuma"
+                          "Espuma",
+                          "Vellón",
+                          "Vellón siliconado",
+                          "Fibra hueca siliconada",
+                          "Placa de espuma"
                         ]
                       },
                       "measurement": {
                         "type": "string",
                         "enum": [
-                          "Una plaza (0.90x1.90)",
+                          "Una plaza (0.80x1.90)",
+                          "Una plaza y media (0.90x1.90)",
                           "Una plaza y media (1.00x1.90)",
                           "Dos plazas (1.30x1.90)",
                           "Dos plazas y media (1.40x1.90)",
@@ -8157,13 +8177,18 @@
               "Resorte",
               "Híbrido",
               "Látex",
-              "Espuma"
+              "Espuma",
+              "Vellón",
+              "Vellón siliconado",
+              "Fibra hueca siliconada",
+              "Placa de espuma"
             ]
           },
           "measurement": {
             "type": "string",
             "enum": [
-              "Una plaza (0.90x1.90)",
+              "Una plaza (0.80x1.90)",
+              "Una plaza y media (0.90x1.90)",
               "Una plaza y media (1.00x1.90)",
               "Dos plazas (1.30x1.90)",
               "Dos plazas y media (1.40x1.90)",

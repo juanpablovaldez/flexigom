@@ -60,7 +60,7 @@ export function createProductSchema(product: {
       seller: {
         "@type": "LocalBusiness",
         name: SITE_CONFIG.name,
-        telephone: SITE_CONFIG.phone,
+        telephone: SITE_CONFIG.phones.map((p) => p.number),
         address: {
           "@type": "PostalAddress",
           addressLocality: SITE_CONFIG.address.city,
@@ -143,7 +143,7 @@ export function createWebsiteSchema(): StructuredDataConfig {
     name: SITE_CONFIG.name,
     url: SITE_CONFIG.url,
     description:
-      "Especialistas en colchones, sommiers y ropa de cama en Tucumán con más de 20 años de experiencia.",
+      "Especialistas en colchones y sommiers en Tucumán con más de 20 años de experiencia.",
     inLanguage: "es-AR",
     publisher: {
       "@type": "LocalBusiness",
@@ -171,12 +171,12 @@ export function createOrganizationSchema(): StructuredDataConfig {
     url: SITE_CONFIG.url,
     logo: `${SITE_CONFIG.url}/logo.png`,
     description:
-      "Especialistas en colchones, sommiers y ropa de cama con más de 20 años de experiencia en Tucumán, Argentina.",
+      "Especialistas en colchones y sommiers con más de 20 años de experiencia en Tucumán, Argentina.",
     foundingDate: SITE_CONFIG.founded,
     contactPoint: [
       {
         "@type": "ContactPoint",
-        telephone: SITE_CONFIG.phone,
+        telephone: SITE_CONFIG.phones.map((p) => p.number),
         contactType: "customer service",
         availableLanguage: "Spanish",
         areaServed: "AR",
@@ -211,7 +211,7 @@ export function createOrganizationSchema(): StructuredDataConfig {
     sameAs: [
       SITE_CONFIG.social.facebook,
       SITE_CONFIG.social.instagram,
-      `https://wa.me/${SITE_CONFIG.whatsapp}`,
+      ...SITE_CONFIG.phones.map((p) => `https://wa.me/${p.clean}`),
     ],
   };
 }

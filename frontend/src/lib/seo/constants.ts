@@ -1,10 +1,12 @@
 export const SITE_CONFIG = {
   name: "Flexigom",
-  domain: "flexigom.com",
-  url: "https://flexigom.com",
-  phone: "+54 381 527 7935",
-  whatsapp: "+5493815277935",
-  email: "info@flexigom.com",
+  domain: "flexigomtucuman.com",
+  url: "https://flexigomtucuman.com",
+  phones: [
+    { name: "Jessica", number: "+54 9 381 582-4678", clean: "5493815824678" },
+    { name: "Martín", number: "+54 9 381 527-7935", clean: "5493815277935" },
+  ],
+  email: "flexituc@gmail.com",
   address: {
     street: "Tucumán",
     city: "San Miguel de Tucumán",
@@ -33,7 +35,6 @@ export const KEYWORDS = {
   primary: [
     "colchones Tucumán",
     "sommiers Tucumán",
-    "ropa de cama Tucumán",
     "colchonería Flexigom",
     "tienda de colchones San Miguel de Tucumán",
   ],
@@ -53,14 +54,13 @@ export const KEYWORDS = {
     "colchones baratos Tucumán",
     "sommiers 2 plazas Tucumán",
     "colchones 1 plaza Tucumán",
-    "ropa de cama algodón Tucumán",
   ],
 };
 
 export const DEFAULT_SEO = {
   title: "Flexigom - Colchones y Sommiers en Tucumán | 20+ Años de Calidad",
   description:
-    "Especialistas en colchones, sommiers y ropa de cama en Tucumán. Más de 20 años brindando el mejor descanso a familias argentinas. Entrega en San Miguel de Tucumán.",
+    "Especialistas en colchones y sommiers en Tucumán. Más de 20 años brindando el mejor descanso a familias argentinas. Entrega en San Miguel de Tucumán.",
   keywords: [...KEYWORDS.primary, ...KEYWORDS.secondary].join(", "),
   siteName: "Flexigom",
   locale: "es_AR",
@@ -74,9 +74,9 @@ export const BUSINESS_SCHEMA_BASE = {
   "@id": `${SITE_CONFIG.url}#business`,
   name: SITE_CONFIG.name,
   description:
-    "Especialistas en colchones, sommiers y ropa de cama con más de 20 años de experiencia en Tucumán, Argentina.",
+    "Especialistas en colchones y sommiers con más de 20 años de experiencia en Tucumán, Argentina.",
   url: SITE_CONFIG.url,
-  telephone: SITE_CONFIG.phone,
+  telephone: SITE_CONFIG.phones.map((p) => p.number),
   email: SITE_CONFIG.email,
   foundingDate: SITE_CONFIG.founded,
   priceRange: "$$",
@@ -133,14 +133,6 @@ export const BUSINESS_SCHEMA_BASE = {
           description: "Sommiers y bases para colchones en todas las medidas",
         },
       },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Product",
-          name: "Ropa de Cama",
-          description: "Sábanas, almohadas y accesorios para el descanso",
-        },
-      },
     ],
   },
   image: [
@@ -150,6 +142,6 @@ export const BUSINESS_SCHEMA_BASE = {
   sameAs: [
     SITE_CONFIG.social.facebook,
     SITE_CONFIG.social.instagram,
-    `https://wa.me/${SITE_CONFIG.whatsapp}`,
+    ...SITE_CONFIG.phones.map((p) => `https://wa.me/${p.clean}`),
   ],
 };

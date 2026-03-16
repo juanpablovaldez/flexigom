@@ -116,11 +116,16 @@ export interface FooterOperatingHours {
   sunday: string;
 }
 
+export interface ContactPhone {
+  name: string;
+  number: string;
+  clean: string;
+}
+
 export interface FooterContact {
   title: string;
   address: FooterAddress;
-  phone: string;
-  whatsapp: string;
+  phones: ContactPhone[];
   email: string;
   operatingHours: FooterOperatingHours;
 }

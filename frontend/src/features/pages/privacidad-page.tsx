@@ -1,6 +1,7 @@
 import { SEOHead } from "@/components/seo";
 import { createPageSEO } from "@/lib/seo";
 import { Shield } from "lucide-react";
+import { SITE_CONFIG } from "@/lib/seo/constants";
 
 export function Component() {
   const seoConfig = createPageSEO({
@@ -378,25 +379,30 @@ export function Component() {
                 cómo manejamos tu información personal, podés contactarnos:
               </p>
               <ul className="space-y-2 text-gray-600">
-                <li>
-                  • Teléfono:{" "}
-                  <a
-                    href="tel:+543815277935"
-                    className="font-medium text-red-600 hover:text-red-700"
-                  >
-                    +54 381 527 7935
-                  </a>
-                </li>
+                {SITE_CONFIG.phones.map((phone, idx) => (
+                  <li key={idx}>
+                    • Teléfono {phone.name}:{" "}
+                    <a
+                      href={`tel:${phone.number}`}
+                      className="font-medium text-red-600 hover:text-red-700"
+                    >
+                      {phone.number}
+                    </a>
+                  </li>
+                ))}
                 <li>
                   • Email:{" "}
                   <a
-                    href="mailto:info@flexigom.com"
+                    href={`mailto:${SITE_CONFIG.email}`}
                     className="font-medium text-red-600 hover:text-red-700"
                   >
-                    info@flexigom.com
+                    {SITE_CONFIG.email}
                   </a>
                 </li>
-                <li>• Dirección: Tucumán, Argentina</li>
+                <li>
+                  • Dirección: {SITE_CONFIG.address.city},{" "}
+                  {SITE_CONFIG.address.country}
+                </li>
               </ul>
             </div>
           </div>
