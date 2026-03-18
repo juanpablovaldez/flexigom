@@ -54,6 +54,7 @@ export function ProductDetailPage() {
   const { data: product, isLoading, error } = useProduct(documentId || "");
   const [quantity, setQuantity] = useState(1);
   const addItem = useCartStore((state) => state.addItem);
+  const isSyncing = useCartStore((state) => state.isSyncing);
 
   // Memoize images array to prevent hook dependency issues
   const images = useMemo(() => {
@@ -169,9 +170,9 @@ export function ProductDetailPage() {
     }
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     if (product) {
-      addItem(product, quantity);
+      await addItem(product, quantity);
       toast.success(`${product.name} agregado al carrito`, {
         description: `Cantidad: ${quantity}`,
       });
@@ -440,7 +441,7 @@ export function ProductDetailPage() {
                       size="sm"
                       className="p-0 w-10 h-10"
                       onClick={() => handleQuantityChange(quantity - 1)}
-                      disabled={quantity <= 1}
+                      disabled={quantity <= 1 || isSyncing}
                     >
                       <Minus className="w-4 h-4" />
                     </Button>
@@ -452,7 +453,7 @@ export function ProductDetailPage() {
                       size="sm"
                       className="p-0 w-10 h-10"
                       onClick={() => handleQuantityChange(quantity + 1)}
-                      disabled={quantity >= product.stock}
+                      disabled={quantity >= product.stock || isSyncing}
                     >
                       <Plus className="w-4 h-4" />
                     </Button>
@@ -467,11 +468,15 @@ export function ProductDetailPage() {
               <div className="flex gap-3">
                 <Button
                   className="flex-1 bg-red-600 hover:bg-red-700 h-12 font-medium text-white"
-                  disabled={product.stock <= 0}
+                  disabled={product.stock <= 0 || isSyncing}
                   onClick={handleAddToCart}
                 >
-                  <ShoppingCart className="mr-2 w-5 h-5" />
-                  {product.stock > 0 ? "Agregar al Carrito" : "Sin Stock"}
+                  {isSyncing ? (
+                    <ShoppingCart className="mr-2 w-5 h-5 animate-pulse" />
+                  ) : (
+                    <ShoppingCart className="mr-2 w-5 h-5" />
+                  )}
+                  {product.stock > 0 ? (isSyncing ? "Agregando..." : "Agregar al Carrito") : "Sin Stock"}
                 </Button>
                 {/* <Button variant="outline" size="icon" className="w-12 h-12">
                   <Heart className="w-5 h-5" />

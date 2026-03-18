@@ -23,14 +23,15 @@ export function ProductCard({ product, className }: ProductCardProps) {
     : 0;
 
   const addItem = useCartStore((state) => state.addItem);
+  const isSyncing = useCartStore((state) => state.isSyncing);
   const [isAdded, setIsAdded] = useState(false);
 
-  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleAddToCart = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
 
     if (product.stock > 0) {
-      addItem(product, 1);
+      await addItem(product, 1);
       setIsAdded(true);
       toast.success(`${product.name} agregado al carrito`);
       setTimeout(() => setIsAdded(false), 2000);
@@ -158,9 +159,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
                 ? "bg-green-600 hover:bg-green-700"
                 : "bg-red-600 hover:bg-red-700 disabled:bg-gray-400"
             )}
-            disabled={product.stock <= 0}
+            disabled={product.stock <= 0 || isSyncing}
           >
-            {isAdded ? (
+            {isSyncing ? (
+              <ShoppingCart className="w-4 h-4 lg:mr-1.5 animate-pulse" />
+            ) : isAdded ? (
               <span className="flex items-center gap-1">
                 <span className="hidden lg:inline">Agregado</span> ✓
               </span>
