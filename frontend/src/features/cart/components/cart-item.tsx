@@ -12,6 +12,7 @@ interface CartItemProps {
 export function CartItemComponent({ item }: CartItemProps) {
   const updateQuantity = useCartStore((state) => state.updateQuantity);
   const removeItem = useCartStore((state) => state.removeItem);
+  const isSyncing = useCartStore((state) => state.isSyncing);
 
   const { product, quantity } = item;
   const price =
@@ -27,20 +28,20 @@ export function CartItemComponent({ item }: CartItemProps) {
 
   const handleIncrement = () => {
     if (quantity < product.stock) {
-      updateQuantity(product.documentId, quantity + 1);
+      updateQuantity(item.documentId!, quantity + 1);
     }
   };
 
   const handleDecrement = () => {
     if (quantity > 1) {
-      updateQuantity(product.documentId, quantity - 1);
+      updateQuantity(item.documentId!, quantity - 1);
     } else {
-      removeItem(product.documentId);
+      removeItem(item.documentId!);
     }
   };
 
   const handleRemove = () => {
-    removeItem(product.documentId);
+    removeItem(item.documentId!);
   };
 
   return (
@@ -80,9 +81,10 @@ export function CartItemComponent({ item }: CartItemProps) {
             size="icon"
             className="flex-shrink-0 w-8 h-8 text-muted-foreground hover:text-destructive"
             onClick={handleRemove}
+            disabled={isSyncing}
             aria-label="Eliminar producto"
           >
-            <Trash2 className="w-4 h-4" />
+            {isSyncing ? <Trash2 className="w-4 h-4 animate-pulse opacity-50" /> : <Trash2 className="w-4 h-4" />}
           </Button>
         </div>
 
@@ -95,7 +97,7 @@ export function CartItemComponent({ item }: CartItemProps) {
               size="icon"
               className="w-8 h-8"
               onClick={handleDecrement}
-              disabled={quantity <= 1}
+              disabled={quantity <= 1 || isSyncing}
             >
               <Minus className="w-3 h-3" />
             </Button>
@@ -107,7 +109,7 @@ export function CartItemComponent({ item }: CartItemProps) {
               size="icon"
               className="w-8 h-8"
               onClick={handleIncrement}
-              disabled={quantity >= product.stock}
+              disabled={quantity >= product.stock || isSyncing}
             >
               <Plus className="w-3 h-3" />
             </Button>
