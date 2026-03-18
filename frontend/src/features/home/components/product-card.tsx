@@ -3,6 +3,10 @@ import { Badge } from "@/components/ui/badge";
 import { StarRating } from "@/components/ui/star-rating";
 import type { Product } from "@/types";
 import { Link } from "react-router";
+import { useState } from "react";
+import { useCartStore } from "@/features/cart/store/cart-store";
+import { toast } from "sonner";
+import { ShoppingCart } from "lucide-react";
 
 interface ProductCardProps {
   product: Product;
@@ -17,6 +21,21 @@ export function ProductCard({ product, className }: ProductCardProps) {
   const discountPercentage = hasDiscount
     ? Math.round(((price - discountPrice) / price) * 100)
     : 0;
+
+  const addItem = useCartStore((state) => state.addItem);
+  const [isAdded, setIsAdded] = useState(false);
+
+  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (product.stock > 0) {
+      addItem(product, 1);
+      setIsAdded(true);
+      toast.success(`${product.name} agregado al carrito`);
+      setTimeout(() => setIsAdded(false), 2000);
+    }
+  };
 
   return (
     <Link
@@ -127,8 +146,31 @@ export function ProductCard({ product, className }: ProductCardProps) {
             )}
         </div>
 
-        <div className="flex bg-red-600 group-hover:bg-red-700 mt-2 w-full font-medium text-white items-center justify-center h-8 sm:h-10 rounded-md transition-colors text-xs sm:text-sm">
-          Ver Producto
+        <div className="flex gap-2 mt-2 w-full relative z-10">
+          <div className="flex-[7] flex bg-gray-100 group-hover:bg-gray-200 text-gray-900 font-medium items-center justify-center h-8 sm:h-10 rounded-md transition-colors text-xs sm:text-sm">
+            Ver Producto
+          </div>
+          <button
+            onClick={handleAddToCart}
+            className={cn(
+              "flex-[3] flex font-medium text-white items-center justify-center h-8 sm:h-10 rounded-md transition-colors text-xs sm:text-sm",
+              isAdded
+                ? "bg-green-600 hover:bg-green-700"
+                : "bg-red-600 hover:bg-red-700 disabled:bg-gray-400"
+            )}
+            disabled={product.stock <= 0}
+          >
+            {isAdded ? (
+              <span className="flex items-center gap-1">
+                <span className="hidden lg:inline">Agregado</span> ✓
+              </span>
+            ) : (
+              <>
+                <ShoppingCart className="w-4 h-4 lg:mr-1.5" />
+                <span className="hidden lg:inline">Agregar</span>
+              </>
+            )}
+          </button>
         </div>
       </div>
     </Link>

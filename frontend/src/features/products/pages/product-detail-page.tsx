@@ -34,7 +34,6 @@ import {
   Star,
   Plus,
   Minus,
-  Heart,
   Share2,
   ChevronLeft,
 } from "lucide-react";
@@ -474,9 +473,9 @@ export function ProductDetailPage() {
                   <ShoppingCart className="mr-2 w-5 h-5" />
                   {product.stock > 0 ? "Agregar al Carrito" : "Sin Stock"}
                 </Button>
-                <Button variant="outline" size="icon" className="w-12 h-12">
+                {/* <Button variant="outline" size="icon" className="w-12 h-12">
                   <Heart className="w-5 h-5" />
-                </Button>
+                </Button> */}
                 <Button
                   variant="outline"
                   size="icon"
