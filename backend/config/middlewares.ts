@@ -32,6 +32,9 @@ export default [
         "https://www.flexigomtucuman.com",
         "https://flexigom-backoffice.up.railway.app",
         "https://flexigom.up.railway.app",
+        ...(process.env.ALLOWED_ORIGINS
+          ? process.env.ALLOWED_ORIGINS.split(",")
+          : []),
       ],
     },
   },
