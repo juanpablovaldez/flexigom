@@ -203,7 +203,7 @@ export function ProductsPage() {
           </aside>
 
           {/* Main Content */}
-          <main className="flex-1 w-full sm:px-6 ">
+          <main id="productos" className="flex-1 w-full sm:px-6 ">
             <ProductsHeader
               isLoading={isLoading}
               totalProducts={pagination?.total || products.length}

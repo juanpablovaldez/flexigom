@@ -169,6 +169,14 @@ export function useProductFilters() {
       page,
     };
     updateURL(newFilters);
+
+    // Scroll to products section
+    setTimeout(() => {
+      const section = document.getElementById("productos");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100);
   };
 
   const handleSearchFilter = (search: string) => {
