@@ -23,14 +23,15 @@ export function ProductCard({ product, className }: ProductCardProps) {
     : 0;
 
   const addItem = useCartStore((state) => state.addItem);
+  const isSyncing = useCartStore((state) => state.isSyncing);
   const [isAdded, setIsAdded] = useState(false);
 
-  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleAddToCart = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
 
     if (product.stock > 0) {
-      addItem(product, 1);
+      await addItem(product, 1);
       setIsAdded(true);
       toast.success(`${product.name} agregado al carrito`);
       setTimeout(() => setIsAdded(false), 2000);
@@ -39,7 +40,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
   return (
     <Link
-      to={`/products/product/${product.documentId || "producto"}`}
+      to={`/products/product/${product.documentId}`}
       className={cn(
         "group flex flex-col bg-white shadow-md hover:shadow-xl border border-gray-100 rounded-xl h-full overflow-hidden transition-all duration-300",
         className,
@@ -77,24 +78,24 @@ export function ProductCard({ product, className }: ProductCardProps) {
           </h3>
 
           {/* Brand, category, composition and measurement tags */}
-          <div className="hidden sm:flex flex-wrap gap-1">
+          <div className="flex flex-wrap gap-1">
             {product.brand && (
-              <Badge variant="destructive" className="text-xs">
+              <Badge variant="destructive" className="text-xs max-w-full truncate">
                 {product.brand.charAt(0).toUpperCase() + product.brand.slice(1)}
               </Badge>
             )}
             {product.categories?.[0]?.name && (
-              <Badge variant="outline" className="text-xs">
+              <Badge variant="outline" className="text-xs max-w-full truncate">
                 {product.categories[0].name}
               </Badge>
             )}
             {product.composition && (
-              <Badge variant="secondary" className="text-xs">
+              <Badge variant="secondary" className="text-xs max-w-full truncate">
                 {product.composition}
               </Badge>
             )}
             {product.measurement && (
-              <Badge variant="default" className="text-xs capitalize">
+              <Badge variant="default" className="text-[10px] lg:text-xs capitalize max-w-full truncate">
                 {product.measurement}
               </Badge>
             )}
@@ -122,7 +123,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
                     {formatPrice(price)}
                   </span>
                 </div>
-                <div className="font-medium text-green-600 text-[10px] sm:text-sm hidden sm:block mt-1">
+                <div className="font-medium text-green-600 text-[10px] sm:text-sm mt-1">
                   Ahorras {formatPrice(price - discountPrice)}
                 </div>
               </>
@@ -158,9 +159,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
                 ? "bg-green-600 hover:bg-green-700"
                 : "bg-red-600 hover:bg-red-700 disabled:bg-gray-400"
             )}
-            disabled={product.stock <= 0}
+            disabled={product.stock <= 0 || isSyncing}
           >
-            {isAdded ? (
+            {isSyncing ? (
+              <ShoppingCart className="w-4 h-4 lg:mr-1.5 animate-pulse" />
+            ) : isAdded ? (
               <span className="flex items-center gap-1">
                 <span className="hidden lg:inline">Agregado</span> ✓
               </span>

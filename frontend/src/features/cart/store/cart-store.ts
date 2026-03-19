@@ -1,7 +1,9 @@
 import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
+import { devtools } from "zustand/middleware";
 import type { Product } from "@/types";
 import type { CartState } from "../types";
+import api from "@/lib/api";
+import { toast } from "sonner";
 
 /**
  * Tax rate (21% IVA in Argentina)
@@ -9,169 +11,161 @@ import type { CartState } from "../types";
 const TAX_RATE = 0.21;
 
 /**
- * Cart store with localStorage persistence
- * Following Zustand best practices:
- * - Immutable state updates
- * - Persist middleware for localStorage
- * - DevTools for debugging
- * - Selector functions for optimized renders
+ * Cart store mapped to Strapi Backend API
+ * - Removes local storage persistence
+ * - Updates State via Async requests
  */
 export const useCartStore = create<CartState>()(
   devtools(
-    persist(
-      (set, get) => ({
-        items: [],
+    (set, get) => ({
+      items: [],
+      isSyncing: false,
 
-        /**
-         * Add item to cart or update quantity if already exists
-         */
-        addItem: (product: Product, quantity = 1) => {
-          set(
-            (state) => {
-              const existingItem = state.items.find(
-                (item) => item.product.documentId === product.documentId,
-              );
+      /**
+       * Fetch active cart from Strapi
+       */
+      fetchCart: async () => {
+        set({ isSyncing: true }, false, "fetchCart/start");
+        try {
+          const { data } = await api.get('/cart/my-cart');
+          set({ items: data.data?.items || [] }, false, "fetchCart/success");
+        } catch (error) {
+          console.error("Failed to fetch cart:", error);
+          set({ items: [] }, false, "fetchCart/error");
+        } finally {
+          set({ isSyncing: false }, false, "fetchCart/end");
+        }
+      },
 
-              if (existingItem) {
-                // Update quantity if item already in cart
-                return {
-                  items: state.items.map((item) =>
-                    item.product.documentId === product.documentId
-                      ? {
-                          ...item,
-                          quantity: Math.min(
-                            item.quantity + quantity,
-                            product.stock,
-                          ),
-                        }
-                      : item,
-                  ),
-                };
-              }
+      /**
+       * Add item to cart or update quantity if already exists via backend
+       */
+      addItem: async (product: Product, quantity = 1) => {
+        set({ isSyncing: true }, false, "addItem/start");
+        try {
+          const payload = {
+            productId: product.documentId,
+            quantity,
+            composition: product.composition,
+            measurement: product.measurement,
+          };
+          
+          const { data } = await api.post('/cart/items', payload);
+          // Backend returns the full updated cart
+          set({ items: data.data?.items || [] }, false, "addItem/success");
+        } catch (error) {
+          console.error("Failed to add item:", error);
+          toast.error("Error al agregar al carrito");
+        } finally {
+          set({ isSyncing: false }, false, "addItem/end");
+        }
+      },
 
-              // Add new item to cart
-              return {
-                items: [
-                  ...state.items,
-                  {
-                    product,
-                    quantity: Math.min(quantity, product.stock),
-                    addedAt: new Date().toISOString(),
-                  },
-                ],
-              };
-            },
-            false,
-            "addItem",
-          );
-        },
+      /**
+       * Remove item from cart by CartItem documentId
+       */
+      removeItem: async (itemId: string) => {
+        set({ isSyncing: true }, false, "removeItem/start");
+        try {
+          // If itemId is missing, it could be we only have productId (old cached state), but we expect CartItem documentId
+          const { data } = await api.delete(`/cart/items/${itemId}`);
+          set({ items: data.data?.items || [] }, false, "removeItem/success");
+        } catch (error) {
+          console.error("Failed to remove item:", error);
+          toast.error("Error al eliminar el producto");
+        } finally {
+          set({ isSyncing: false }, false, "removeItem/end");
+        }
+      },
 
-        /**
-         * Remove item from cart
-         */
-        removeItem: (productId: string) => {
-          set(
-            (state) => ({
-              items: state.items.filter(
-                (item) => item.product.documentId !== productId,
-              ),
-            }),
-            false,
-            "removeItem",
-          );
-        },
+      /**
+       * Update item quantity
+       */
+      updateQuantity: async (itemId: string, quantity: number) => {
+        set({ isSyncing: true }, false, "updateQuantity/start");
+        try {
+          let response;
+          if (quantity <= 0) {
+            response = await api.delete(`/cart/items/${itemId}`);
+          } else {
+            response = await api.patch(`/cart/items/${itemId}`, { quantity });
+          }
+          set({ items: response.data.data?.items || [] }, false, "updateQuantity/success");
+        } catch (error) {
+          console.error("Failed to update cart quantity:", error);
+          toast.error("Error al actualizar la cantidad");
+        } finally {
+          set({ isSyncing: false }, false, "updateQuantity/end");
+        }
+      },
 
-        /**
-         * Update item quantity
-         */
-        updateQuantity: (productId: string, quantity: number) => {
-          set(
-            (state) => {
-              // Remove item if quantity is 0 or less
-              if (quantity <= 0) {
-                return {
-                  items: state.items.filter(
-                    (item) => item.product.documentId !== productId,
-                  ),
-                };
-              }
+      /**
+       * Clear all items from cart
+       */
+      clearCart: async () => {
+        set({ isSyncing: true }, false, "clearCart/start");
+        try {
+          const { data } = await api.delete('/cart');
+          set({ items: data.data?.items || [] }, false, "clearCart/success");
+        } catch (error) {
+          console.error("Failed to clear cart:", error);
+          toast.error("Error al vaciar el carrito");
+        } finally {
+          set({ isSyncing: false }, false, "clearCart/end");
+        }
+      },
 
-              return {
-                items: state.items.map((item) =>
-                  item.product.documentId === productId
-                    ? {
-                        ...item,
-                        quantity: Math.min(quantity, item.product.stock),
-                      }
-                    : item,
-                ),
-              };
-            },
-            false,
-            "updateQuantity",
-          );
-        },
+      /**
+       * Get total number of items in cart
+       */
+      getItemCount: () => {
+        return get().items.reduce((total, item) => total + item.quantity, 0);
+      },
 
-        /**
-         * Clear all items from cart
-         */
-        clearCart: () => {
-          set({ items: [] }, false, "clearCart");
-        },
-
-        /**
-         * Get total number of items in cart
-         */
-        getItemCount: () => {
-          return get().items.reduce((total, item) => total + item.quantity, 0);
-        },
-
-        /**
-         * Get cart subtotal (before tax)
-         */
-        getSubtotal: () => {
-          return get().items.reduce((total, item) => {
-            const price =
-              item.product.discount_price > 0 &&
-              item.product.discount_price < item.product.price
+      /**
+       * Get cart subtotal (before tax)
+       * Note: The backend cart item has a fixed `price` attribute which we should use!
+       */
+      getSubtotal: () => {
+        return get().items.reduce((total, item) => {
+          // Fallback to front-end calc if item.price is not populated by backend yet
+          let price = Number(item.price);
+          
+          if (!price && item.product) {
+             price = item.product.discount_price > 0 && item.product.discount_price < item.product.price
                 ? item.product.discount_price
                 : item.product.price;
-            return total + price * item.quantity;
-          }, 0);
-        },
-
-        /**
-         * Get tax amount
-         */
-        getTax: () => {
-          const subtotal = get().getSubtotal();
-          return subtotal * TAX_RATE;
-        },
-
-        /**
-         * Get cart total (subtotal + tax)
-         */
-        getTotal: () => {
-          const subtotal = get().getSubtotal();
-          const tax = get().getTax();
-          return subtotal + tax;
-        },
-
-        /**
-         * Get specific item from cart
-         */
-        getItem: (productId: string) => {
-          return get().items.find(
-            (item) => item.product.documentId === productId,
-          );
-        },
-      }),
-      {
-        name: "flexigom-cart-storage", // localStorage key
-        // Optional: customize which parts of state to persist
-        partialize: (state) => ({ items: state.items }),
+          }
+          return total + price * item.quantity;
+        }, 0);
       },
-    ),
+
+      /**
+       * Get tax amount
+       */
+      getTax: () => {
+        const subtotal = get().getSubtotal();
+        return subtotal * TAX_RATE;
+      },
+
+      /**
+       * Get cart total (subtotal + tax)
+       */
+      getTotal: () => {
+        const subtotal = get().getSubtotal();
+        const tax = get().getTax();
+        return subtotal + tax;
+      },
+
+      /**
+       * Get specific item from cart by productId (used by UI for quick lookups)
+       */
+      getItem: (productId: string) => {
+        return get().items.find(
+          (item) => item.product?.documentId === productId || item.productId === productId
+        );
+      },
+    }),
     {
       name: "CartStore", // DevTools name
     },
@@ -180,11 +174,11 @@ export const useCartStore = create<CartState>()(
 
 /**
  * Selectors for optimized component re-renders
- * Use these in components to subscribe only to specific state slices
  */
 export const selectCartItems = (state: CartState) => state.items;
 export const selectCartItemCount = (state: CartState) => state.getItemCount();
 export const selectCartSubtotal = (state: CartState) => state.getSubtotal();
 export const selectCartTotal = (state: CartState) => state.getTotal();
+export const selectCartIsSyncing = (state: CartState) => state.isSyncing;
 export const selectCartItem = (productId: string) => (state: CartState) =>
   state.getItem(productId);

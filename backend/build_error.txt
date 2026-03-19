@@ -1,0 +1,189 @@
+
+> backend@0.1.0 build C:\Desarrollo\flexigom\backend
+> strapi build
+
+- Compiling TS
+[96msrc/api/cart-item/controllers/cart-item.ts[0m:[93m2[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart-item.cart-item"' is not assignable to parameter of type 'ContentType'.
+
+[7m2[0m export default factories.createCoreController('api::cart-item.cart-item');
+[7m [0m [91m                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart-item/routes/cart-item.ts[0m:[93m2[0m:[93m43[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart-item.cart-item"' is not assignable to parameter of type 'ContentType'.
+
+[7m2[0m export default factories.createCoreRouter('api::cart-item.cart-item');
+[7m [0m [91m                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart-item/services/cart-item.ts[0m:[93m2[0m:[93m44[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart-item.cart-item"' is not assignable to parameter of type 'ContentType'.
+
+[7m2[0m export default factories.createCoreService('api::cart-item.cart-item');
+[7m [0m [91m                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m4[0m:[93m47[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart.cart"' is not assignable to parameter of type 'ContentType'.
+
+[7m4[0m export default factories.createCoreController('api::cart.cart', ({ strapi }) => ({
+[7m [0m [91m                                              ~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m15[0m:[93m41[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart.cart"' is not assignable to parameter of type 'ContentType'.
+
+[7m15[0m     const cart = await strapi.documents('api::cart.cart').create({
+[7m  [0m [91m                                        ~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m17[0m:[93m9[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'guestToken' does not exist in type 'Input<ContentType>'.
+
+[7m17[0m         guestToken,
+[7m  [0m [91m        ~~~~~~~~~~[0m
+
+  [96mnode_modules/.pnpm/@strapi+types@5.23.1_@types_a146df9fb264efac9812843feeaf9252/node_modules/@strapi/types/dist/modules/documents/params/index.d.ts[0m:[93m128[0m:[93m13[0m
+    [7m128[0m             data?: Data.Input<TSchemaUID>;
+    [7m   [0m [96m            ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type 'Create<ContentType>'
+[96msrc/api/cart/controllers/cart.ts[0m:[93m42[0m:[93m42[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart.cart"' is not assignable to parameter of type 'ContentType'.
+
+[7m42[0m     const carts = await strapi.documents('api::cart.cart').findMany({
+[7m  [0m [91m                                         ~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m43[0m:[93m18[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'guestToken' does not exist in type 'Any<ContentType>'.
+
+[7m43[0m       filters: { guestToken },
+[7m  [0m [91m                 ~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m44[0m:[93m18[0m - [91merror[0m[90m TS2322: [0mType '"items"' is not assignable to type '`${string}.${string}` | `${string},${string}` | PopulatableAttributeNames<ContentType>'.
+
+[7m44[0m       populate: ['items'],
+[7m  [0m [91m                 ~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m63[0m:[93m79[0m - [91merror[0m[90m TS2339: [0mProperty 'body' does not exist on type 'Request'.
+
+[7m63[0m     const { productId, quantity = 1, composition, measurement } = ctx.request.body;
+[7m  [0m [91m                                                                              ~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m70[0m:[93m42[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart.cart"' is not assignable to parameter of type 'ContentType'.
+
+[7m70[0m     const carts = await strapi.documents('api::cart.cart').findMany({
+[7m  [0m [91m                                         ~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m71[0m:[93m18[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'guestToken' does not exist in type 'Any<ContentType>'.
+
+[7m71[0m       filters: { guestToken },
+[7m  [0m [91m                 ~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m72[0m:[93m18[0m - [91merror[0m[90m TS2322: [0mType '"items"' is not assignable to type '`${string}.${string}` | `${string},${string}` | PopulatableAttributeNames<ContentType>'.
+
+[7m72[0m       populate: ['items']
+[7m  [0m [91m                 ~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m93[0m:[93m19[0m - [91merror[0m[90m TS18049: [0m'product.discount_price' is possibly 'null' or 'undefined'.
+
+[7m93[0m     const price = product.discount_price > 0 && product.discount_price < product.price
+[7m  [0m [91m                  ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m93[0m:[93m49[0m - [91merror[0m[90m TS18049: [0m'product.discount_price' is possibly 'null' or 'undefined'.
+
+[7m93[0m     const price = product.discount_price > 0 && product.discount_price < product.price
+[7m  [0m [91m                                                ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m93[0m:[93m74[0m - [91merror[0m[90m TS18049: [0m'product.price' is possibly 'null' or 'undefined'.
+
+[7m93[0m     const price = product.discount_price > 0 && product.discount_price < product.price
+[7m  [0m [91m                                                                         ~~~~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m98[0m:[93m31[0m - [91merror[0m[90m TS2339: [0mProperty 'items' does not exist on type '{ id: ID; documentId: string; locale?: string | null | undefined; createdAt?: DateTimeValue | null | undefined; publishedAt?: DateTimeValue | null | undefined; updatedAt?: DateTimeValue | ... 1 more ... | undefined; }'.
+
+[7m98[0m     const existingItem = cart.items.find(
+[7m  [0m [91m                              ~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m99[0m:[93m8[0m - [91merror[0m[90m TS7006: [0mParameter 'item' implicitly has an 'any' type.
+
+[7m99[0m       (item) => item.productId === productId &&
+[7m  [0m [91m       ~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m107[0m:[93m50[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart-item.cart-item"' is not assignable to parameter of type 'ContentType'.
+
+[7m107[0m       const updatedItem = await strapi.documents('api::cart-item.cart-item').update({
+[7m   [0m [91m                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m109[0m:[93m17[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'quantity' does not exist in type 'Partial<Input<ContentType>>'.
+
+[7m109[0m         data: { quantity: newQuantity }
+[7m   [0m [91m                ~~~~~~~~[0m
+
+  [96mnode_modules/.pnpm/@strapi+types@5.23.1_@types_a146df9fb264efac9812843feeaf9252/node_modules/@strapi/types/dist/modules/documents/params/index.d.ts[0m:[93m134[0m:[93m13[0m
+    [7m134[0m             data?: Partial<Data.Input<TSchemaUID>>;
+    [7m   [0m [96m            ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type 'Update<ContentType>'
+[96msrc/api/cart/controllers/cart.ts[0m:[93m114[0m:[93m46[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart-item.cart-item"' is not assignable to parameter of type 'ContentType'.
+
+[7m114[0m       const newItem = await strapi.documents('api::cart-item.cart-item').create({
+[7m   [0m [91m                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m116[0m:[93m11[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'cart' does not exist in type 'Input<ContentType>'.
+
+[7m116[0m           cart: cart.documentId, // link to cart
+[7m   [0m [91m          ~~~~[0m
+
+  [96mnode_modules/.pnpm/@strapi+types@5.23.1_@types_a146df9fb264efac9812843feeaf9252/node_modules/@strapi/types/dist/modules/documents/params/index.d.ts[0m:[93m128[0m:[93m13[0m
+    [7m128[0m             data?: Data.Input<TSchemaUID>;
+    [7m   [0m [96m            ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type 'Create<ContentType>'
+[96msrc/api/cart/controllers/cart.ts[0m:[93m133[0m:[93m38[0m - [91merror[0m[90m TS2339: [0mProperty 'body' does not exist on type 'Request'.
+
+[7m133[0m     const { quantity } = ctx.request.body;
+[7m   [0m [91m                                     ~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m137[0m:[93m41[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart-item.cart-item"' is not assignable to parameter of type 'ContentType'.
+
+[7m137[0m     const item = await strapi.documents('api::cart-item.cart-item').findOne({
+[7m   [0m [91m                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m139[0m:[93m18[0m - [91merror[0m[90m TS2322: [0mType '"cart"' is not assignable to type '`${string}.${string}` | `${string},${string}` | PopulatableAttributeNames<ContentType>'.
+
+[7m139[0m       populate: ['cart']
+[7m   [0m [91m                 ~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m142[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'cart' does not exist on type '{ id: ID; documentId: string; locale?: string | null | undefined; createdAt?: DateTimeValue | null | undefined; publishedAt?: DateTimeValue | null | undefined; updatedAt?: DateTimeValue | ... 1 more ... | undefined; }'.
+
+[7m142[0m     if (!item || item.cart?.guestToken !== guestToken) {
+[7m   [0m [91m                      ~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m147[0m:[93m30[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart-item.cart-item"' is not assignable to parameter of type 'ContentType'.
+
+[7m147[0m       await strapi.documents('api::cart-item.cart-item').delete({ documentId: itemId });
+[7m   [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m151[0m:[93m44[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart-item.cart-item"' is not assignable to parameter of type 'ContentType'.
+
+[7m151[0m     const updated = await strapi.documents('api::cart-item.cart-item').update({
+[7m   [0m [91m                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m153[0m:[93m15[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'quantity' does not exist in type 'Partial<Input<ContentType>>'.
+
+[7m153[0m       data: { quantity }
+[7m   [0m [91m              ~~~~~~~~[0m
+
+  [96mnode_modules/.pnpm/@strapi+types@5.23.1_@types_a146df9fb264efac9812843feeaf9252/node_modules/@strapi/types/dist/modules/documents/params/index.d.ts[0m:[93m134[0m:[93m13[0m
+    [7m134[0m             data?: Partial<Data.Input<TSchemaUID>>;
+    [7m   [0m [96m            ~~~~[0m
+    The expected type comes from property 'data' which is declared here on type 'Update<ContentType>'
+[96msrc/api/cart/controllers/cart.ts[0m:[93m166[0m:[93m41[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart-item.cart-item"' is not assignable to parameter of type 'ContentType'.
+
+[7m166[0m     const item = await strapi.documents('api::cart-item.cart-item').findOne({
+[7m   [0m [91m                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m168[0m:[93m18[0m - [91merror[0m[90m TS2322: [0mType '"cart"' is not assignable to type '`${string}.${string}` | `${string},${string}` | PopulatableAttributeNames<ContentType>'.
+
+[7m168[0m       populate: ['cart']
+[7m   [0m [91m                 ~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m171[0m:[93m23[0m - [91merror[0m[90m TS2339: [0mProperty 'cart' does not exist on type '{ id: ID; documentId: string; locale?: string | null | undefined; createdAt?: DateTimeValue | null | undefined; publishedAt?: DateTimeValue | null | undefined; updatedAt?: DateTimeValue | ... 1 more ... | undefined; }'.
+
+[7m171[0m     if (!item || item.cart?.guestToken !== guestToken) {
+[7m   [0m [91m                      ~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m175[0m:[93m28[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart-item.cart-item"' is not assignable to parameter of type 'ContentType'.
+
+[7m175[0m     await strapi.documents('api::cart-item.cart-item').delete({ documentId: itemId });
+[7m   [0m [91m                           ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m184[0m:[93m42[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart.cart"' is not assignable to parameter of type 'ContentType'.
+
+[7m184[0m     const carts = await strapi.documents('api::cart.cart').findMany({
+[7m   [0m [91m                                         ~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m185[0m:[93m18[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'guestToken' does not exist in type 'Any<ContentType>'.
+
+[7m185[0m       filters: { guestToken },
+[7m   [0m [91m                 ~~~~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m186[0m:[93m18[0m - [91merror[0m[90m TS2322: [0mType '"items"' is not assignable to type '`${string}.${string}` | `${string},${string}` | PopulatableAttributeNames<ContentType>'.
+
+[7m186[0m       populate: ['items']
+[7m   [0m [91m                 ~~~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m194[0m:[93m29[0m - [91merror[0m[90m TS2339: [0mProperty 'items' does not exist on type '{ id: ID; documentId: string; locale?: string | null | undefined; createdAt?: DateTimeValue | null | undefined; publishedAt?: DateTimeValue | null | undefined; updatedAt?: DateTimeValue | ... 1 more ... | undefined; }'.
+
+[7m194[0m     for (const item of cart.items) {
+[7m   [0m [91m                            ~~~~~[0m
+[96msrc/api/cart/controllers/cart.ts[0m:[93m195[0m:[93m30[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart-item.cart-item"' is not assignable to parameter of type 'ContentType'.
+
+[7m195[0m       await strapi.documents('api::cart-item.cart-item').delete({
+[7m   [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/routes/cart.ts[0m:[93m2[0m:[93m43[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart.cart"' is not assignable to parameter of type 'ContentType'.
+
+[7m2[0m export default factories.createCoreRouter('api::cart.cart');
+[7m [0m [91m                                          ~~~~~~~~~~~~~~~~[0m
+[96msrc/api/cart/services/cart.ts[0m:[93m2[0m:[93m44[0m - [91merror[0m[90m TS2345: [0mArgument of type '"api::cart.cart"' is not assignable to parameter of type 'ContentType'.
+
+[7m2[0m export default factories.createCoreService('api::cart.cart');
+[7m [0m [91m                                           ~~~~~~~~~~~~~~~~[0m
+
+Found 40 error(s).
+
+ ELIFECYCLE  Command failed with exit code 1.

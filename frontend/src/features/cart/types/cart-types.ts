@@ -5,9 +5,15 @@ import type { ShippingFormData } from "./shipping-types";
  * Cart item with product information and quantity
  */
 export interface CartItem {
+  id?: string;
+  documentId?: string;
+  productId?: string;
+  price?: number;
   product: Product;
   quantity: number;
-  addedAt: string; // ISO timestamp
+  addedAt?: string; // ISO timestamp
+  composition?: string;
+  measurement?: string;
 }
 
 /**
@@ -15,11 +21,13 @@ export interface CartItem {
  */
 export interface CartState {
   items: CartItem[];
+  isSyncing: boolean;
   // Actions
-  addItem: (product: Product, quantity?: number) => void;
-  removeItem: (productId: string) => void;
-  updateQuantity: (productId: string, quantity: number) => void;
-  clearCart: () => void;
+  fetchCart: () => Promise<void>;
+  addItem: (product: Product, quantity?: number) => Promise<void>;
+  removeItem: (itemId: string) => Promise<void>;
+  updateQuantity: (itemId: string, quantity: number) => Promise<void>;
+  clearCart: () => Promise<void>;
   // Computed getters
   getItemCount: () => number;
   getSubtotal: () => number;
