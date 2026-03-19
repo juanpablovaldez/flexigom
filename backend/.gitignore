@@ -132,6 +132,8 @@ dist
 build
 .strapi-updater.json
 .strapi-cloud.json
+src/extensions/documentation/documentation/
+full_documentation.json
 
 ############################
 # Docker
