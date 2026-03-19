@@ -65,7 +65,7 @@ export default factories.createCoreController('api::cart.cart', ({ strapi }) => 
 
       ctx.cookies.set('guest_cart_token', guestToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: ctx.request.secure,
         maxAge: 30 * 24 * 60 * 60 * 1000,
         path: '/',
         sameSite: 'lax',
@@ -119,7 +119,7 @@ export default factories.createCoreController('api::cart.cart', ({ strapi }) => 
         });
         ctx.cookies.set('guest_cart_token', guestToken, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
+          secure: ctx.request.secure,
           maxAge: 30 * 24 * 60 * 60 * 1000,
           path: '/',
           sameSite: 'lax',
