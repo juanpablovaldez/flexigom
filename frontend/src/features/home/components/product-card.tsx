@@ -77,24 +77,24 @@ export function ProductCard({ product, className }: ProductCardProps) {
           </h3>
 
           {/* Brand, category, composition and measurement tags */}
-          <div className="hidden sm:flex flex-wrap gap-1">
+          <div className="flex flex-wrap gap-1">
             {product.brand && (
-              <Badge variant="destructive" className="text-xs">
+              <Badge variant="destructive" className="text-xs max-w-full truncate">
                 {product.brand.charAt(0).toUpperCase() + product.brand.slice(1)}
               </Badge>
             )}
             {product.categories?.[0]?.name && (
-              <Badge variant="outline" className="text-xs">
+              <Badge variant="outline" className="text-xs max-w-full truncate">
                 {product.categories[0].name}
               </Badge>
             )}
             {product.composition && (
-              <Badge variant="secondary" className="text-xs">
+              <Badge variant="secondary" className="text-xs max-w-full truncate">
                 {product.composition}
               </Badge>
             )}
             {product.measurement && (
-              <Badge variant="default" className="text-xs capitalize">
+              <Badge variant="default" className="text-[10px] lg:text-xs capitalize max-w-full truncate">
                 {product.measurement}
               </Badge>
             )}
@@ -122,7 +122,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
                     {formatPrice(price)}
                   </span>
                 </div>
-                <div className="font-medium text-green-600 text-[10px] sm:text-sm hidden sm:block mt-1">
+                <div className="font-medium text-green-600 text-[10px] sm:text-sm mt-1">
                   Ahorras {formatPrice(price - discountPrice)}
                 </div>
               </>
