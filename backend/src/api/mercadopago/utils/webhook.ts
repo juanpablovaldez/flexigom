@@ -249,5 +249,49 @@ export const processPaymentNotification = async (
     );
   }
 
+  // Trigger email notification for approved payments
+  if (status === "approved" && updatedOrder) {
+    try {
+      console.log(
+        `[MercadoPago Webhook] Triggering email notification for order ${updatedOrder.id}`
+      );
+
+      // Import service dynamically or at the top
+      const { sendNewOrderEmail } = require("../../../services/email.service");
+
+      await sendNewOrderEmail({
+        customerName: updatedOrder.customer_name,
+        customerEmail: updatedOrder.customer_email,
+        customerPhone: updatedOrder.customer_phone,
+        customerAddress: updatedOrder.customer_address,
+        orderId: updatedOrder.id.toString(),
+        orderDate: new Date().toLocaleDateString("es-AR"),
+        items: (updatedOrder.items || []).map((item: any) => ({
+          name: item.title,
+          quantity: item.quantity,
+          price: item.unit_price,
+          composicion: item.description?.includes("Composición:")
+            ? item.description.split("Composición:")[1].split("|")[0].trim()
+            : undefined,
+          medida: item.description?.includes("Medida:")
+            ? item.description.split("Medida:")[1].split("|")[0].trim()
+            : undefined,
+        })),
+        total: updatedOrder.transaction_amount,
+        paymentMethod: updatedOrder.payment_method || "MercadoPago",
+        notes: updatedOrder.metadata?.notes,
+      });
+
+      console.log(
+        `[MercadoPago Webhook] Email notification sent for order ${updatedOrder.id}`
+      );
+    } catch (error) {
+      console.error(
+        `[MercadoPago Webhook] Email notification failed for order ${updatedOrder.id}:`,
+        error
+      );
+    }
+  }
+
   return updatedOrder;
 };
