@@ -170,12 +170,9 @@ export function useProductFilters() {
     };
     updateURL(newFilters);
 
-    // Scroll to products section
+    // Scroll to the very top of the page
     setTimeout(() => {
-      const section = document.getElementById("productos");
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }, 100);
   };
 
