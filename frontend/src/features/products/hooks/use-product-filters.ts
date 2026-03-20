@@ -169,6 +169,11 @@ export function useProductFilters() {
       page,
     };
     updateURL(newFilters);
+
+    // Scroll to the very top of the page
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 100);
   };
 
   const handleSearchFilter = (search: string) => {

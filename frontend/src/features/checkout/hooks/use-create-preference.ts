@@ -45,10 +45,11 @@ export function useCreatePreference() {
           title: item.product.name,
           quantity: item.quantity,
           unit_price: price,
-          description:
-            typeof item.product.description === "string"
-              ? item.product.description
-              : undefined,
+          description: [
+            typeof item.product.description === "string" ? item.product.description : "",
+            item.composition ? `Composición: ${item.composition}` : "",
+            item.measurement ? `Medida: ${item.measurement}` : "",
+          ].filter(Boolean).join(" | "),
           category_id: item.product.categories?.[0]?.name || undefined,
         };
       });
