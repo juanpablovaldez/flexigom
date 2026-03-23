@@ -7,6 +7,14 @@ import { useState } from "react";
 import { useCartStore } from "@/features/cart/store/cart-store";
 import { toast } from "sonner";
 import { ShoppingCart } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 interface ProductCardProps {
   product: Product;
@@ -14,7 +22,8 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, className }: ProductCardProps) {
-  const imageUrl = getImageUrl(product.images?.[0]?.url);
+  const images = product.images && Array.isArray(product.images) ? product.images : [];
+  const imageUrl = getImageUrl(images[0]?.url);
   const price = Number(product.price) || 0;
   const discountPrice = Number(product.discount_price) || 0;
   const hasDiscount = discountPrice > 0 && discountPrice < price;
@@ -25,6 +34,8 @@ export function ProductCard({ product, className }: ProductCardProps) {
   const addItem = useCartStore((state) => state.addItem);
   const isSyncing = useCartStore((state) => state.isSyncing);
   const [isAdded, setIsAdded] = useState(false);
+
+  const [api, setApi] = useState<CarouselApi>();
 
   const handleAddToCart = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -46,8 +57,38 @@ export function ProductCard({ product, className }: ProductCardProps) {
         className,
       )}
     >
-      <div className="relative flex justify-center items-center bg-gray-100 aspect-square overflow-hidden">
-        {imageUrl ? (
+      <div className="relative flex justify-center items-center bg-gray-100 aspect-square overflow-hidden group/image">
+        {images.length > 1 ? (
+          <div className="w-full h-full flex flex-col relative select-none">
+            <Carousel setApi={setApi} className="w-full h-full" opts={{ loop: true }}>
+              <CarouselContent className="h-full ml-0">
+                {images.map((img, index) => (
+                  <CarouselItem key={img.id || index} className="h-full pl-0 relative overflow-hidden">
+                    <img
+                      src={getImageUrl(img.url) || undefined}
+                      alt={img.alternativeText || `Imagen ${index + 1} de ${product.name}`}
+                      className="w-full h-full object-cover group-hover/image:scale-105 transition-transform duration-500"
+                      loading={index === 0 ? "eager" : "lazy"}
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              {/* Arrows appear on hover of image area group/image */}
+              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-between px-2 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
+                <CarouselPrevious
+                  className="relative inset-0 translate-x-0 translate-y-0 h-8 w-8 scale-90 md:scale-100 bg-white/90 hover:bg-white pointer-events-auto border-none shadow-md text-gray-700 hover:text-gray-900"
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); api?.scrollPrev(); }}
+                />
+                <CarouselNext
+                  className="relative inset-0 translate-x-0 translate-y-0 h-8 w-8 scale-90 md:scale-100 bg-white/90 hover:bg-white pointer-events-auto border-none shadow-md text-gray-700 hover:text-gray-900"
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); api?.scrollNext(); }}
+                />
+              </div>
+            </Carousel>
+
+
+          </div>
+        ) : imageUrl ? (
           <img
             src={imageUrl}
             alt={
@@ -64,7 +105,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
         {hasDiscount && (
           <Badge
             variant="destructive"
-            className="top-2 right-2 absolute bg-red-600 hover:bg-red-700 font-bold text-white text-[10px] sm:text-xs px-1.5 py-0 sm:px-2.5 sm:py-0.5"
+            className="top-2 right-2 absolute bg-red-600 hover:bg-red-700 font-bold text-white text-[10px] sm:text-xs px-1.5 py-0 sm:px-2.5 sm:py-0.5 z-30"
           >
             -{discountPercentage}%
           </Badge>
