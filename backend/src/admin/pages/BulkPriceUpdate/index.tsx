@@ -9,8 +9,16 @@ import {
   NumberInput,
   Flex,
   Alert,
-  Field
+  Field,
+  MultiSelect,
+  MultiSelectOption
 } from '@strapi/design-system';
+
+interface Product {
+  id: string | number;
+  documentId: string;
+  name: string;
+}
 
 interface Category {
   id: string | number;
@@ -24,6 +32,8 @@ const BulkPriceUpdate = () => {
   const { get } = useFetchClient();
   const [categories, setCategories] = useState<Category[]>([]);
   const [categoryId, setCategoryId] = useState<string | number>('');
+  const [products, setProducts] = useState<Product[]>([]);
+  const [selectedProductIds, setSelectedProductIds] = useState<string[]>([]);
   const [adjustmentType, setAdjustmentType] = useState<string | number>('percentage');
   const [action, setAction] = useState<string | number>('increase');
   const [value, setValue] = useState<number | undefined>(0);
@@ -53,6 +63,28 @@ const BulkPriceUpdate = () => {
     fetchCategories();
   }, [get]);
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      if (!categoryId) {
+        setProducts([]);
+        setSelectedProductIds([]);
+        return;
+      }
+      try {
+        const { data } = await get(`/content-manager/collection-types/api::product.product?filters[categories][id][$eq]=${categoryId}&pageSize=500`);
+        if (data && data.results) {
+          setProducts(data.results);
+        } else if (data && data.data) {
+          setProducts(data.data);
+        }
+        setSelectedProductIds([]); // Reset selection when category changes
+      } catch (err) {
+        console.error('Error fetching products:', err);
+      }
+    };
+    fetchProducts();
+  }, [categoryId, get]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -69,6 +101,7 @@ const BulkPriceUpdate = () => {
         },
         body: JSON.stringify({
           categoryId,
+          productIds: selectedProductIds,
           adjustmentType,
           action,
           value: Number(value)
@@ -128,6 +161,25 @@ const BulkPriceUpdate = () => {
                       </SingleSelectOption>
                     ))}
                   </SingleSelect>
+                </Field.Root>
+             </Box>
+
+             <Box>
+                <Field.Root>
+                  <Field.Label>Productos específicos (Opcional - dejar vacío para toda la categoría)</Field.Label>
+                  <MultiSelect
+                    placeholder="Selecciona productos..."
+                    onClear={() => setSelectedProductIds([])}
+                    value={selectedProductIds}
+                    onChange={setSelectedProductIds}
+                    disabled={!categoryId}
+                  >
+                    {products.map((product) => (
+                      <MultiSelectOption key={product.id} value={product.documentId}>
+                        {product.name}
+                      </MultiSelectOption>
+                    ))}
+                  </MultiSelect>
                 </Field.Root>
              </Box>
 
