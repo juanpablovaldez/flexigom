@@ -5,26 +5,30 @@
 import { factories } from '@strapi/strapi';
 
 export default factories.createCoreService('api::product.product', ({ strapi }) => ({
-  async bulkPriceUpdate(categoryId: number, adjustmentType: 'percentage' | 'fixed', action: 'increase' | 'decrease' | 'replace', value: number) {
+  async bulkPriceUpdate(categoryId: number, adjustmentType: 'percentage' | 'fixed', action: 'increase' | 'decrease' | 'replace', value: number, productIds?: (number | string)[]) {
     if (value < 0) {
       throw new Error("El valor de ajuste no puede ser negativo.");
     }
 
-    const products = await strapi.db.query('api::product.product').findMany({
-      where: {
-        categories: {
-          id: categoryId
-        }
-      },
+    const filters: any = {
+      categories: {
+        id: categoryId
+      }
+    };
+
+    if (productIds && productIds.length > 0) {
+      // In Strapi 5, we should preferably use documentId if possible, but id also works in filters
+      filters.documentId = { $in: productIds };
+    }
+
+    const products = await strapi.documents('api::product.product').findMany({
+      filters,
       populate: ['categories']
     });
 
     let affectedCount = 0;
 
-    for (const product of products) {
-      let currentPrice = Number(product.price);
-      if (isNaN(currentPrice)) currentPrice = 0;
-      
+    const calculateNewPrice = (currentPrice: number) => {
       let newPrice = currentPrice;
 
       if (adjustmentType === 'percentage') {
@@ -32,8 +36,6 @@ export default factories.createCoreService('api::product.product', ({ strapi }) 
           newPrice = currentPrice * (1 + (value / 100));
         } else if (action === 'decrease') {
           newPrice = currentPrice * (1 - (value / 100));
-        } else if (action === 'replace') {
-          throw new Error("No se puede reemplazar un precio con un porcentaje.");
         }
       } else if (adjustmentType === 'fixed') {
         if (action === 'increase') {
@@ -46,11 +48,22 @@ export default factories.createCoreService('api::product.product', ({ strapi }) 
       }
 
       newPrice = Math.max(0, newPrice); // Prevent negative prices
-      newPrice = Math.round(newPrice * 100) / 100; // Round to 2 decimals
+      return Math.round(newPrice * 100) / 100; // Round to 2 decimals
+    };
 
-      await strapi.db.query('api::product.product').update({
-        where: { id: product.id },
-        data: { price: newPrice }
+    for (const product of products) {
+      const updateData: any = {
+        price: calculateNewPrice(Number(product.price) || 0)
+      };
+
+      if (product.discount_price !== null && product.discount_price !== undefined) {
+        updateData.discount_price = calculateNewPrice(Number(product.discount_price));
+      }
+
+      await strapi.documents('api::product.product').update({
+        documentId: product.documentId,
+        data: updateData,
+        status: 'published' // Ensure changes stay published
       });
       affectedCount++;
     }
