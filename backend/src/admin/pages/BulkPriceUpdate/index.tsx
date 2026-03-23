@@ -34,17 +34,22 @@ const BulkPriceUpdate = () => {
     const fetchCategories = async () => {
       try {
         const token = sessionStorage.getItem('jwtToken') || localStorage.getItem('jwtToken');
-        const res = await fetch('/admin/content-manager/collection-types/api::category.category?pageSize=100', {
+        const res = await fetch('/content-manager/collection-types/api::category.category?pageSize=200', {
           headers: { Authorization: `Bearer ${token?.replace(/"/g, '')}` }
         });
         const data = await res.json();
-        if (data && data.data) {
-          setCategories(data.data);
-        } else if (data && data.results) {
+        console.log('BulkPriceUpdate - Categories Raw Data:', data);
+        
+        if (data && data.results) {
           setCategories(data.results);
+        } else if (data && data.data) {
+          setCategories(data.data);
+        } else {
+          console.warn('BulkPriceUpdate - Unexpected data format:', data);
         }
       } catch (err) {
         console.error('Error fetching categories:', err);
+        setError('Error al cargar categorías. Revisa la consola para más detalles.');
       }
     };
     fetchCategories();
