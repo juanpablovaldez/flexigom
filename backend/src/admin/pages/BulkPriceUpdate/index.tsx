@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useFetchClient } from '@strapi/strapi/admin';
 import {
   Box,
   Button,
@@ -20,6 +21,7 @@ interface Category {
 }
 
 const BulkPriceUpdate = () => {
+  const { get } = useFetchClient();
   const [categories, setCategories] = useState<Category[]>([]);
   const [categoryId, setCategoryId] = useState<string | number>('');
   const [adjustmentType, setAdjustmentType] = useState<string | number>('percentage');
@@ -33,11 +35,7 @@ const BulkPriceUpdate = () => {
     // Fetch categories to populate dropdown
     const fetchCategories = async () => {
       try {
-        const token = sessionStorage.getItem('jwtToken') || localStorage.getItem('jwtToken');
-        const res = await fetch('/content-manager/collection-types/api::category.category?pageSize=200', {
-          headers: { Authorization: `Bearer ${token?.replace(/"/g, '')}` }
-        });
-        const data = await res.json();
+        const { data } = await get('/content-manager/collection-types/api::category.category?pageSize=200');
         console.log('BulkPriceUpdate - Categories Raw Data:', data);
         
         if (data && data.results) {
@@ -53,7 +51,7 @@ const BulkPriceUpdate = () => {
       }
     };
     fetchCategories();
-  }, []);
+  }, [get]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -83,7 +81,7 @@ const BulkPriceUpdate = () => {
       }
 
       setMessage(`¡Éxito! Precios actualizados. Productos afectados: ${data.affectedCount}`);
-    } catch (err) {
+    } catch (err: any) {
       setError(err instanceof Error ? err.message : 'Ocurrió un error inesperado');
     } finally {
       setLoading(false);
