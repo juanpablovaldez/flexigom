@@ -22,6 +22,7 @@
     "setup": "cp env.example .env"
   },
   "dependencies": {
+    "@strapi/design-system": "^2.2.0",
     "@strapi/plugin-cloud": "5.23.1",
     "@strapi/plugin-documentation": "^5.23.1",
     "@strapi/plugin-users-permissions": "5.23.1",
