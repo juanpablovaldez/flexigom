@@ -26,6 +26,7 @@ import {
 import { useProduct } from "../hooks/use-products";
 import { RichTextRenderer } from "@/components/rich-text-renderer";
 import { ProductDetailSkeleton } from "@/components/product-detail-skeleton";
+import { SimilarProducts } from "../components/similar-products";
 import { cn, getImageUrl, formatPrice } from "@/lib/utils";
 import {
   ArrowLeft,
@@ -537,6 +538,14 @@ export function ProductDetailPage() {
                 </Accordion>
               </Card>
             )}
+
+          {/* Similar Products */}
+          {product && (
+            <SimilarProducts
+              currentProductId={product.documentId}
+              categorySlug={product.categories?.[0]?.slug}
+            />
+          )}
         </div>
       </div>
     </>
