@@ -27,6 +27,7 @@ import { useProduct } from "../hooks/use-products";
 import { RichTextRenderer } from "@/components/rich-text-renderer";
 import { ProductDetailSkeleton } from "@/components/product-detail-skeleton";
 import { SimilarProducts } from "../components/similar-products";
+import { InstallmentBadge } from "@/components/ui/installment-badge";
 import { cn, getImageUrl, formatPrice } from "@/lib/utils";
 import {
   ArrowLeft,
@@ -395,6 +396,9 @@ export function ProductDetailPage() {
                         {formatPrice(price)}
                       </span>
                     )}
+                    <div className="pt-2">
+                      <InstallmentBadge className="text-sm px-3 py-1" />
+                    </div>
                   </div>
 
                   {/* Stock Status */}
