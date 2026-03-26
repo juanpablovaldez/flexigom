@@ -19,3 +19,15 @@ export function useProduct(documentId: string) {
     queryFn: () => ProductService.getProduct(documentId),
   });
 }
+
+export function useSimilarProducts(
+  categorySlug: string | undefined,
+  currentDocumentId: string,
+) {
+  return useQuery({
+    queryKey: ["similar-products", categorySlug, currentDocumentId],
+    queryFn: () =>
+      ProductService.getSimilarProducts(categorySlug, currentDocumentId),
+    enabled: !!currentDocumentId,
+  });
+}
