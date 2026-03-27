@@ -247,4 +247,69 @@ export class ProductService {
       throw error;
     }
   }
+
+  static async getSimilarProducts(
+    categorySlug: string | undefined,
+    currentDocumentId: string,
+    limit = 4,
+  ): Promise<Product[]> {
+    try {
+      if (!currentDocumentId) return [];
+
+      let similarProducts: Product[] = [];
+      const populate = ["categories", "images"];
+
+      if (categorySlug) {
+        const categoryResponse = await api.get<StrapiResponse<Product[]>>("/products", {
+          params: {
+            populate,
+            filters: {
+              categories: {
+                slug: {
+                  $eq: categorySlug,
+                },
+              },
+              documentId: {
+                $ne: currentDocumentId,
+              },
+            },
+            pagination: {
+              pageSize: limit,
+            },
+          },
+        });
+        similarProducts = categoryResponse.data.data || [];
+      }
+
+      if (similarProducts.length < limit) {
+        const remainingLimit = limit - similarProducts.length;
+        const excludeIds = [
+          currentDocumentId,
+          ...similarProducts.map((p) => p.documentId),
+        ];
+
+        const fallbackResponse = await api.get<StrapiResponse<Product[]>>("/products", {
+          params: {
+            populate,
+            filters: {
+              documentId: {
+                $notIn: excludeIds,
+              },
+            },
+            pagination: {
+              pageSize: remainingLimit,
+            },
+            sort: "createdAt:desc",
+          },
+        });
+
+        similarProducts = [...similarProducts, ...(fallbackResponse.data.data || [])];
+      }
+
+      return similarProducts;
+    } catch (error: any) {
+      console.error("Error fetching similar products:", error.response?.data || error.message);
+      return [];
+    }
+  }
 }

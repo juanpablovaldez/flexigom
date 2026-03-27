@@ -1,6 +1,7 @@
 import { cn, getImageUrl, formatPrice } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { StarRating } from "@/components/ui/star-rating";
+import { InstallmentBadge } from "@/components/ui/installment-badge";
 import type { Product } from "@/types";
 import { Link } from "react-router";
 import { useState } from "react";
@@ -173,6 +174,9 @@ export function ProductCard({ product, className }: ProductCardProps) {
                 {formatPrice(price)}
               </span>
             )}
+            <div className="pt-0.5">
+              <InstallmentBadge />
+            </div>
           </div>
 
           {product.description &&
