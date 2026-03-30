@@ -3,7 +3,6 @@ import { formatPrice } from "@/lib/utils";
 
 interface CartSummaryProps {
   subtotal: number;
-  tax: number;
   total: number;
   shipping?: number;
   discount?: number;
@@ -11,7 +10,6 @@ interface CartSummaryProps {
 
 export function CartSummary({
   subtotal,
-  tax,
   total,
   shipping = 0,
   discount = 0,
@@ -32,10 +30,7 @@ export function CartSummary({
         </div>
       )}
 
-      <div className="flex justify-between items-center text-sm">
-        <span className="text-muted-foreground">IVA (21%)</span>
-        <span className="font-medium">{formatPrice(tax)}</span>
-      </div>
+
 
       {shipping > 0 && (
         <div className="flex justify-between items-center text-sm">
