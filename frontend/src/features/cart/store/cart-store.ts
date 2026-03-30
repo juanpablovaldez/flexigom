@@ -8,7 +8,7 @@ import { toast } from "sonner";
 /**
  * Tax rate (21% IVA in Argentina)
  */
-const TAX_RATE = 0.21;
+const TAX_RATE = 0;
 
 /**
  * Cart store mapped to Strapi Backend API
@@ -150,11 +150,10 @@ export const useCartStore = create<CartState>()(
 
       /**
        * Get cart total (subtotal + tax)
+       * Note: Tax is now 0 as it's already included in product prices
        */
       getTotal: () => {
-        const subtotal = get().getSubtotal();
-        const tax = get().getTax();
-        return subtotal + tax;
+        return get().getSubtotal();
       },
 
       /**

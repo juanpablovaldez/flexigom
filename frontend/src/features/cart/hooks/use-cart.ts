@@ -13,7 +13,6 @@ export function useCart() {
     clearCart,
     getItemCount,
     getSubtotal,
-    getTax,
     getTotal,
     getItem,
   } = useCartStore(
@@ -25,7 +24,6 @@ export function useCart() {
       clearCart: state.clearCart,
       getItemCount: state.getItemCount,
       getSubtotal: state.getSubtotal,
-      getTax: state.getTax,
       getTotal: state.getTotal,
       getItem: state.getItem,
     })),
@@ -35,7 +33,6 @@ export function useCart() {
     items,
     itemCount: getItemCount(),
     subtotal: getSubtotal(),
-    tax: getTax(),
     total: getTotal(),
     addItem,
     removeItem,

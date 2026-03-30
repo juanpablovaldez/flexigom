@@ -30,7 +30,7 @@ export function OrderSummary({
   onBack,
   isProcessing = false,
 }: OrderSummaryProps) {
-  const { items, subtotal, tax, total } = useCart();
+  const { items, subtotal, total } = useCart();
 
   const shippingCost = subtotal >= 50000 ? 0 : 0; // Free shipping over $50k, otherwise 0 for now
 
@@ -92,10 +92,7 @@ export function OrderSummary({
             <span className="text-muted-foreground">Subtotal</span>
             <span>{formatPrice(subtotal)}</span>
           </div>
-          <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">IVA (21%)</span>
-            <span>{formatPrice(tax)}</span>
-          </div>
+
           <div className="flex justify-between text-sm">
             <span className="text-muted-foreground">Envío</span>
             <span className={shippingCost === 0 ? "text-green-600" : ""}>
