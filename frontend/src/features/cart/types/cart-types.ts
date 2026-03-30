@@ -31,7 +31,6 @@ export interface CartState {
   // Computed getters
   getItemCount: () => number;
   getSubtotal: () => number;
-  getTax: () => number;
   getTotal: () => number;
   getItem: (productId: string) => CartItem | undefined;
 }
@@ -101,7 +100,6 @@ export interface CheckoutState {
 export interface OrderSummary {
   items: CartItem[];
   subtotal: number;
-  tax: number;
   shipping: number;
   discount: number;
   total: number;

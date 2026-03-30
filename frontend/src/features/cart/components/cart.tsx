@@ -26,7 +26,7 @@ interface CartProps {
  * Persists to localStorage via Zustand store
  */
 export function Cart({ open, onOpenChange }: CartProps) {
-  const { items, isEmpty, subtotal, tax, total } = useCart();
+  const { items, isEmpty, subtotal, total } = useCart();
   const [isOpen, setIsOpen] = useState(open ?? false);
 
   const handleOpenChange = (newOpen: boolean) => {
@@ -68,7 +68,7 @@ export function Cart({ open, onOpenChange }: CartProps) {
             {/* Cart Summary and Actions */}
             <SheetFooter className="border-t">
               <div className="space-y-4 w-full">
-                <CartSummary subtotal={subtotal} tax={tax} total={total} />
+                <CartSummary subtotal={subtotal} total={total} />
 
                 <Button
                   asChild
