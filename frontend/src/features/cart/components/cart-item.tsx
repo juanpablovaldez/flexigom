@@ -48,7 +48,7 @@ export function CartItemComponent({ item }: CartItemProps) {
     <div className="flex gap-4 py-4 border-b last:border-b-0">
       {/* Product Image */}
       <Link
-        to={`/products/product/${product.documentId}`}
+        to={`/productos/${product.slug}`}
         className="flex-shrink-0"
       >
         <div className="bg-gray-100 rounded-md w-20 h-20 overflow-hidden">
@@ -65,7 +65,7 @@ export function CartItemComponent({ item }: CartItemProps) {
         <div className="flex justify-between items-start">
           <div className="flex-1">
             <Link
-              to={`/products/product/${product.documentId}`}
+              to={`/productos/${product.slug}`}
               className="font-medium text-sm hover:text-primary transition-colors line-clamp-2"
             >
               {product.name}

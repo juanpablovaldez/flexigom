@@ -106,7 +106,7 @@ const SearchProductsBar = forwardRef<HTMLDivElement, SearchProductsBarProps>(
         if (onProductSelect) {
           onProductSelect(product);
         } else {
-          navigate(`/products/product/${product.documentId}`);
+          navigate(`/productos/${product.slug}`);
         }
         addToRecentSearches(query);
         setIsOpen(false);

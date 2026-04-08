@@ -55,7 +55,34 @@ export const routes: RouteObject[] = [
           },
           {
             path: "product/:documentId",
-            lazy: () => import("@/features/products/pages/product-detail-page"),
+            loader: async ({ params }) => {
+              const documentId = params.documentId;
+              if (documentId) {
+                try {
+                  const { ProductService } = await import(
+                    "@/features/products/services/products-service"
+                  );
+                  const product = await ProductService.getProduct(documentId);
+                  if (product?.slug) {
+                    return new Response(null, {
+                      status: 301,
+                      headers: {
+                        Location: `/productos/${product.slug}`,
+                      },
+                    });
+                  }
+                } catch (e) {
+                  console.error("Failed to fetch product for redirect", e);
+                }
+              }
+              // Redirect to products catalog if not found or no slug
+              return new Response(null, {
+                status: 302,
+                headers: {
+                  Location: `/products`,
+                },
+              });
+            },
           },
         ],
       },
@@ -85,19 +112,28 @@ export const routes: RouteObject[] = [
       },
       {
         path: "productos",
-        loader: ({ request }) => {
-          const url = new URL(request.url);
+        children: [
+          {
+            index: true,
+            loader: ({ request }) => {
+              const url = new URL(request.url);
 
-          const newUrl = new URL(url);
-          newUrl.pathname = "/products";
+              const newUrl = new URL(url);
+              newUrl.pathname = "/products";
 
-          return new Response(null, {
-            status: 302,
-            headers: {
-              Location: newUrl.toString(),
+              return new Response(null, {
+                status: 302,
+                headers: {
+                  Location: newUrl.toString(),
+                },
+              });
             },
-          });
-        },
+          },
+          {
+            path: ":slug",
+            lazy: () => import("@/features/products/pages/product-detail-page"),
+          },
+        ],
       },
       {
         path: "contacto",

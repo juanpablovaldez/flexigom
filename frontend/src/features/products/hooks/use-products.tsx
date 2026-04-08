@@ -17,6 +17,15 @@ export function useProduct(documentId: string) {
   return useQuery({
     queryKey: ["product", documentId],
     queryFn: () => ProductService.getProduct(documentId),
+    enabled: !!documentId,
+  });
+}
+
+export function useProductBySlug(slug: string) {
+  return useQuery({
+    queryKey: ["product", "slug", slug],
+    queryFn: () => ProductService.getProductBySlug(slug),
+    enabled: !!slug,
   });
 }
 

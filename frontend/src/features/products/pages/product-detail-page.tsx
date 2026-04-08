@@ -23,7 +23,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { useProduct } from "../hooks/use-products";
+import { useProductBySlug } from "../hooks/use-products";
 import { RichTextRenderer } from "@/components/rich-text-renderer";
 import { ProductDetailSkeleton } from "@/components/product-detail-skeleton";
 import { SimilarProducts } from "../components/similar-products";
@@ -52,8 +52,9 @@ import {
 } from "@/lib/seo";
 
 export function ProductDetailPage() {
-  const { documentId } = useParams();
-  const { data: product, isLoading, error } = useProduct(documentId || "");
+  const { slug } = useParams();
+  const { data: product, isLoading, error } = useProductBySlug(slug || "");
+  const documentId = product?.documentId;
   const [quantity, setQuantity] = useState(1);
   const addItem = useCartStore((state) => state.addItem);
   const isSyncing = useCartStore((state) => state.isSyncing);
@@ -114,6 +115,7 @@ export function ProductDetailPage() {
       category,
       images: productImages,
       documentId: documentId,
+      slug: slug,
     });
 
     // Product schema
@@ -135,11 +137,11 @@ export function ProductDetailPage() {
     const breadcrumbSchema = createBreadcrumbSchema([
       { name: "Inicio", url: "/" },
       { name: "Productos", url: "/products" },
-      { name: product.name, url: `/products/product/${documentId}` },
+      { name: product.name, url: `/productos/${slug}` },
     ]);
 
     return { seoConfig, productSchema, breadcrumbSchema };
-  }, [product, documentId, images, hasDiscount, price, discountPrice]);
+  }, [product, documentId, slug, images, hasDiscount, price, discountPrice]);
 
   if (isLoading) {
     return <ProductDetailSkeleton />;
