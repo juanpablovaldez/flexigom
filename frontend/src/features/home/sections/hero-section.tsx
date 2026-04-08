@@ -93,6 +93,7 @@ export function HeroSection({
               <img
                 src={heroImage.src}
                 alt={heroImage.alt}
+                fetchPriority="high"
                 className="w-full h-full object-cover"
               />
             </div>

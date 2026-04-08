@@ -26,12 +26,12 @@ function DotIndicators({
   onDotClick,
 }: DotIndicatorsProps) {
   return (
-    <div className="flex justify-center gap-2 mt-8">
+    <div className="flex justify-center gap-3 mt-8">
       {Array.from({ length: totalSlides }).map((_, index) => (
         <button
           key={index}
           className={cn(
-            "rounded-full w-2 h-2 transition-all duration-300 cursor-pointer",
+            "rounded-full w-3 h-3 transition-all duration-300 cursor-pointer",
             currentSlide === index
               ? "bg-red-600 w-8"
               : "bg-gray-300 hover:bg-gray-400",
