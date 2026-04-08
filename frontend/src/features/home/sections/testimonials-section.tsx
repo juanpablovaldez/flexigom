@@ -77,7 +77,7 @@ function ReviewCard({ testimonial }: ReviewCardProps) {
 
       {/* Customer Info - Always at bottom */}
       <div className="space-y-2 mt-auto leading-relaxed">
-        <h4 className="font-bold text-black text-lg">{customerName}</h4>
+        <p className="font-bold text-black text-lg">{customerName}</p>
         <p className="text-gray-600 text-sm">{customerLocation}</p>
         <p className="font-medium text-red-600 text-xs">
           Cliente desde {getCustomerSinceYear(testimonial.customerSince)}
@@ -227,13 +227,12 @@ export function TestimonialsSection({
           ) : (
             /* Grid layout for 1-3 reviews */
             <div
-              className={`grid gap-6 mx-auto max-w-6xl ${
-                sectionContent.testimonials.length === 1
-                  ? "grid-cols-1 max-w-md"
-                  : sectionContent.testimonials.length === 2
-                    ? "grid-cols-1 md:grid-cols-2 max-w-4xl"
-                    : "grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
-              }`}
+              className={`grid gap-6 mx-auto max-w-6xl ${sectionContent.testimonials.length === 1
+                ? "grid-cols-1 max-w-md"
+                : sectionContent.testimonials.length === 2
+                  ? "grid-cols-1 md:grid-cols-2 max-w-4xl"
+                  : "grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
+                }`}
             >
               {sectionContent.testimonials.map(
                 (testimonial: Review, index: number) => (

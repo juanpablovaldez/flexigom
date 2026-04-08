@@ -10,6 +10,7 @@ export const FloatingSupport = () => (
   <Tooltip>
     <TooltipTrigger asChild>
       <a
+        aria-label="Contactanos por WhatsApp"
         href="https://wa.me/+5493815824678?text=Hola,%20vi%20sus%20productos%20en%20la%20web%20y%20estoy%20interesado"
         target="_blank"
         rel="noopener noreferrer"

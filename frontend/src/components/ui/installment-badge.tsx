@@ -15,7 +15,7 @@ export function InstallmentBadge({
   return (
     <span
       className={cn(
-        "inline-block bg-green-600 text-white font-bold text-[11px] sm:text-xs px-2 py-0.5 rounded-md whitespace-nowrap",
+        "inline-block bg-green-600 text-white font-bold text-sm md:text-base px-2 py-0.5 rounded-md whitespace-nowrap",
         className
       )}
     >

@@ -1,7 +1,6 @@
 import { createBrowserRouter, type RouteObject } from "react-router";
 import { RootLayout } from "./layouts/root-layout";
 import { AuthLayout } from "./layouts/auth-layout";
-import { HomePage } from "@/features/home/pages/home-page";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { rootLoader } from "./loaders/root-loader";
 
@@ -14,7 +13,7 @@ export const routes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <HomePage />,
+        lazy: () => import("@/features/home/pages/home-page"),
       },
       {
         path: "auth",
@@ -129,3 +128,4 @@ export const routes: RouteObject[] = [
 ];
 
 export const router = createBrowserRouter(routes);
+
