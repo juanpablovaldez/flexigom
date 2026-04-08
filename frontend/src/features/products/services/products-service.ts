@@ -193,6 +193,31 @@ export class ProductService {
     }
   }
 
+  static async getProductBySlug(slug: string): Promise<Product | null> {
+    try {
+      if (!slug || typeof slug !== "string") {
+        throw new Error("Invalid slug provided");
+      }
+
+      const response = await api.get<StrapiResponse<Product[]>>("/products", {
+        params: {
+          filters: {
+            slug: {
+              $eq: slug,
+            },
+          },
+          populate: ["categories", "images"],
+        },
+      });
+      
+      const products = response.data.data || [];
+      return products.length > 0 ? products[0] : null;
+    } catch (error) {
+      console.error(`Error fetching product with slug ${slug}:`, error);
+      throw error;
+    }
+  }
+
   static async createProduct(productData: Partial<Product>): Promise<Product> {
     try {
       if (!productData || typeof productData !== "object") {

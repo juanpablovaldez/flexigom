@@ -25,7 +25,7 @@ const defaultContent: LocationSectionContent = {
   },
   operatingHours: {
     weekdays: "Lunes a Viernes de 8:30 a 13 y de 17 a 20",
-    saturday: "Sábados de 9 a 13",
+    saturday: "Sábados de 9 a 13 y de 17 a 20",
     sunday: "Domingos cerrado",
   },
   mapEmbedUrl:

@@ -52,7 +52,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
   return (
     <Link
-      to={`/products/product/${product.documentId}`}
+      to={`/productos/${product.slug}`}
       className={cn(
         "group flex flex-col bg-white shadow-md hover:shadow-xl border border-gray-100 rounded-xl h-full overflow-hidden transition-all duration-300",
         className,
