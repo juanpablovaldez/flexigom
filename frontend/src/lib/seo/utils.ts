@@ -56,6 +56,7 @@ export function createProductSEO(product: {
   category?: string;
   images?: string[];
   documentId?: string;
+  slug?: string;
 }): ProductPageSEO {
   const title = `${product.name} - ${product.category || "Producto"} | Flexigom Tucumán`;
   const description = product.description
@@ -72,8 +73,8 @@ export function createProductSEO(product: {
     .filter(Boolean)
     .join(", ");
 
-  const canonical = product.documentId
-    ? `${SITE_CONFIG.url}/products/product/${product.documentId}`
+  const canonical = product.slug
+    ? `${SITE_CONFIG.url}/productos/${product.slug}`
     : `${SITE_CONFIG.url}/products`;
 
   const mainImage = product.images?.[0] || DEFAULT_SEO.image;

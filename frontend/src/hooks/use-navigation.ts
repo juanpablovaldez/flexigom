@@ -8,8 +8,8 @@ export function useNavigation() {
   const goHome = () => navigate("/");
   const goToAuth = (type: "login" | "register") => navigate(`/auth/${type}`);
   const goToProducts = () => navigate("/products");
-  const goToProduct = (id: string | number) =>
-    navigate(`/products/product/${id}`);
+  const goToProduct = (slug: string) =>
+    navigate(`/productos/${slug}`);
 
   return {
     navigate,

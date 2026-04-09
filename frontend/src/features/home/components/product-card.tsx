@@ -52,7 +52,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
   return (
     <Link
-      to={`/products/product/${product.documentId}`}
+      to={`/productos/${product.slug}`}
       className={cn(
         "group flex flex-col bg-white shadow-md hover:shadow-xl border border-gray-100 rounded-xl h-full overflow-hidden transition-all duration-300",
         className,
@@ -161,11 +161,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
                   <span className="font-bold text-red-600 text-base sm:text-2xl leading-none">
                     {formatPrice(discountPrice)}
                   </span>
-                  <span className="text-gray-400 text-xs sm:text-sm line-through leading-none">
+                  <span className="text-gray-700 text-xs sm:text-sm line-through leading-none">
                     {formatPrice(price)}
                   </span>
                 </div>
-                <div className="font-medium text-green-600 text-[10px] sm:text-sm mt-1">
+                <div className="font-medium text-green-600 text-sm md:text-base mt-1">
                   Ahorras {formatPrice(price - discountPrice)}
                 </div>
               </>
@@ -197,6 +197,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
             Ver Producto
           </div>
           <button
+            aria-label="Agregar producto al carrito"
             onClick={handleAddToCart}
             className={cn(
               "flex-[3] flex font-medium text-white items-center justify-center h-8 sm:h-10 rounded-md transition-colors text-xs sm:text-sm",

@@ -25,7 +25,7 @@ const defaultContent: LocationSectionContent = {
   },
   operatingHours: {
     weekdays: "Lunes a Viernes de 8:30 a 13 y de 17 a 20",
-    saturday: "Sábados de 9 a 13",
+    saturday: "Sábados de 9 a 13 y de 17 a 20",
     sunday: "Domingos cerrado",
   },
   mapEmbedUrl:
@@ -124,7 +124,7 @@ export function LocationSection({
               <h4 className="mb-3 font-semibold text-lg">
                 ¿Necesitas Direcciones?
               </h4>
-              <p className="mb-4 text-red-100 text-sm">
+              <p className="mb-4 text-white text-sm">
                 Obtén direcciones paso a paso para llegar a nuestra tienda
                 física.
               </p>

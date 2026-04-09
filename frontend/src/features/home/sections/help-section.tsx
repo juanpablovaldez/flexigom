@@ -80,7 +80,7 @@ export function HelpSection({ content, className }: HelpSectionProps = {}) {
 
           {/* Operating Hours */}
           {helpContent.operatingHours && (
-            <p className="mt-6 text-white/90 text-sm md:text-base">
+            <p className="mt-6 text-white text-sm md:text-base">
               {helpContent.operatingHours}
             </p>
           )}
