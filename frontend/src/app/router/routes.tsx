@@ -48,13 +48,16 @@ export const routes: RouteObject[] = [
           },
           {
             path: ":categorySlug",
-            loader: ({ params }) => {
+            loader: ({ params, request }) => {
               const categorySlug = params.categorySlug;
               if (categorySlug) {
+                const url = new URL(request.url);
+                const searchParams = new URLSearchParams(url.search);
+                searchParams.set("category", categorySlug);
                 return new Response(null, {
                   status: 301,
                   headers: {
-                    Location: `/productos?category=${categorySlug}`,
+                    Location: `/productos?${searchParams.toString()}`,
                   },
                 });
               }
@@ -112,27 +115,36 @@ export const routes: RouteObject[] = [
           },
           {
             path: "success",
-            loader: () =>
-              new Response(null, {
+            loader: ({ request }) => {
+              const url = new URL(request.url);
+              const search = url.search;
+              return new Response(null, {
                 status: 301,
-                headers: { Location: "/finalizar-compra/exito" },
-              }),
+                headers: { Location: `/finalizar-compra/exito${search}` },
+              });
+            },
           },
           {
             path: "failure",
-            loader: () =>
-              new Response(null, {
+            loader: ({ request }) => {
+              const url = new URL(request.url);
+              const search = url.search;
+              return new Response(null, {
                 status: 301,
-                headers: { Location: "/finalizar-compra/error" },
-              }),
+                headers: { Location: `/finalizar-compra/error${search}` },
+              });
+            },
           },
           {
             path: "pending",
-            loader: () =>
-              new Response(null, {
+            loader: ({ request }) => {
+              const url = new URL(request.url);
+              const search = url.search;
+              return new Response(null, {
                 status: 301,
-                headers: { Location: "/finalizar-compra/pendiente" },
-              }),
+                headers: { Location: `/finalizar-compra/pendiente${search}` },
+              });
+            },
           },
         ],
       },
@@ -202,4 +214,3 @@ export const routes: RouteObject[] = [
 ];
 
 export const router = createBrowserRouter(routes);
-
