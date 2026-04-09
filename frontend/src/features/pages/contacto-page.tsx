@@ -196,6 +196,10 @@ export function Component() {
                     <span className="font-medium text-gray-900">Sábados</span>
                     <span className="text-gray-600">9:00 - 13:00</span>
                   </div>
+                  <div className="flex justify-between items-center pb-3 border-gray-200 border-b">
+                    <span className="font-medium text-gray-900">Sábados</span>
+                    <span className="text-gray-600">17:00 - 20:00</span>
+                  </div>
                   <div className="flex justify-between items-center">
                     <span className="font-medium text-gray-900">Domingos</span>
                     <span className="font-medium text-red-600">Cerrado</span>
