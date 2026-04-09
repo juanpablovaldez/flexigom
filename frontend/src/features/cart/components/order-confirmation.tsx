@@ -71,7 +71,7 @@ export function OrderConfirmation({ orderId, email }: OrderConfirmationProps) {
           variant="default"
           className="bg-red-600 hover:bg-red-700"
         >
-          <Link to="/products">Seguir Comprando</Link>
+          <Link to="/productos">Seguir Comprando</Link>
         </Button>
         <Button asChild variant="outline">
           <Link to="/">Volver al Inicio</Link>

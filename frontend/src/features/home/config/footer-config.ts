@@ -10,7 +10,7 @@ export const footerConfig: FooterConfig = {
       title: "Navegación",
       links: [
         { label: "Inicio", href: "/" },
-        { label: "Productos", href: "/products" },
+        { label: "Productos", href: "/productos" },
         { label: "Nosotros", href: "/nosotros" },
         { label: "Contacto", href: "/contacto" },
       ],
@@ -18,8 +18,8 @@ export const footerConfig: FooterConfig = {
     products: {
       title: "Productos",
       links: [
-        { label: "Colchones", href: "/products?category=colchones" },
-        { label: "Sommiers", href: "/products?category=sommiers" },
+        { label: "Colchones", href: "/productos?category=colchones" },
+        { label: "Sommiers", href: "/productos?category=sommiers" },
       ],
     },
     help: {

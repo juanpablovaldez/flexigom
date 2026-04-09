@@ -108,14 +108,14 @@ export function PaymentFailurePage() {
           {/* Actions */}
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button
-              onClick={() => navigate("/checkout")}
+              onClick={() => navigate("/finalizar-compra")}
               className="flex-1 bg-blue-600 hover:bg-blue-700"
             >
               <RefreshCw className="mr-2 w-4 h-4" />
               Intentar Nuevamente
             </Button>
             <Button
-              onClick={() => navigate("/products")}
+              onClick={() => navigate("/productos")}
               variant="outline"
               className="flex-1"
             >

@@ -89,7 +89,7 @@ export function FeaturedProductsSection({
         {/* Call to Action Button */}
         <div className="text-center">
           <Button
-            onClick={() => navigate("/products")}
+            onClick={() => navigate("/productos")}
             size="lg"
             className="bg-red-600 hover:bg-red-700 px-8 py-4 font-semibold text-white text-lg hover:cursor-pointer"
           >

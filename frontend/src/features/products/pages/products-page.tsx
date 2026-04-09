@@ -59,7 +59,7 @@ export function ProductsPage() {
       return createPageSEO({
         title,
         description,
-        path: `/products?search=${encodeURIComponent(searchQuery)}`,
+        path: `/productos?search=${encodeURIComponent(searchQuery)}`,
         keywords: [
           `${searchQuery} Tucumán`,
           `buscar ${searchQuery}`,
@@ -76,7 +76,7 @@ export function ProductsPage() {
       return createPageSEO({
         title,
         description,
-        path: `/products?category=${categoryName.toLowerCase()}`,
+        path: `/productos?category=${categoryName.toLowerCase()}`,
         keywords: [
           `${categoryName.toLowerCase()} Tucumán`,
           `comprar ${categoryName.toLowerCase()}`,
@@ -92,7 +92,7 @@ export function ProductsPage() {
     return createPageSEO({
       title,
       description,
-      path: "/products",
+      path: "/productos",
       keywords: [
         "productos de descanso Tucumán",
         "catálogo Flexigom",
@@ -105,21 +105,21 @@ export function ProductsPage() {
   const breadcrumbSchema = useMemo(() => {
     const breadcrumbs = [
       { name: "Inicio", url: "/" },
-      { name: "Productos", url: "/products" },
+      { name: "Productos", url: "/productos" },
     ];
 
     // Add search context to breadcrumbs if searching
     if (filters.search?.trim()) {
       breadcrumbs.push({
         name: `Búsqueda: "${filters.search.trim()}"`,
-        url: `/products?search=${encodeURIComponent(filters.search.trim())}`,
+        url: `/productos?search=${encodeURIComponent(filters.search.trim())}`,
       });
     }
     // Add category to breadcrumbs if filtering by category (and not searching)
     else if (currentCategory) {
       breadcrumbs.push({
         name: currentCategory.name,
-        url: `/products?category=${currentCategory.slug}`,
+        url: `/productos?category=${currentCategory.slug}`,
       });
     }
 
@@ -155,7 +155,7 @@ export function ProductsPage() {
               {(currentCategory && !filters.search?.trim()) ||
                 filters.search?.trim() ? (
                 <BreadcrumbLink asChild>
-                  <Link to="/products">Productos</Link>
+                  <Link to="/productos">Productos</Link>
                 </BreadcrumbLink>
               ) : (
                 <BreadcrumbPage>Productos</BreadcrumbPage>

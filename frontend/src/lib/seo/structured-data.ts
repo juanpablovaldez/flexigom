@@ -154,7 +154,7 @@ export function createWebsiteSchema(): StructuredDataConfig {
         "@type": "SearchAction",
         target: {
           "@type": "EntryPoint",
-          urlTemplate: `${SITE_CONFIG.url}/products?search={search_term_string}`,
+          urlTemplate: `${SITE_CONFIG.url}/productos?search={search_term_string}`,
         },
         "query-input": "required name=search_term_string",
       },

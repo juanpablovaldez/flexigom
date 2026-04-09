@@ -20,7 +20,7 @@ const defaultContent: HeroContent = {
   },
   secondaryCta: {
     text: "Explorar Productos",
-    href: "/products",
+    href: "/productos",
   },
 };
 

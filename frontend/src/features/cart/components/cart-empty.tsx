@@ -15,7 +15,7 @@ export function CartEmpty() {
         </p>
       </div>
       <Button asChild className="mt-4">
-        <Link to="/products">Ver Productos</Link>
+        <Link to="/productos">Ver Productos</Link>
       </Button>
     </div>
   );
