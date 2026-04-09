@@ -91,7 +91,7 @@ export function NavbarMobile({
     const staticItems = [
       {
         label: "Todos los Productos",
-        href: "/products",
+        href: "/productos",
         description:
           "Explora nuestro catálogo completo de colchones y sommiers",
       },
@@ -104,7 +104,7 @@ export function NavbarMobile({
     if (categories && categories.length > 0) {
       const dynamicItems = categories.map((category) => ({
         label: category.name,
-        href: `/products?category=${category.slug}`,
+        href: `/productos?category=${category.slug}`,
         description: category.description,
       }));
 

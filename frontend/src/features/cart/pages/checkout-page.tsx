@@ -36,7 +36,7 @@ export function CheckoutPage() {
   useEffect(() => {
     if (isEmpty && currentStep !== CheckoutStep.CONFIRMATION) {
       toast.error("Tu carrito está vacío");
-      navigate("/products");
+      navigate("/productos");
     }
   }, [isEmpty, currentStep, navigate]);
 
@@ -102,7 +102,7 @@ export function CheckoutPage() {
               <ShippingForm
                 initialData={formData.shipping}
                 onSubmit={handleShippingSubmit}
-                onBack={() => navigate("/products")}
+                onBack={() => navigate("/productos")}
               />
             </div>
           )}

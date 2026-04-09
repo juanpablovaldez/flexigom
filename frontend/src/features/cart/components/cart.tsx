@@ -75,7 +75,7 @@ export function Cart({ open, onOpenChange }: CartProps) {
                   className="bg-red-600 hover:bg-red-700 w-full h-12 font-medium text-white"
                   onClick={() => handleOpenChange(false)}
                 >
-                  <Link to="/checkout">Proceder al Pago</Link>
+                  <Link to="/finalizar-compra">Proceder al Pago</Link>
                 </Button>
 
                 <Button
@@ -84,7 +84,7 @@ export function Cart({ open, onOpenChange }: CartProps) {
                   className="w-full"
                   onClick={() => handleOpenChange(false)}
                 >
-                  <Link to="/products">Seguir Comprando</Link>
+                  <Link to="/productos">Seguir Comprando</Link>
                 </Button>
               </div>
             </SheetFooter>

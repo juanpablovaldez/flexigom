@@ -75,7 +75,7 @@ export function createProductSEO(product: {
 
   const canonical = product.slug
     ? `${SITE_CONFIG.url}/productos/${product.slug}`
-    : `${SITE_CONFIG.url}/products`;
+    : `${SITE_CONFIG.url}/productos`;
 
   const mainImage = product.images?.[0] || DEFAULT_SEO.image;
 
@@ -127,8 +127,8 @@ export function createCategorySEO(category: {
   ].join(", ");
 
   const canonical = category.slug
-    ? `${SITE_CONFIG.url}/products?category=${category.slug}`
-    : `${SITE_CONFIG.url}/products`;
+    ? `${SITE_CONFIG.url}/productos?category=${category.slug}`
+    : `${SITE_CONFIG.url}/productos`;
 
   return {
     title,

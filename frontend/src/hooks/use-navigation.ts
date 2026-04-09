@@ -7,7 +7,7 @@ export function useNavigation() {
   const goBack = () => navigate(-1);
   const goHome = () => navigate("/");
   const goToAuth = (type: "login" | "register") => navigate(`/auth/${type}`);
-  const goToProducts = () => navigate("/products");
+  const goToProducts = () => navigate("/productos");
   const goToProduct = (slug: string) =>
     navigate(`/productos/${slug}`);
 

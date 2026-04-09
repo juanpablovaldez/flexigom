@@ -30,7 +30,7 @@ export function NavbarLinks({
     const staticItems = [
       {
         label: "Todos los Productos",
-        href: "/products",
+        href: "/productos",
         description:
           "Explora nuestro catálogo completo de colchones y sommiers",
       },
