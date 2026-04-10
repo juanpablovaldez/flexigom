@@ -34,8 +34,8 @@ export function Component() {
         }}
       />
       <HeroSection />
-      <WhyChooseFlexigomSection />
       <CategoriesSection />
+      <WhyChooseFlexigomSection />
       <FeaturedProductsSection />
       <Suspense fallback={<div className="h-20" />}>
         <TestimonialsSection />
