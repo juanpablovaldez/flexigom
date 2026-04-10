@@ -102,9 +102,9 @@ export default factories.createCoreController('api::cart.cart', ({ strapi }) => 
   async addItem(ctx) {
     try {
       let guestToken = ctx.cookies.get('guest_cart_token');
-      const { productId, quantity = 1, composition, measurement } = ctx.request.body;
+      const { productId, quantity = 1, composition, measurement, base_type } = ctx.request.body;
       
-      console.log(`[Cart Controller] addItem called:`, { guestToken, productId, quantity, composition, measurement });
+      console.log(`[Cart Controller] addItem called:`, { guestToken, productId, quantity, composition, measurement, base_type });
 
       if (!productId) {
         return ctx.badRequest('Product ID is required');
@@ -151,8 +151,14 @@ export default factories.createCoreController('api::cart.cart', ({ strapi }) => 
       const product = products[0];
       
       // Defensive calculation of price
-      const basePrice = Number(product.price) || 0;
-      const discountPrice = Number(product.discount_price) || 0;
+      let basePrice = Number(product.price) || 0;
+      let discountPrice = Number(product.discount_price) || 0;
+
+      if (product.has_base_options && base_type === 'Reforzada') {
+        basePrice = Number(product.reinforced_base_price) || basePrice;
+        discountPrice = Number(product.reinforced_base_discount_price) || 0;
+      }
+
       const price = (discountPrice > 0 && discountPrice < basePrice) ? discountPrice : basePrice;
 
       if (price <= 0) {
@@ -163,7 +169,8 @@ export default factories.createCoreController('api::cart.cart', ({ strapi }) => 
       const existingItem = items.find(
         (item) => item.productId === productId && 
                   item.composition === composition && 
-                  item.measurement === measurement
+                  item.measurement === measurement &&
+                  item.base_type === base_type
       );
 
       if (existingItem) {
@@ -184,6 +191,7 @@ export default factories.createCoreController('api::cart.cart', ({ strapi }) => 
             quantity: Math.min(quantity, product.stock || 999),
             composition: composition || null,
             measurement: measurement || null,
+            base_type: base_type || null,
           }
         });
       }

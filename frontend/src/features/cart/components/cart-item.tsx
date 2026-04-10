@@ -75,6 +75,11 @@ export function CartItemComponent({ item }: CartItemProps) {
                 {product.measurement}
               </p>
             )}
+            {item.base_type && (
+              <p className="text-muted-foreground text-xs font-semibold">
+                Base: {item.base_type}
+              </p>
+            )}
           </div>
           <Button
             variant="ghost"

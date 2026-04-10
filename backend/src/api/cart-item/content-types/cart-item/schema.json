@@ -43,6 +43,9 @@
     },
     "image": {
       "type": "string"
+    },
+    "base_type": {
+      "type": "string"
     }
   }
 }

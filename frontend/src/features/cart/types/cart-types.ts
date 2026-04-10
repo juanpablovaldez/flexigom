@@ -14,6 +14,7 @@ export interface CartItem {
   addedAt?: string; // ISO timestamp
   composition?: string;
   measurement?: string;
+  base_type?: 'Económica' | 'Reforzada';
 }
 
 /**
@@ -24,7 +25,7 @@ export interface CartState {
   isSyncing: boolean;
   // Actions
   fetchCart: () => Promise<void>;
-  addItem: (product: Product, quantity?: number) => Promise<void>;
+  addItem: (product: Product, quantity?: number, baseType?: 'Económica' | 'Reforzada') => Promise<void>;
   removeItem: (itemId: string) => Promise<void>;
   updateQuantity: (itemId: string, quantity: number) => Promise<void>;
   clearCart: () => Promise<void>;
