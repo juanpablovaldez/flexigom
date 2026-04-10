@@ -123,10 +123,23 @@ export function FooterSection({ config, className }: FooterSectionProps = {}) {
         <Separator className="bg-gray-800 my-6" />
 
         <div className="flex sm:flex-row flex-col justify-between items-center gap-4 sm:text-left text-center">
-          <p className="text-gray-400 text-sm">
-            © {footerData.copyright.year} {footerData.companyInfo.name}.{" "}
-            {footerData.copyright.text}
-          </p>
+          <div className="flex flex-col gap-1 sm:text-left text-center">
+            <p className="text-gray-400 text-sm">
+              © {footerData.copyright.year} {footerData.companyInfo.name}.{" "}
+              {footerData.copyright.text}
+            </p>
+            <p className="text-gray-500 text-[10px] sm:text-xs">
+              Desarrollado por{" "}
+              <a
+                href="https://asomelab.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-red-400 transition-colors duration-300 hover:underline"
+              >
+                ASOME Lab
+              </a>
+            </p>
+          </div>
 
           <div className="flex items-center gap-3">
             {footerData.social.facebook && (
