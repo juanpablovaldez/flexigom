@@ -119,7 +119,7 @@ export function PaymentPendingPage() {
           {/* Actions */}
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button
-              onClick={() => navigate("/products")}
+              onClick={() => navigate("/productos")}
               variant="outline"
               className="flex-1"
             >

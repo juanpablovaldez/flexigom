@@ -10,16 +10,15 @@ export const footerConfig: FooterConfig = {
       title: "Navegación",
       links: [
         { label: "Inicio", href: "/" },
-        { label: "Productos", href: "/products" },
-        { label: "Nosotros", href: "/nosotros" },
+        { label: "Productos", href: "/productos" },
         { label: "Contacto", href: "/contacto" },
       ],
     },
     products: {
       title: "Productos",
       links: [
-        { label: "Colchones", href: "/products?category=colchones" },
-        { label: "Sommiers", href: "/products?category=sommiers" },
+        { label: "Colchones", href: "/productos?category=colchones" },
+        { label: "Sommiers", href: "/productos?category=sommiers" },
       ],
     },
     help: {
@@ -53,13 +52,13 @@ export const footerConfig: FooterConfig = {
     email: "flexituc@gmail.com",
     operatingHours: {
       weekdays: "Lunes a Viernes de 8:30 a 13 y de 17 a 20",
-      saturday: "Sábados de 9 a 13",
+      saturday: "Sábados de 9 a 13 y 17 a 20",
       sunday: "Domingos cerrado",
     },
   },
   social: {
-    facebook: "https://facebook.com/flexigom",
-    instagram: "https://instagram.com/flexigom",
+    facebook: "https://facebook.com/colchoneriaflexigom",
+    instagram: "https://instagram.com/colchoneriaflexigom",
     whatsapp: "https://wa.me/5493815277935",
   },
   copyright: {

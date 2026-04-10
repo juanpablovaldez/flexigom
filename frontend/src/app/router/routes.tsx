@@ -34,24 +34,35 @@ export const routes: RouteObject[] = [
         children: [
           {
             index: true,
-            lazy: () => import("@/features/products/pages/products-page"),
+            loader: ({ request }) => {
+              const url = new URL(request.url);
+              const newUrl = new URL(url);
+              newUrl.pathname = "/productos";
+              return new Response(null, {
+                status: 301,
+                headers: {
+                  Location: newUrl.toString(),
+                },
+              });
+            },
           },
           {
             path: ":categorySlug",
-            loader: ({ params }) => {
+            loader: ({ params, request }) => {
               const categorySlug = params.categorySlug;
               if (categorySlug) {
-                // Redirect to products page with category filter
+                const url = new URL(request.url);
+                const searchParams = new URLSearchParams(url.search);
+                searchParams.set("category", categorySlug);
                 return new Response(null, {
-                  status: 302,
+                  status: 301,
                   headers: {
-                    Location: `/products?category=${categorySlug}`,
+                    Location: `/productos?${searchParams.toString()}`,
                   },
                 });
               }
               return null;
             },
-            lazy: () => import("@/features/products/pages/products-page"),
           },
           {
             path: "product/:documentId",
@@ -75,11 +86,10 @@ export const routes: RouteObject[] = [
                   console.error("Failed to fetch product for redirect", e);
                 }
               }
-              // Redirect to products catalog if not found or no slug
               return new Response(null, {
-                status: 302,
+                status: 301,
                 headers: {
-                  Location: `/products`,
+                  Location: `/productos`,
                 },
               });
             },
@@ -91,20 +101,72 @@ export const routes: RouteObject[] = [
         children: [
           {
             index: true,
-            lazy: () => import("@/features/cart/pages/checkout-page"),
+            loader: ({ request }) => {
+              const url = new URL(request.url);
+              const newUrl = new URL(url);
+              newUrl.pathname = "/finalizar-compra";
+              return new Response(null, {
+                status: 301,
+                headers: {
+                  Location: newUrl.toString(),
+                },
+              });
+            },
           },
           {
             path: "success",
+            loader: ({ request }) => {
+              const url = new URL(request.url);
+              const search = url.search;
+              return new Response(null, {
+                status: 301,
+                headers: { Location: `/finalizar-compra/exito${search}` },
+              });
+            },
+          },
+          {
+            path: "failure",
+            loader: ({ request }) => {
+              const url = new URL(request.url);
+              const search = url.search;
+              return new Response(null, {
+                status: 301,
+                headers: { Location: `/finalizar-compra/error${search}` },
+              });
+            },
+          },
+          {
+            path: "pending",
+            loader: ({ request }) => {
+              const url = new URL(request.url);
+              const search = url.search;
+              return new Response(null, {
+                status: 301,
+                headers: { Location: `/finalizar-compra/pendiente${search}` },
+              });
+            },
+          },
+        ],
+      },
+      {
+        path: "finalizar-compra",
+        children: [
+          {
+            index: true,
+            lazy: () => import("@/features/cart/pages/checkout-page"),
+          },
+          {
+            path: "exito",
             lazy: () =>
               import("@/features/checkout/pages/payment-success-page"),
           },
           {
-            path: "failure",
+            path: "error",
             lazy: () =>
               import("@/features/checkout/pages/payment-failure-page"),
           },
           {
-            path: "pending",
+            path: "pendiente",
             lazy: () =>
               import("@/features/checkout/pages/payment-pending-page"),
           },
@@ -115,19 +177,7 @@ export const routes: RouteObject[] = [
         children: [
           {
             index: true,
-            loader: ({ request }) => {
-              const url = new URL(request.url);
-
-              const newUrl = new URL(url);
-              newUrl.pathname = "/products";
-
-              return new Response(null, {
-                status: 302,
-                headers: {
-                  Location: newUrl.toString(),
-                },
-              });
-            },
+            lazy: () => import("@/features/products/pages/products-page"),
           },
           {
             path: ":slug",
@@ -164,4 +214,3 @@ export const routes: RouteObject[] = [
 ];
 
 export const router = createBrowserRouter(routes);
-

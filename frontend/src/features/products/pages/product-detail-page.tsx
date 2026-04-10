@@ -136,7 +136,7 @@ export function ProductDetailPage() {
     // Breadcrumb schema
     const breadcrumbSchema = createBreadcrumbSchema([
       { name: "Inicio", url: "/" },
-      { name: "Productos", url: "/products" },
+      { name: "Productos", url: "/productos" },
       { name: product.name, url: `/productos/${slug}` },
     ]);
 
@@ -159,7 +159,7 @@ export function ProductDetailPage() {
           </p>
         </div>
         <Button asChild variant="outline">
-          <Link to="/products">
+          <Link to="/productos">
             <ChevronLeft className="mr-2 w-4 h-4" />
             Volver a Productos
           </Link>
@@ -208,7 +208,7 @@ export function ProductDetailPage() {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link to="/products">Productos</Link>
+                  <Link to="/productos">Productos</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               {product.categories?.[0] && (
@@ -217,7 +217,7 @@ export function ProductDetailPage() {
                   <BreadcrumbItem>
                     <BreadcrumbLink asChild>
                       <Link
-                        to={`/products?category=${product.categories[0].slug}`}
+                        to={`/productos?category=${product.categories[0].slug}`}
                       >
                         {product.categories[0].name}
                       </Link>
@@ -236,7 +236,7 @@ export function ProductDetailPage() {
             variant="ghost"
             className="w-fit h-auto text-gray-600 hover:text-gray-900 m"
           >
-            <Link to="/products">
+            <Link to="/productos">
               <ChevronLeft className="w-4 h-4" />
               Volver a Productos
             </Link>
