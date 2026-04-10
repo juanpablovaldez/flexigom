@@ -15,10 +15,7 @@ export function CartItemComponent({ item }: CartItemProps) {
   const isSyncing = useCartStore((state) => state.isSyncing);
 
   const { product, quantity } = item;
-  const price =
-    product.discount_price > 0 && product.discount_price < product.price
-      ? product.discount_price
-      : product.price;
+  const price = Number(item.price) || 0;
 
   const itemTotal = price * quantity;
   const imageUrl =

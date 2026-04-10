@@ -45,11 +45,7 @@ export function OrderSummary({
 
         <div className="space-y-3">
           {items.map((item) => {
-            const price =
-              item.product.discount_price > 0 &&
-              item.product.discount_price < item.product.price
-                ? item.product.discount_price
-                : item.product.price;
+            const price = Number(item.price) || 0;
             const imageUrl =
               item.product.images && item.product.images.length > 0
                 ? getImageUrl(item.product.images[0].url)

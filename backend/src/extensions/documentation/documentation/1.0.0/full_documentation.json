@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2026-04-10T14:55:00.150Z"
+    "x-generation-date": "2026-04-10T15:08:18.723Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -5772,9 +5772,6 @@
                 "image": {
                   "type": "string"
                 },
-                "base_type": {
-                  "type": "string"
-                },
                 "createdAt": {
                   "type": "string",
                   "format": "date-time"
@@ -5939,9 +5936,6 @@
                 "type": "string"
               },
               "image": {
-                "type": "string"
-              },
-              "base_type": {
                 "type": "string"
               },
               "locale": {
@@ -6575,9 +6569,6 @@
                     "image": {
                       "type": "string"
                     },
-                    "base_type": {
-                      "type": "string"
-                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -6705,9 +6696,6 @@
             "type": "string"
           },
           "image": {
-            "type": "string"
-          },
-          "base_type": {
             "type": "string"
           },
           "createdAt": {
@@ -7509,17 +7497,6 @@
                 },
                 "documentId": {
                   "type": "string"
-                },
-                "has_base_options": {
-                  "type": "boolean"
-                },
-                "reinforced_base_price": {
-                  "type": "number",
-                  "format": "float"
-                },
-                "reinforced_base_discount_price": {
-                  "type": "number",
-                  "format": "float"
                 },
                 "categories": {
                   "type": "array",
@@ -8619,17 +8596,6 @@
                 "documentId": {
                   "type": "string"
                 },
-                "has_base_options": {
-                  "type": "boolean"
-                },
-                "reinforced_base_price": {
-                  "type": "number",
-                  "format": "float"
-                },
-                "reinforced_base_discount_price": {
-                  "type": "number",
-                  "format": "float"
-                },
                 "categories": {
                   "type": "array",
                   "items": {
@@ -9706,17 +9672,6 @@
             ],
             "type": "object",
             "properties": {
-              "has_base_options": {
-                "type": "boolean"
-              },
-              "reinforced_base_price": {
-                "type": "number",
-                "format": "float"
-              },
-              "reinforced_base_discount_price": {
-                "type": "number",
-                "format": "float"
-              },
               "categories": {
                 "type": "array",
                 "items": {
@@ -9869,17 +9824,6 @@
           },
           "documentId": {
             "type": "string"
-          },
-          "has_base_options": {
-            "type": "boolean"
-          },
-          "reinforced_base_price": {
-            "type": "number",
-            "format": "float"
-          },
-          "reinforced_base_discount_price": {
-            "type": "number",
-            "format": "float"
           },
           "categories": {
             "type": "array",
@@ -10509,17 +10453,6 @@
                       },
                       "documentId": {
                         "type": "string"
-                      },
-                      "has_base_options": {
-                        "type": "boolean"
-                      },
-                      "reinforced_base_price": {
-                        "type": "number",
-                        "format": "float"
-                      },
-                      "reinforced_base_discount_price": {
-                        "type": "number",
-                        "format": "float"
                       },
                       "categories": {
                         "type": "array",

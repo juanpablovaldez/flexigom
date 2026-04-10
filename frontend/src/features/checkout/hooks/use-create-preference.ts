@@ -35,11 +35,7 @@ export function useCreatePreference() {
       const { cartItems, shippingData, externalReference } = params;
 
       const items = cartItems.map((item) => {
-        const price =
-          item.product.discount_price > 0 &&
-          item.product.discount_price < item.product.price
-            ? item.product.discount_price
-            : item.product.price;
+        const price = Number(item.price) || 0;
 
         return {
           title: item.product.name,
