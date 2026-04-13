@@ -373,7 +373,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiBannerBanner extends Struct.CollectionTypeSchema {
+export interface ApiBannerBanner extends Struct.SingleTypeSchema {
   collectionName: 'banners';
   info: {
     displayName: 'Banner';

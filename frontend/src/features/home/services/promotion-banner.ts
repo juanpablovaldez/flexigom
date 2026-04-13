@@ -5,16 +5,11 @@ import type { PromotionBanner } from "../types";
 
 export const BannerServices = {
     async getBanner(): Promise<PromotionBanner> {
-        const response = await api.get<StrapiResponse<PromotionBanner>>("/banner",
-            {
-                params: {
-                    populate: ["image"],
-                    filters: {
-                        isActive: true,
-                    },
-                },
-            }
-        );
+        const response = await api.get<StrapiResponse<PromotionBanner>>("/banners", {
+            params: {
+                populate: "image",
+            },
+        });
         return response.data.data;
     },
 };

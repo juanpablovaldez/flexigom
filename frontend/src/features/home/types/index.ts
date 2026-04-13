@@ -40,7 +40,7 @@ export interface HeroImage {
 }
 export interface PromotionBanner extends StrapiEntity {
   isActive: boolean;
-  image: StrapiMedia;
+  image?: StrapiMedia;
   ctaUrl: string;
   ctaText: string;
   title: string;
