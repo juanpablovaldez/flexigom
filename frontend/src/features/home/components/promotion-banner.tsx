@@ -13,8 +13,7 @@ export function PromotionBanner() {
   }
 
   return (
-    // TODO: Write HTML structure for the banner using the `banner` data
-    <div className="bg-primary text-primary-foreground p-2 text-center text-sm h-full">
+    <div className="bg-red-700 text-primary-foreground px-2 py-4 text-center text-sm">
       <p>
         <span className="font-bold">{banner.title}</span> - {banner.description}
         {banner.discount > 0 && ` (${banner.discount}% OFF)`}
