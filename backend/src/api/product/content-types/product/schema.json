@@ -11,6 +11,16 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "has_base_options": {
+      "type": "boolean",
+      "default": false
+    },
+    "reinforced_base_price": {
+      "type": "decimal"
+    },
+    "reinforced_base_discount_price": {
+      "type": "decimal"
+    },
     "categories": {
       "type": "relation",
       "relation": "manyToMany",

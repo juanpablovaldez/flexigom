@@ -40,7 +40,7 @@ export const useCartStore = create<CartState>()(
       /**
        * Add item to cart or update quantity if already exists via backend
        */
-      addItem: async (product: Product, quantity = 1) => {
+      addItem: async (product: Product, quantity = 1, baseType?: 'Económica' | 'Reforzada') => {
         set({ isSyncing: true }, false, "addItem/start");
         try {
           const payload = {
@@ -48,6 +48,7 @@ export const useCartStore = create<CartState>()(
             quantity,
             composition: product.composition,
             measurement: product.measurement,
+            base_type: baseType,
           };
           
           const { data } = await api.post('/cart/items', payload);

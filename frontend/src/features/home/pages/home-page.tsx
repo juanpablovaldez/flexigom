@@ -8,7 +8,7 @@ const HelpSection = lazy(() => import("@/features/home/sections/help-section").t
 const FAQsSection = lazy(() => import("@/features/home/sections/faqs-section").then(m => ({ default: m.FAQsSection })));
 const LocationSection = lazy(() => import("@/features/home/sections/location-section").then(m => ({ default: m.LocationSection })));
 const FooterSection = lazy(() => import("@/features/home/sections/footer-section").then(m => ({ default: m.FooterSection })));
-
+const PromotionBanner = lazy(() => import("@/features/home/components/promotion-banner").then(m => ({ default: m.PromotionBanner })));
 import { SEOHead } from "@/components/seo";
 import {
   createHomeSEO,
@@ -33,9 +33,10 @@ export function Component() {
           structuredData,
         }}
       />
+      <PromotionBanner />
       <HeroSection />
-      <WhyChooseFlexigomSection />
       <CategoriesSection />
+      <WhyChooseFlexigomSection />
       <FeaturedProductsSection />
       <Suspense fallback={<div className="h-20" />}>
         <TestimonialsSection />

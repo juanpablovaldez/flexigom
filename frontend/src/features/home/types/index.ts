@@ -38,7 +38,16 @@ export interface HeroImage {
     secondary: string;
   };
 }
+export interface PromotionBanner extends StrapiEntity {
+  isActive: boolean;
+  image?: StrapiMedia;
+  ctaUrl: string;
+  ctaText: string;
+  title: string;
+  description: string;
+  discount: number;
 
+}
 export interface HeroSectionProps {
   content?: Partial<HeroContent>;
   image?: Partial<HeroImage>;

@@ -23,6 +23,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 import { useProductBySlug } from "../hooks/use-products";
 import { RichTextRenderer } from "@/components/rich-text-renderer";
 import { ProductDetailSkeleton } from "@/components/product-detail-skeleton";
@@ -56,6 +58,7 @@ export function ProductDetailPage() {
   const { data: product, isLoading, error } = useProductBySlug(slug || "");
   const documentId = product?.documentId;
   const [quantity, setQuantity] = useState(1);
+  const [baseType, setBaseType] = useState<'Económica' | 'Reforzada'>('Económica');
   const addItem = useCartStore((state) => state.addItem);
   const isSyncing = useCartStore((state) => state.isSyncing);
 
@@ -67,8 +70,13 @@ export function ProductDetailPage() {
   }, [product?.images]);
 
   // Calculate pricing values
-  const price = Number(product?.price) || 0;
-  const discountPrice = Number(product?.discount_price) || 0;
+  const isReinforced = product?.has_base_options && baseType === 'Reforzada';
+  const price = isReinforced 
+    ? (Number(product?.reinforced_base_price) || Number(product?.price) || 0) 
+    : (Number(product?.price) || 0);
+  const discountPrice = isReinforced 
+    ? (Number(product?.reinforced_base_discount_price) || 0) 
+    : (Number(product?.discount_price) || 0);
   const hasDiscount = discountPrice > 0 && discountPrice < price;
   const discountPercentage = hasDiscount
     ? Math.round(((price - discountPrice) / price) * 100)
@@ -141,7 +149,7 @@ export function ProductDetailPage() {
     ]);
 
     return { seoConfig, productSchema, breadcrumbSchema };
-  }, [product, documentId, slug, images, hasDiscount, price, discountPrice]);
+  }, [product, documentId, slug, images, hasDiscount, price, discountPrice, baseType]);
 
   if (isLoading) {
     return <ProductDetailSkeleton />;
@@ -176,9 +184,9 @@ export function ProductDetailPage() {
 
   const handleAddToCart = async () => {
     if (product) {
-      await addItem(product, quantity);
+      await addItem(product, quantity, product.has_base_options ? baseType : undefined);
       toast.success(`${product.name} agregado al carrito`, {
-        description: `Cantidad: ${quantity}`,
+        description: `Cantidad: ${quantity}${product.has_base_options ? ` | Base: ${baseType}` : ""}`,
       });
     }
   };
@@ -432,6 +440,31 @@ export function ProductDetailPage() {
                     />
                   </div>
                 )}
+
+              {/* Base Options Section */}
+              {product.has_base_options && (
+                <div className="space-y-3">
+                  <h3 className="font-medium text-sm">Calidad de la Base</h3>
+                  <RadioGroup 
+                    defaultValue="Económica" 
+                    value={baseType} 
+                    onValueChange={(val) => setBaseType(val as 'Económica' | 'Reforzada')}
+                  >
+                    <div className="flex items-center space-x-2 border p-3 rounded-md cursor-pointer hover:bg-gray-50 transition-colors">
+                      <RadioGroupItem value="Económica" id="base-economica" />
+                      <Label htmlFor="base-economica" className="cursor-pointer w-full h-full flex-1">
+                        Base Económica (Ecocuero)
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2 border p-3 rounded-md cursor-pointer hover:bg-gray-50 transition-colors">
+                      <RadioGroupItem value="Reforzada" id="base-reforzada" />
+                      <Label htmlFor="base-reforzada" className="cursor-pointer w-full h-full flex-1">
+                        Base Reforzada (Tela)
+                      </Label>
+                    </div>
+                  </RadioGroup>
+                </div>
+              )}
 
               {/* Quantity Section */}
               <div className="space-y-2">

@@ -15,10 +15,7 @@ export function CartItemComponent({ item }: CartItemProps) {
   const isSyncing = useCartStore((state) => state.isSyncing);
 
   const { product, quantity } = item;
-  const price =
-    product.discount_price > 0 && product.discount_price < product.price
-      ? product.discount_price
-      : product.price;
+  const price = Number(item.price) || 0;
 
   const itemTotal = price * quantity;
   const imageUrl =
@@ -73,6 +70,11 @@ export function CartItemComponent({ item }: CartItemProps) {
             {product.measurement && (
               <p className="text-muted-foreground text-xs capitalize">
                 {product.measurement}
+              </p>
+            )}
+            {item.base_type && (
+              <p className="text-muted-foreground text-xs font-semibold">
+                Base: {item.base_type}
               </p>
             )}
           </div>

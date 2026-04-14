@@ -112,6 +112,9 @@ export interface Product extends StrapiEntity {
   measurement: string;
   brand: string;
   rating?: number;
+  has_base_options?: boolean;
+  reinforced_base_price?: number;
+  reinforced_base_discount_price?: number;
   reviewCount?: number;
 }
 
