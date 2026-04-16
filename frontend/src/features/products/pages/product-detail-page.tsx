@@ -52,7 +52,7 @@ import {
   createBreadcrumbSchema,
   type StructuredDataConfig,
 } from "@/lib/seo";
-
+import { getMeasurementLabel } from "../constants/products-constants";
 export function ProductDetailPage() {
   const { slug } = useParams();
   const { data: product, isLoading, error } = useProductBySlug(slug || "");
@@ -71,11 +71,11 @@ export function ProductDetailPage() {
 
   // Calculate pricing values
   const isReinforced = product?.has_base_options && baseType === 'Reforzada';
-  const price = isReinforced 
-    ? (Number(product?.reinforced_base_price) || Number(product?.price) || 0) 
+  const price = isReinforced
+    ? (Number(product?.reinforced_base_price) || Number(product?.price) || 0)
     : (Number(product?.price) || 0);
-  const discountPrice = isReinforced 
-    ? (Number(product?.reinforced_base_discount_price) || 0) 
+  const discountPrice = isReinforced
+    ? (Number(product?.reinforced_base_discount_price) || 0)
     : (Number(product?.discount_price) || 0);
   const hasDiscount = discountPrice > 0 && discountPrice < price;
   const discountPercentage = hasDiscount
@@ -96,11 +96,11 @@ export function ProductDetailPage() {
     const descriptionText =
       product.description && Array.isArray(product.description)
         ? product.description
-            .map(
-              (block: { children?: Array<{ text?: string }> }) =>
-                block.children?.map((child) => child.text || "").join("") || "",
-            )
-            .join(" ")
+          .map(
+            (block: { children?: Array<{ text?: string }> }) =>
+              block.children?.map((child) => child.text || "").join("") || "",
+          )
+          .join(" ")
         : typeof product.description === "string"
           ? product.description
           : undefined;
@@ -346,7 +346,7 @@ export function ProductDetailPage() {
                 )}
                 {product.measurement && (
                   <Badge variant="default" className="capitalize">
-                    {product.measurement}
+                    {getMeasurementLabel(product.measurement)}
                   </Badge>
                 )}
               </div>
@@ -445,9 +445,9 @@ export function ProductDetailPage() {
               {product.has_base_options && (
                 <div className="space-y-3">
                   <h3 className="font-medium text-sm">Calidad de la Base</h3>
-                  <RadioGroup 
-                    defaultValue="Económica" 
-                    value={baseType} 
+                  <RadioGroup
+                    defaultValue="Económica"
+                    value={baseType}
                     onValueChange={(val) => setBaseType(val as 'Económica' | 'Reforzada')}
                   >
                     <div className="flex items-center space-x-2 border p-3 rounded-md cursor-pointer hover:bg-gray-50 transition-colors">

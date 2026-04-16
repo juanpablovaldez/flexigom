@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2026-04-13T19:03:14.376Z"
+    "x-generation-date": "2026-04-16T15:17:15.499Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -9218,7 +9218,13 @@
                     "Dos plazas y media (1.50x1.90)",
                     "Queen (1.60x2.00)",
                     "King (1.80x2.00)",
-                    "King Size (2.00x2.00)"
+                    "King Size (2.00x2.00)",
+                    "M_70x40",
+                    "M_70x50",
+                    "M_90x40",
+                    "M_90x50",
+                    "M_1.00x40",
+                    "M_1.00x50"
                   ]
                 },
                 "brand": {
@@ -10796,7 +10802,13 @@
                     "Dos plazas y media (1.50x1.90)",
                     "Queen (1.60x2.00)",
                     "King (1.80x2.00)",
-                    "King Size (2.00x2.00)"
+                    "King Size (2.00x2.00)",
+                    "M_70x40",
+                    "M_70x50",
+                    "M_90x40",
+                    "M_90x50",
+                    "M_1.00x40",
+                    "M_1.00x50"
                   ]
                 },
                 "brand": {
@@ -11093,7 +11105,13 @@
                   "Dos plazas y media (1.50x1.90)",
                   "Queen (1.60x2.00)",
                   "King (1.80x2.00)",
-                  "King Size (2.00x2.00)"
+                  "King Size (2.00x2.00)",
+                  "M_70x40",
+                  "M_70x50",
+                  "M_90x40",
+                  "M_90x50",
+                  "M_1.00x40",
+                  "M_1.00x50"
                 ]
               },
               "brand": {
@@ -12015,7 +12033,13 @@
                           "Dos plazas y media (1.50x1.90)",
                           "Queen (1.60x2.00)",
                           "King (1.80x2.00)",
-                          "King Size (2.00x2.00)"
+                          "King Size (2.00x2.00)",
+                          "M_70x40",
+                          "M_70x50",
+                          "M_90x40",
+                          "M_90x50",
+                          "M_1.00x40",
+                          "M_1.00x50"
                         ]
                       },
                       "brand": {
@@ -12308,7 +12332,13 @@
               "Dos plazas y media (1.50x1.90)",
               "Queen (1.60x2.00)",
               "King (1.80x2.00)",
-              "King Size (2.00x2.00)"
+              "King Size (2.00x2.00)",
+              "M_70x40",
+              "M_70x50",
+              "M_90x40",
+              "M_90x50",
+              "M_1.00x40",
+              "M_1.00x50"
             ]
           },
           "brand": {
