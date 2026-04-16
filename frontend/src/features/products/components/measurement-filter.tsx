@@ -25,19 +25,19 @@ export function MeasurementFilter({
       </CollapsibleTrigger>
       <CollapsibleContent className="space-y-3">
         {MEASUREMENTS.map((measurement) => (
-          <div key={measurement} className="flex items-center space-x-2">
+          <div key={measurement.value} className="flex items-center space-x-2">
             <Checkbox
-              id={measurement}
-              checked={selectedMeasurements.includes(measurement)}
+              id={measurement.value}
+              checked={selectedMeasurements.includes(measurement.value)}
               onCheckedChange={(checked) =>
-                onMeasurementChange(measurement, checked as boolean)
+                onMeasurementChange(measurement.value, checked as boolean)
               }
             />
             <Label
-              htmlFor={measurement}
+              htmlFor={measurement.value}
               className="font-normal text-sm capitalize cursor-pointer"
             >
-              {measurement}
+              {measurement.label}
             </Label>
           </div>
         ))}
