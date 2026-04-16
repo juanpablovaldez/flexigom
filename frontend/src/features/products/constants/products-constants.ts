@@ -49,12 +49,12 @@ export const MEASUREMENTS = [
   { label: "Queen (1.60x2.00)", value: "Queen (1.60x2.00)" },
   { label: "King (1.80x2.00)", value: "King (1.80x2.00)" },
   { label: "King Size (2.00x2.00)", value: "King Size (2.00x2.00)" },
-  { label: "70 x 40", value: "M_70 x 40" },
-  { label: "70 x 50", value: "M_70 x 50" },
-  { label: "90 x 40", value: "M_90 x 40" },
-  { label: "90 x 50", value: "M_90 x 50" },
-  { label: "1.00 x 40", value: "M_1.00 x 40" },
-  { label: "1.00 x 50", value: "M_1.00 x 50" },
+  { label: "70 x 40", value: "M_70x40" },
+  { label: "70 x 50", value: "M_70x50" },
+  { label: "90 x 40", value: "M_90x40" },
+  { label: "90 x 50", value: "M_90x50" },
+  { label: "1.00 x 40", value: "M_1.00x40" },
+  { label: "1.00 x 50", value: "M_1.00x50" },
 
 ] as const;
 
