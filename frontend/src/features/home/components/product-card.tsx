@@ -16,7 +16,7 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
-
+import { getMeasurementLabel } from "@/features/products/constants/products-constants";
 interface ProductCardProps {
   product: Product;
   className?: string;
@@ -138,7 +138,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
             )}
             {product.measurement && (
               <Badge variant="default" className="text-[10px] lg:text-xs capitalize max-w-full truncate">
-                {product.measurement}
+                {getMeasurementLabel(product.measurement)}
               </Badge>
             )}
           </div>

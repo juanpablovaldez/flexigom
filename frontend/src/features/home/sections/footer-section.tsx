@@ -113,7 +113,7 @@ export function FooterSection({ config, className }: FooterSectionProps = {}) {
               </div>
               <div className="space-y-1 text-gray-300 text-xs">
                 <p>Lunes a Viernes: 8:30 a 13 y de 17 a 20</p>
-                <p>Sábados: 9 a 13</p>
+                <p>Sábados: 9 a 13 y de 17 a 20</p>
               </div>
             </div>
           </div>

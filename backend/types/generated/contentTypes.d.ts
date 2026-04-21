@@ -702,6 +702,12 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
         'Queen (1.60x2.00)',
         'King (1.80x2.00)',
         'King Size (2.00x2.00)',
+        'M_70x40',
+        'M_70x50',
+        'M_90x40',
+        'M_90x50',
+        'M_1.00x40',
+        'M_1.00x50',
       ]
     >;
     name: Schema.Attribute.String & Schema.Attribute.Required;

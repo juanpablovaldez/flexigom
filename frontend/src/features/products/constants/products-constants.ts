@@ -40,23 +40,28 @@ export const COMPOSITIONS = [
 ] as const;
 
 export const MEASUREMENTS = [
-  "Una plaza (0.80x1.90)",
-  "Una plaza y media (0.90x1.90)",
-  "Una plaza y media (1.00x1.90)",
-  "Dos plazas (1.30x1.90)",
-  "Dos plazas y media (1.40x1.90)",
-  "Dos plazas y media (1.50x1.90)",
-  "Queen (1.60x2.00)",
-  "King (1.80x2.00)",
-  "King Size (2.00x2.00)",
-  "70 x 40",
-  "70 x 50",
-  "90 x 40",
-  "90 x 50",
-  "1.00 x 40",
-  "1.00 x 50",
+  { label: "Una plaza (0.80x1.90)", value: "Una plaza (0.80x1.90)" },
+  { label: "Una plaza y media (0.90x1.90)", value: "Una plaza y media (0.90x1.90)" },
+  { label: "Una plaza y media (1.00x1.90)", value: "Una plaza y media (1.00x1.90)" },
+  { label: "Dos plazas (1.30x1.90)", value: "Dos plazas (1.30x1.90)" },
+  { label: "Dos plazas y media (1.40x1.90)", value: "Dos plazas y media (1.40x1.90)" },
+  { label: "Dos plazas y media (1.50x1.90)", value: "Dos plazas y media (1.50x1.90)" },
+  { label: "Queen (1.60x2.00)", value: "Queen (1.60x2.00)" },
+  { label: "King (1.80x2.00)", value: "King (1.80x2.00)" },
+  { label: "King Size (2.00x2.00)", value: "King Size (2.00x2.00)" },
+  { label: "70 x 40", value: "M_70x40" },
+  { label: "70 x 50", value: "M_70x50" },
+  { label: "90 x 40", value: "M_90x40" },
+  { label: "90 x 50", value: "M_90x50" },
+  { label: "1.00 x 40", value: "M_1.00x40" },
+  { label: "1.00 x 50", value: "M_1.00x50" },
 
 ] as const;
+
+export const getMeasurementLabel = (value: string) => {
+  const measurement = MEASUREMENTS.find(m => m.value === value);
+  return measurement ? measurement.label : value;
+};
 
 export const SORT_OPTIONS = [
   { value: "name", label: "Relevancia" },
